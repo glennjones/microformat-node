@@ -1,35 +1,21 @@
 # About
 
-This demo is a static file server which implements the node-socialgraph grapher 
-module.
+This demo is a static file server which implements the node-ufshiv microformats
+parser module.
 
 #### Querying methods.
 
-Start the server binary and provide the root URL with the domain and path that 
-you wish to search for rel=me links. E.g.
+Start the server binary and provide the url of the web page use wish to parse for microformats. 
+You also need to provide the formats you wish to parse as a single value or a comma delimited list 
+E.g.
 
-    GET http://localhost:8888/premasagar.com
+    GET http://localhost:8888/?url=http%3A%2F%2Fufxtract.com%2Ftestsuite%2Fhcard%2Fhcard1.htm&format=hCard
 
-Using a query string your request should look like this.
+#### Supported formats
 
-    GET http://localhost:8888/?q=http%3A%2F%2Ftwitter.com%2Fpremasagar
+Currently ufshiv supports the following formats: hCard, XFN, hReview, hCalendar, hAtom, hResume, geo, adr and tag.
+Its important to use the right case when specifying the format query string parameter.
 
-#### Strict Mode
-
-Strict mode will only return pages that contain a link or links back 
-to a valid page. 
-
-A page is valid if it links back to another valid page, the URL you provide 
-the graph to start with is valid; therefore any other page that links back to 
-it becomes valid as well.
-
-Requests made using the path method are made in strict mode, however when using 
-the query string method it must be stated explicitly e.g.
-
-    GET http://localhost:8888/?q=http%3A%2F%2Ftwitter.com%2Fpremasagar&strict
-
-Requests made in non-strict mode will not check for links back to valid pages and 
-instead return every page that was crawled.
 
 #### Response 
 
