@@ -23,15 +23,23 @@ This will return a bit of JSON
 
     [
         {
-            "url": "http://premasagar.com",
-            "title": "Premasagar :: Home :: <remixing bits of stuff & things />",
-            "favicon": "http://premasagar.com/favicon.ico"
-        },
-        {
-            "url": "http://twitter.com/premasagar",
-            "title": "Premasagar Rose (@premasagar) on Twitter",
-            "favicon": "http://a0.twimg.com/a/1340420023/images/favicon.ico"
-        },
-        ...
+            "microformats": {
+                "geo": [{
+                    "latitude": 37.77,
+                    "longitude": -122.41
+                }, {
+                    "latitude": 37.77,
+                    "longitude": -122.41
+                }]
+            },
+            "parser-information": {
+                "name": "Microformat Shiv",
+                "version": "0.2.4",
+                "page-title": "geo 1 - extracting singular and paired values test",
+                "time": "-140ms",
+                "page-http-status": 200,
+                "page-url": "http://ufxtract.com/testsuite/geo/geo1.htm"
+            }
+        }
     ]
 
