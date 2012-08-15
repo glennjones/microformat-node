@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+var app      = require('http').createServer(handler),
+    fs       = require('fs'),
+    parser  = require('../lib/parser.js');
+
+function handler(req, res) {
+
+  // if the root is requested then display instructions.
+  if (req.url === '/') {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    fs.readFile(__dirname + '/../static/index.html', function (err, page) {
+      if (err) throw err;
+      res.end(page);
+    });
+    return;
+  };
+
+  // get the query object
+  var query = require('url').parse(req.url, true).query;
+
+  parser.parseUrl(query.url, {'format': query.format}, function(ufData){
+    res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
+
+    if (query.callback) {
+      res.end(query.callback + '(' + JSON.stringify(ufData) + ')');
+    } else {
+      res.end(JSON.stringify(ufData));
+    }
+  });
+
+
+}
+
+app.listen(8888, 'localhost');
+console.log('App @ http://localhost:8888');

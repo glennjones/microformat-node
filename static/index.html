@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>ufShiv Node.js Microformats Parser</title>
+    <link rel="shortcut icon" href="http://microformatshiv.com/images/logo16.png" />
+
+
+    <style>
+      /* 1. RESET AND HTML5 SETTINGS 
+      ------------------------------*/ 
+
+      body,
+      ul,
+      ol,
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      fieldset,
+      dd {
+        margin:  0;
+        padding: 0;
+      }
+
+      article,
+      aside,
+      dialog,
+      figure,
+      figcaption,
+      footer,
+      header,
+      hgroup,
+      nav,
+      section,
+      small {
+          display: block;
+      }
+
+
+      /* 2. BASE SETTINGS 
+      --------------------------------------------*/
+
+      html {
+        background-color: #FFF;
+        color: #444;
+      }
+
+      body {
+        font-size: 100%;
+        line-height: 1.4em;
+        font-family: calibri, arial, helvetica, 'lucida grande', 'lucida sans unicode', verdana, sans-serif;
+        border-top: 0.25em solid #444;
+        padding: 3em;
+      }
+
+      h1{
+        margin: 1em 0 1em 0;
+        font-weight: normal;
+      }
+
+      input[type="text"]{
+        width: 30em;
+      }
+
+      input[type="submit"]{
+        margin-top: 1em;
+        margin-left: 9em;
+      }
+
+      label{
+        display: inline-block;
+        width: 6em;
+      }
+
+      .notes {
+        margin: 2em 0 1em 0;
+      }
+
+      footer{
+        margin: 4em 0 4em 0;
+        color: #999;
+      }
+
+      a{
+        color: #999;
+      }
+
+
+
+    </style>
+
+  </head>
+  <body>
+    <h1>ufShiv Node.js Microformats Parser</h1>
+    <p class='notes'>Type in the address of a web page that contains a microformat and choose the microformat from the dropdown list.</p>
+
+
+    <form method="get" action=".">
+      <p><label for="url">url</label>
+        <input type="text" name="url" value="http://ufxtract.com/testsuite/hcard/hcard1.htm" />
+      </p>
+
+      <p><label for="callback">callback</label>
+        <input type="text" name="callback"/>
+      </p>
+
+      <p><label for="format">format</label>
+      <select name="format">
+         <option selected="selected" value="hCard,XFN,hReview,hCalendar,hAtom,hResume,geo,adr,tag">All microformats</option>
+         <option value="hCard">hCard</option>
+         <option value="hReview">hReview</option>
+         <option value="hCalendar">hCalendar</option>
+         <option value="hAtom">hAtom</option>
+         <option value="hResume">hResume</option>
+         <option value="XFN">XFN</option>
+         <option value="geo">geo</option>
+         <option value="adr">adr</option>
+         <option value="tag">rel-tag</option>
+         <!--
+         <option value="test-suite">test-suite</option>
+         <option value="test-fixture">test-fixture</option>
+          -->
+       </select>
+     </p>
+      <input type="submit" value="Parse"/>
+     </form>
+
+     <footer class="vcard">
+        <p class="copyright">© Copyright <a rel="me" href="http://www.glennjones.net" class="fn url">Glenn Jones</a> 2012. All Rights Reserved.</p>
+    </footer>
+    
+  </body>
+</html>

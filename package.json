@@ -1,0 +1,23 @@
+{
+  "author": "Glenn Jones",
+  "name": "node-ufshiv",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/glennjones/node-ufshiv.git"
+  },
+  "main": "index",
+  "dependencies": {
+    "jsdom": "0.2.14",
+    "request": "2.10.0"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": ">= 0.6.5"
+  },
+  "subdomain": "glennjones.node-ufshiv",
+  "scripts": {
+    "start": "bin/node-ufshiv"
+  }
+}
