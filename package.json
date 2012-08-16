@@ -1,10 +1,10 @@
 {
   "author": "Glenn Jones",
-  "name": "node-ufshiv",
+  "name": "node-microformat-shiv",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "git://github.com/glennjones/node-ufshiv.git"
+    "url": "git://github.com/glennjones/node-microformat-shiv.git"
   },
   "main": "index",
   "dependencies": {
@@ -16,8 +16,8 @@
   "engines": {
     "node": ">= 0.6.5"
   },
-  "subdomain": "glennjones.node-ufshiv",
+  "subdomain": "glennjones.node-microformat-shiv",
   "scripts": {
-    "start": "bin/node-ufshiv"
+    "start": "bin/node-microformat-shiv"
   }
 }
