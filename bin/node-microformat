@@ -11,9 +11,9 @@ function handler(req, res) {
 
 
   // if the root is requested then demo form.
-  if (req.url === '/') displayPage('/../static/index.html');
-
-  if (req.url.indexOf('/unit-tests/') > -1 && !query.url) {
+  if (req.url === '/') {
+    displayPage('/../static/index.html');
+  }else if (req.url.indexOf('/unit-tests/') > -1 && !query.url) {
     displayPage('/../static/unit-tests.html');
   }else{
     
