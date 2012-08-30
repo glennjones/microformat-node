@@ -1,16 +1,16 @@
-# node-microformat-shiv
+# microformat-node
 
 A microformat parsing for node.js. 
 
 
 ## Install
 
-    npm install node-microformat-shiv
+    npm install microformat-node
 
 or
 
-    git clone http://github.com/glennjones/node-microformat-shiv.git
-    cd node-microformat-shiv
+    git clone http://github.com/glennjones/microformat-node.git
+    cd microformat-node
     npm link
 
 
@@ -18,7 +18,7 @@ or
 
 with URL
 
-    var shiv = require("node-microformat-shiv");
+    var shiv = require("microformat-node");
 
     shiv.parseUrl('http://glennjones.net/about', {}, function(data){
         // do something with data
@@ -27,7 +27,7 @@ with URL
 
 or with raw html
 
-    var shiv = require('node-microformat-shiv');
+    var shiv = require('microformat-node');
 
     var html = '<p class="vcard"><a class="fn url" href="http://glennjones.net">Glenn Jones</a></p>';
     shiv.parseHtml(html, {}, function(data){
@@ -36,7 +36,7 @@ or with raw html
 
 with URL for a single format
 
-    var shiv = require("node-microformat-shiv");
+    var shiv = require("microformat-node");
 
     shiv.parseUrl('http://glennjones.net/about', {'format': 'XFN'}, function(data){
         // do something with data
@@ -45,7 +45,7 @@ with URL for a single format
 
 #### Supported formats
 
-Currently node-microformat-shiv supports the following formats: hCard, XFN, hReview, hCalendar, 
+Currently microformat-node supports the following formats: hCard, XFN, hReview, hCalendar, 
 hAtom, hResume, geo, adr and tag. Its important to use the right case when specifying the format 
 query string parameter.
 
@@ -81,7 +81,7 @@ This will return a bit of JSON
 
 Start the server binary:
 
-    $ bin/node-microformat-shiv
+    $ bin/microformat-node
 
 Then visit the server URL
 
@@ -98,10 +98,16 @@ as a single value or a comma delimited list:
 You can also use the hash # fragment element of a url to target an only part of a HTML page. 
 The hash is used to target the HTML element with the same id. 
 
+#### Viewing the user tests
 
-#### Notes for Windows install.
+The module inculdes a page which runs the ufxtract microfomats unit test suite. 
 
-node-microformat-shiv using a module called 'jsdom' which in turn uses 'contextify' that requires native code build.
+http://localhost:8888/user-tests/
+
+
+## Notes for Windows install.
+
+microformat-node using a module called 'jsdom' which in turn uses 'contextify' that requires native code build.
 
 There are a couple of things you normally need to do to compile node code on Windows.
 

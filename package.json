@@ -1,22 +1,19 @@
 {
   "author": "Glenn Jones",
-  "name": "node-microformat-shiv",
+  "name": "microformat-node",
   "description": "A microformat parser for node.js",
   "version": "0.0.1",
   "license": "MPL, GPL or LGPL",
   "repository": {
     "type": "git",
-    "url": "git://github.com/glennjones/node-microformat-shiv.git"
+    "url": "git://github.com/glennjones/microformat-node.git"
   },
   "main": "index",
   "dependencies": {
     "jsdom": "0.2.14",
     "request": "2.10.0"
   },
-  "engines": {
-    "node": ">= 0.6.5"
-  },
   "scripts": {
-    "start": "bin/node-microformat-shiv"
+    "start": "bin/microformat-node"
   }
 }
