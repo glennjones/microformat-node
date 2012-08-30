@@ -52,7 +52,7 @@ query string parameter.
 
 #### Response 
 
-This will return a bit of JSON
+This will return JSON. This is example of two geo microformats found in page.
 
     
     {
@@ -98,11 +98,11 @@ as a single value or a comma delimited list:
 You can also use the hash # fragment element of a url to target an only part of a HTML page. 
 The hash is used to target the HTML element with the same id. 
 
-#### Viewing the user tests
+#### Viewing the unit tests
 
 The module inculdes a page which runs the ufxtract microfomats unit test suite. 
 
-http://localhost:8888/user-tests/
+http://localhost:8888/unit-tests/
 
 
 ## Notes for Windows install.
