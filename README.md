@@ -1,6 +1,6 @@
 # microformat-node
 
-A microformat parsing for node.js. 
+microformat-node is a microformat parser for node.js. It is built using a well tested light-weight JavaScript parsing engine, which already powers a number of browser extensions. It currently supports the following formats: hCard, XFN, hReview, hCalendar, hAtom, hResume, geo, adr and tag.
 
 
 ## Install
@@ -45,14 +45,12 @@ with URL for a single format
 
 #### Supported formats
 
-Currently microformat-node supports the following formats: hCard, XFN, hReview, hCalendar, 
-hAtom, hResume, geo, adr and tag. Its important to use the right case when specifying the format 
-query string parameter.
+Currently microformat-node supports the following formats: hCard, XFN, hReview, hCalendar, hAtom, hResume, geo, adr and tag. It's important to use the right case when specifying the format query string parameter.
 
 
 #### Response 
 
-This will return JSON. This is example of two geo microformats found in page.
+This will return JSON. This is an example of two geo microformats found in a page.
 
     
     {
@@ -89,14 +87,12 @@ Then visit the server URL
 
 #### Using the server API    
 
-You need to provide the url of the web page use wish to parse and the format(s) you wish to parse 
-as a single value or a comma delimited list: 
+You need to provide the url of the web page and the format(s) you wish to parse as a single value or a comma delimited list:
 
 
     GET http://localhost:8888/?url=http%3A%2F%2Fufxtract.com%2Ftestsuite%2Fhcard%2Fhcard1.htm&format=hCard
 
-You can also use the hash # fragment element of a url to target an only part of a HTML page. 
-The hash is used to target the HTML element with the same id. 
+You can also use the hash # fragment element of a url to target only part of a HTML page. The hash is used to target the HTML element with the same id. 
 
 #### Viewing the unit tests
 
@@ -111,7 +107,7 @@ microformat-node using a module called 'jsdom' which in turn uses 'contextify' t
 
 There are a couple of things you normally need to do to compile node code on Windows.
 
-1. Install python 2.6 or 2.7, the build scripts use it.
+1. Install python 2.6 or 2.7, as the build scripts use it.
 2. Run npm inside a Visual Studio shell, so for me,
      Start->Programs->Microsoft Visual Studio 2010->Visual Studio
 Tools->Visual Studio Command Prompt
@@ -119,3 +115,16 @@ Tools->Visual Studio Command Prompt
 If you have the standard release of node it will probably be x86 rather
 than x64, for x64 there is a different Visual Studio shell but usally in same
 place.
+
+
+## Support or Contact
+
+Having trouble with microformat-node? Please raise an issue at: https://github.com/glennjones/microformat-node/issues
+
+## Authors and Contributors
+
+This project uses a refactored/rebuilt version of the Mozilla Operator Extension which Mozilla open sourced under the Mozilla Public License. It is currently maintained by Glenn Jones, but I would like to thank the authors and contributors of the original source code from which this project is derived. Michael Kaply, Andy Mitchell, Elias Torres, Alex Faaborg, David I. Lehn and Keith Alexander.
+
+## License
+
+Portions created by Glenn Jones are Copyright (C) 2010-2012 Glenn Jones. All Rights Reserved. License under MPL, GPL and LGPL. See the license.txt file within the project source
