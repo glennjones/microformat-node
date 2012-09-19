@@ -3,6 +3,9 @@
 microformat-node is a microformat parser for node.js. It is built using a well tested light-weight JavaScript parsing engine, which already powers a number of browser extensions. It currently supports the following formats: hCard, XFN, hReview, hCalendar, hAtom, hResume, geo, adr and tag.
 
 
+Demo API - http://microformat-node.jit.su/
+
+
 ## Install
 
     npm install microformat-node
