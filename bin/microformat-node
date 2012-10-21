@@ -4,6 +4,9 @@ var app      = require('http').createServer(handler),
     fs       = require('fs'),
     parser  = require('../lib/parser.js');
 
+//parser.setParserOptions({logLevel: 4})    
+
+
 function handler(req, res) {
 
   // get the query object
@@ -12,29 +15,42 @@ function handler(req, res) {
 
   // if the root is requested then demo form.
   if (req.url === '/') {
-    displayPage('/../static/index.html');
-  }else if (req.url.indexOf('/unit-tests/') > -1 && !query.url) {
-    displayPage('/../static/unit-tests.html');
+    writeHTML('/../static/index.html');
+  }else if (req.url.indexOf('/unittests/auto/') > -1 && !query.url) {
+    writeHTML('/../static/unittests-auto.html');  
+  }else if (req.url.indexOf('/unittests/') > -1 && !query.url) {
+    writeHTML('/../static/unittests.html');
+  }else if (req.url.indexOf('/javascript/') > -1 && !query.url) {
+    writeJS(req.url);
+  }else if (req.url.indexOf('/css/') > -1 && !query.url) {
+    writeCSS(req.url);
   }else{
     
-    var options = {};
-    if(query.format)
-      options.format = query.format;
+    if(query.url){
 
-
-    parser.parseUrl(query.url, options, function(ufData){
-      res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
-
-      if (query.callback) {
-        res.end(query.callback + '(' + JSON.stringify(ufData) + ')');
-      } else {
-        res.end(JSON.stringify(ufData));
+      var options = {};
+      if(query.formats){
+        options.formats = query.formats;
       }
-    });
+
+//      options.useCache = true;
+
+      parser.parseUrl(query.url, options, function(err, ufData){
+        res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
+
+        if (query.callback) {
+          res.end(query.callback + '(' + JSON.stringify(ufData) + ')');
+        } else {
+          res.end(JSON.stringify(ufData));
+        }
+      });
+
+    }
+
   }
 
 
-  function displayPage(path){
+  function writeHTML(path){
     res.writeHead(200, {'Content-Type': 'text/html'});
     fs.readFile(__dirname + path, function (err, page) {
       if (err) throw err;
@@ -42,6 +58,30 @@ function handler(req, res) {
     });
     return;
   };
+
+
+  function writeJS(path){
+    var parts = path.split('/javascript/');
+    path = '/../static/javascript/' + parts[1];
+    res.writeHead(200, {'Content-Type': 'text/javascript'});
+    fs.readFile(__dirname + path, function (err, page) {
+      if (err) throw err;
+      res.end(page);
+    });
+    return;
+  };
+
+  function writeCSS(path){
+    var parts = path.split('/css/');
+    path = '/../static/css/' + parts[1];
+    res.writeHead(200, {'Content-Type': 'text/css'});
+    fs.readFile(__dirname + path, function (err, page) {
+      if (err) throw err;
+      res.end(page);
+    });
+    return;
+  };
+
 
 
 }
