@@ -21,34 +21,50 @@ or
 
 with URL
 
-    var shiv = require("microformat-node");
+    var microformats = require("microformat-node");
 
-    shiv.parseUrl('http://glennjones.net/about', {}, function(data){
+    microformats.parseUrl('http://glennjones.net/about', function(err, data){
+        // do something with data
+    });
+
+
+with URL using a promise
+
+    var microformats = require("microformat-node");
+
+    microformats.parseUrl('http://glennjones.net/about').then(function (err, data) {
         // do something with data
     });
 
 
 or with raw html
 
-    var shiv = require('microformat-node');
+    var microformats = require('microformat-node');
 
     var html = '<p class="vcard"><a class="fn url" href="http://glennjones.net">Glenn Jones</a></p>';
-    shiv.parseHtml(html, {}, function(data){
+    shiv.parseHtml(html, function(err, data){
         // do something with data
     });
 
-with URL for a single format
 
-    var shiv = require("microformat-node");
+with URL with an options object defining the formats to parse ie 'hCard';
 
-    shiv.parseUrl('http://glennjones.net/about', {'format': 'XFN'}, function(data){
+    var microformats = require("microformat-node");
+
+    microformats.parseUrl('http://glennjones.net/about', {'format': 'hCard'}, function(err, data){
         // do something with data
     });
+
+#### Options  object for 'parseUrl' and 'parseHtml'
+
+There are two properties for the parse methods the first is 'formats' which takes a comma delimit string of the microformats. The default setting for formats' is the full list of formats the parser can parse.
+
+The 'useCache' causes the parser to cache the html across request. The default cache is in memory and limited to an hour and 1000 items.  
 
 
 #### Supported formats
 
-Currently microformat-node supports the following formats: hCard, XFN, hReview, hCalendar, hAtom, hResume, geo, adr and tag. It's important to use the right case when specifying the format query string parameter.
+Currently microformat-node supports the following formats: hCard, XFN, hReview, hCalendar, hAtom, hResume, geo, adr and tag. It's important to use the right case when specifying the formats query string parameter.
 
 
 #### Response 
@@ -67,18 +83,35 @@ This will return JSON. This is an example of two geo microformats found in a pag
             }]
         },
         "parser-information": {
-            "name": "Microformat Shiv",
-            "version": "0.2.4",
+            "name": "Microformat Node",
+            "version": "0.3.0",
             "page-title": "geo 1 - extracting singular and paired values test",
-            "time": "-140ms",
+            "time": "140ms",
             "page-http-status": 200,
             "page-url": "http://ufxtract.com/testsuite/geo/geo1.htm"
         }
     }
+  
+
+#### Options for whole parser
+
+    var microformats = require("microformat-node");
     
+    microformats.setParserOptions({
+        logLevel: 3,
+        cacheTimeLimit: 3600000, 
+        cacheItemLimit: 1000,
+        useCache: false,
+        formats: 'hCard,XFN,hReview,hCalendar,hAtom,hResume,geo,adr,tag'
+    });
+    
+* logLevel - (int 0-4 set) the level at which the parser logs events
+* cacheTimeLimit - (int) the amount of time items are keep in the cache for before they are discarded. The time is set in milliseconds.
+* cacheItemLimit - (int) the number of items to keep in cache before some are discarded
+* useCache - (boolean) weather a parse should use the HTML cache. 
+* formats - (string) a comma delimited list of formats to parse. 
 
-
-#### Querying demo server.
+#### Querying demo server
 
 Start the server binary:
 
@@ -101,23 +134,54 @@ You can also use the hash # fragment element of a url to target only part of a H
 
 The module inculdes a page which runs the ufxtract microfomats unit test suite. 
 
-    http://localhost:8888/unit-tests/
+    http://localhost:8888/unittests/auto/
 
 
-## Notes for Windows install.
+## Custom cache
 
-microformat-node using a module called 'jsdom' which in turn uses 'contextify' that requires native code build.
+microformats-node use an in-memory cache to store the HTML of web pages.
 
-There are a couple of things you normally need to do to compile node code on Windows.
+The options object contains a property called `cacheTimeLimit` that can be used to set the cache refresh time. By default, this is 0ms. The number of items stored in the cache can be limited using the options property `cacheItemLimit`. By default, the cache is limited to 0 items. Switch on the cache by setting postive valuse for both `cacheTimeLimit` and `cacheItemLimit`.
 
-1. Install python 2.6 or 2.7, as the build scripts use it.
-2. Run npm inside a Visual Studio shell, so for me,
-     Start->Programs->Microsoft Visual Studio 2010->Visual Studio
-Tools->Visual Studio Command Prompt
+You can replace the cache with your own, for example, to store the cached date in a database or file system. To add you own custom cache, all you need to do is provide an object containing the following interface:
 
-If you have the standard release of node it will probably be x86 rather
-than x64, for x64 there is a different Visual Studio shell but usally in same
-place.
+    {
+        function get (url) {
+            // add code to get data
+            returns data
+        }
+
+        function has(url) {
+            // add code to check your data store
+            returns true or false
+        }
+
+        function fetch (url, callback) {
+            // add code to return data
+            fires callback(null, data);
+        }
+
+        function set(url, data) {
+            // add code to store data
+            returns object
+        }
+    }
+
+and then add this interface as the `cache` property of the options object passed into the `parseUrl()` or `parseHtml()` methods.
+
+## Custom logger
+
+Elsewhere use a simple logging system that writes to Node's console. You can replace the logger with your own, for example, to store warnings and errors in a database or log file. To add your own custom logger, all you need to do is provide an object contain the following interface:
+
+    {
+        function info (message) { /* code to pass on message */ }
+        function log  (message) { /* code to pass on message */ }
+        function warn (message) { /* code to pass on message */ }
+        function error(message) { /* code to pass on message */ }
+    }
+
+and then add this interface to the `logger` property of the options object passed into the `parseUrl()` or `parseHtml()` methods.
+
 
 
 ## Support or Contact
