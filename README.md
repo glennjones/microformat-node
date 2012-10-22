@@ -6,7 +6,7 @@ microformat-node is a microformat parser for node.js. It is built using a well t
 Demo API - http://microformat-node.jit.su/
 
 
-## Install
+### Install
 
     npm install microformat-node
 
@@ -17,7 +17,7 @@ or
     npm link
 
 
-#### Use
+### Use
 
 with URL
 
@@ -56,19 +56,19 @@ with URL with an options object defining the formats to parse ie 'hCard';
     });
 
 
-#### Options  object for 'parseUrl' and 'parseHtml'
+### Options  object for 'parseUrl' and 'parseHtml'
 
 There are two properties for the parse methods the first is 'formats' which takes a comma delimit string of the microformats. The default setting for formats' is the full list of formats the parser can parse.
 
-The 'useCache' causes the parser to cache the html across request. The default cache is in memory and limited to an hour and 1000 items.  
+The 'useCache' causes the parser to cache the html across requests. The default cache saves in memory and limited to an hour and 1000 items.  
 
 
-#### Supported formats
+### Supported formats
 
 Currently microformat-node supports the following formats: hCard, XFN, hReview, hCalendar, hAtom, hResume, geo, adr and tag. It's important to use the right case when specifying the formats query string parameter.
 
 
-#### Response 
+### Response 
 
 This will return JSON. This is an example of two geo microformats found in a page.
 
@@ -94,7 +94,7 @@ This will return JSON. This is an example of two geo microformats found in a pag
     }
   
 
-#### Options for whole parser
+### Options for whole parser
 
     var microformats = require("microformat-node");
     
@@ -117,7 +117,7 @@ This will return JSON. This is an example of two geo microformats found in a pag
 * logger - (object) an object containing an interface described in the Custom logger section of the this document. 
 
 
-#### Querying demo server
+### Querying demo server
 
 Start the server binary:
 
@@ -128,7 +128,7 @@ Then visit the server URL
     http://localhost:8888/
 
 
-#### Using the server API    
+### Using the server API    
 
 You need to provide the url of the web page and the format(s) you wish to parse as a single value or a comma delimited list:
 
@@ -137,7 +137,7 @@ You need to provide the url of the web page and the format(s) you wish to parse 
 You can also use the hash # fragment element of a url to target only part of a HTML page. The hash is used to target the HTML element with the same id. 
 
 
-#### Viewing the unit tests
+### Viewing the unit tests
 
 The module inculdes a page which runs the ufxtract microfomats unit test suite. 
 
@@ -177,7 +177,7 @@ You can replace the cache with your own, for example, to store the cached date i
 and then add this interface as the `cache` property of the options object passed into the `parseUrl()` or `parseHtml()` methods.
 
 
-## Custom logger
+### Custom logger
 
 Elsewhere use a simple logging system that writes to Node's console. You can replace the logger with your own, for example, to store warnings and errors in a database or log file. To add your own custom logger, all you need to do is provide an object contain the following interface:
 
@@ -192,16 +192,16 @@ and then add this interface to the `logger` property of the options object passe
 
 
 
-## Support or Contact
+### Support or Contact
 
 Having trouble with microformat-node? Please raise an issue at: https://github.com/glennjones/microformat-node/issues
 
 
-## Authors and Contributors
+### Authors and Contributors
 
 This project uses a refactored/rebuilt version of the Mozilla Operator Extension which Mozilla open sourced under the Mozilla Public License. It is currently maintained by Glenn Jones, but I would like to thank the authors and contributors of the original source code from which this project is derived. Michael Kaply, Andy Mitchell, Elias Torres, Alex Faaborg, David I. Lehn and Keith Alexander.
 
 
-## License
+### License
 
-Portions created by Glenn Jones are Copyright (C) 2010-2012 Glenn Jones. All Rights Reserved. License under MPL, GPL and LGPL. See the license.txt file within the project source
+The project is open sourced under MPL, GPL and LGPL licenses. See the [license.txt](https://raw.github.com/glennjones/microformat-node/master/license.txt "license.txt") file within the project source.
