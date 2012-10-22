@@ -55,6 +55,7 @@ with URL with an options object defining the formats to parse ie 'hCard';
         // do something with data
     });
 
+
 #### Options  object for 'parseUrl' and 'parseHtml'
 
 There are two properties for the parse methods the first is 'formats' which takes a comma delimit string of the microformats. The default setting for formats' is the full list of formats the parser can parse.
@@ -102,14 +103,19 @@ This will return JSON. This is an example of two geo microformats found in a pag
         cacheTimeLimit: 3600000, 
         cacheItemLimit: 1000,
         useCache: false,
-        formats: 'hCard,XFN,hReview,hCalendar,hAtom,hResume,geo,adr,tag'
+        formats: 'hCard,XFN,hReview,hCalendar,hAtom,hResume,geo,adr,tag',
+        cache: { object containing the cache interface },
+        logger: { object containing the logger interface }
     });
     
-* logLevel - (int 0-4 set) the level at which the parser logs events
+* logLevel - (int 0-4) set the level at which the parser logs events
 * cacheTimeLimit - (int) the amount of time items are keep in the cache for before they are discarded. The time is set in milliseconds.
 * cacheItemLimit - (int) the number of items to keep in cache before some are discarded
 * useCache - (boolean) weather a parse should use the HTML cache. 
 * formats - (string) a comma delimited list of formats to parse. 
+* cache - (object) an object containing an interface described in the Custom cache section of the this document.
+* logger - (object) an object containing an interface described in the Custom logger section of the this document. 
+
 
 #### Querying demo server
 
@@ -121,14 +127,15 @@ Then visit the server URL
 
     http://localhost:8888/
 
+
 #### Using the server API    
 
 You need to provide the url of the web page and the format(s) you wish to parse as a single value or a comma delimited list:
 
-
     GET http://localhost:8888/?url=http%3A%2F%2Fufxtract.com%2Ftestsuite%2Fhcard%2Fhcard1.htm&format=hCard
 
 You can also use the hash # fragment element of a url to target only part of a HTML page. The hash is used to target the HTML element with the same id. 
+
 
 #### Viewing the unit tests
 
@@ -141,7 +148,7 @@ The module inculdes a page which runs the ufxtract microfomats unit test suite.
 
 microformats-node use an in-memory cache to store the HTML of web pages.
 
-The options object contains a property called `cacheTimeLimit` that can be used to set the cache refresh time. By default, this is 0ms. The number of items stored in the cache can be limited using the options property `cacheItemLimit`. By default, the cache is limited to 0 items. Switch on the cache by setting postive valuse for both `cacheTimeLimit` and `cacheItemLimit`.
+The options object contains a property called `cacheTimeLimit` that can be used to set the cache refresh time. By default, this is 3600000ms. The number of items stored in the cache can be limited using the options property `cacheItemLimit`. By default, the cache is limited to 1000 items. The 'useCache' property of options object is set to false by default.
 
 You can replace the cache with your own, for example, to store the cached date in a database or file system. To add you own custom cache, all you need to do is provide an object containing the following interface:
 
@@ -169,6 +176,7 @@ You can replace the cache with your own, for example, to store the cached date i
 
 and then add this interface as the `cache` property of the options object passed into the `parseUrl()` or `parseHtml()` methods.
 
+
 ## Custom logger
 
 Elsewhere use a simple logging system that writes to Node's console. You can replace the logger with your own, for example, to store warnings and errors in a database or log file. To add your own custom logger, all you need to do is provide an object contain the following interface:
@@ -188,9 +196,11 @@ and then add this interface to the `logger` property of the options object passe
 
 Having trouble with microformat-node? Please raise an issue at: https://github.com/glennjones/microformat-node/issues
 
+
 ## Authors and Contributors
 
 This project uses a refactored/rebuilt version of the Mozilla Operator Extension which Mozilla open sourced under the Mozilla Public License. It is currently maintained by Glenn Jones, but I would like to thank the authors and contributors of the original source code from which this project is derived. Michael Kaply, Andy Mitchell, Elias Torres, Alex Faaborg, David I. Lehn and Keith Alexander.
+
 
 ## License
 
