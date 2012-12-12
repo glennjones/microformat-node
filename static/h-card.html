@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>h-card parsing tests</title>
+
+    <link rel="stylesheet" href="../css/testsuite.css">
+    <link rel="stylesheet" href="../css/prettify.css">
+
+    <script src="../javascript/prettify.js"></script>
+    <script src="../javascript/testsuite.js"></script>
+   
+</head>
+<body class="h-x-test-suite">
+        
+
+
+        <h1 class="p-name">h-card parsing tests</h1>
+        <p class="p-description">This page was design to test the parsing of h-card. These tests are part of the micorformats 2 test suite.</p> 
+
+
+        <ul>
+            <li><a href="#justaname">Just a name</a></li>
+            <li><a href="#justahyperlink">Just a hyperlink</a></li>
+            <li><a href="#hyperlinkedphoto">Hyperlinked photo</a></li>
+            <li><a href="#extendeddescription">Extended description</a></li>
+        </ul>
+
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="justaname">Just a name</a> (<span class="p-format">h-card</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<p class="h-card">Frances Berriman</p>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+[
+    {
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Frances Berriman"]
+        }
+    }
+]
+</code></pre>
+
+            <h3>Assertions for integration tests:</h3>
+            <table cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Test</th>
+                        <th>Result</th>
+                        <th>Comment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="p-x-assert h-x-assert">
+                        <td class="p-x-test">name[0]</td>
+                        <td class="p-x-result">IsEqualTo('Frances Berriman')</td>
+                        <td class="p-summary">The name of the h-card</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section> 
+
+
+
+
+
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="justahyperlink">Just a hyperlink</a> (<span class="p-format">h-card</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<a class="h-card" href="http://benward.me/">Ben Ward</a>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+[
+    {
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Ben Ward"],
+            "url": ["http://benward.me/"]
+        }
+    }
+]
+</code></pre>
+
+            <h3>Assertions for integration tests:</h3>
+            <table cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Test</th>
+                        <th>Result</th>
+                        <th>Comment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="p-x-assert h-x-assert">
+                        <td class="p-x-test">name[0]</td>
+                        <td class="p-x-result">IsEqualTo('Ben Ward')</td>
+                        <td class="p-summary">The name of the h-card</td>
+                    </tr>
+                    <tr class="p-x-assert h-x-assert">
+                        <td class="p-x-test">url[0]</td>
+                        <td class="p-x-result">IsEqualTo('http://benward.me/')</td>
+                        <td class="p-summary">The url of the h-card</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section> 
+
+
+
+
+
+
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="hyperlinkedphoto">A hyperlinked photo</a> (<span class="p-format">h-card</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+    <a class="h-card" href="http://rohit.khare.org/">
+   <img alt="Rohit Khare" src="https://twimg0-a.akamaihd.net/profile_images/53307499/180px-Rohit-sq.jpg" />
+</a>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+[
+    {
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Rohit Khare"],
+            "photo": ["https://twimg0-a.akamaihd.net/profile_images/53307499/180px-Rohit-sq.jpg"]
+            "url": ["http://rohit.khare.org/"]
+        }
+    }
+]
+</code></pre>
+
+            <h3>Assertions for integration tests:</h3>
+            <table cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Test</th>
+                        <th>Result</th>
+                        <th>Comment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="p-x-assert h-x-assert">
+                        <td class="p-x-test">name[0]</td>
+                        <td class="p-x-result">IsEqualTo('Rohit Khare')</td>
+                        <td class="p-summary">The name of the h-card</td>
+                    </tr>
+                    <tr class="p-x-assert h-x-assert">
+                        <td class="p-x-test">photo[0]</td>
+                        <td class="p-x-result">IsEqualTo('https://twimg0-a.akamaihd.net/profile_images/53307499/180px-Rohit-sq.jpg')</td>
+                        <td class="p-summary">The photo of the h-card</td>
+                    </tr>
+                    <tr class="p-x-assert h-x-assert">
+                        <td class="p-x-test">url[0]</td>
+                        <td class="p-x-result">IsEqualTo('http://rohit.khare.org/')</td>
+                        <td class="p-summary">The url of the h-card</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section> 
+
+        
+    
+
+
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="extendeddescription">An extended description</a> (<span class="p-format">h-card</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="h-card">
+  <img class="u-photo" alt="photo of Mitchell" src="http://blog.mozilla.org/press/files/2012/04/mitchell-baker.jpg"/>
+  <p>
+    <a class="p-name u-url" href="http://blog.lizardwrangler.com/" >Mitchell Baker</a>
+    (<a class="u-url" href="https://twitter.com/MitchellBaker">@MitchellBaker</a>)
+    <span class="p-org">Mozilla Foundation</span>
+  </p>
+  <p class="p-note">Mitchell is responsible for setting the direction and scope of the Mozilla Foundation and its activities.</p>
+  <p><span class="p-category">Strategy</span> and <span class="p-category">Leadership</span></p>
+</div>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+[
+    {
+        "type": ["h-card"],
+        "properties": {
+            "category": ["Strategy", "Leadership"],
+            "name": ["Mitchell Baker"],
+            "note": ["Mitchell is responsible for setting the direction and scope of the Mozilla Foundation and its activities."],
+            "org": ["Mozilla Foundation"],
+            "photo": ["http://blog.mozilla.org/press/files/2012/04/mitchell-baker.jpg"],
+            "url": ["http://blog.lizardwrangler.com/", "https://twitter.com/MitchellBaker"]
+    }
+]
+</code></pre>
+
+            <h3>Assertions for integration tests:</h3>
+            <table cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Test</th>
+                        <th>Result</th>
+                        <th>Comment</th>
+                    </tr>
+                </thead>
+                <tbody>                    
+                    <tr class="p-x-assert h-x-assert">
+                        <td class="p-x-test">category[1]</td>
+                        <td class="p-x-result">IsEqualTo('Leadership')</td>
+                        <td class="p-summary">The secong category of the h-card</td>
+                    </tr>
+                    <tr class="p-x-assert h-x-assert">
+                        <td class="p-x-test">name[0]</td>
+                        <td class="p-x-result">IsEqualTo('Mitchell Baker')</td>
+                        <td class="p-summary">The name of the h-card</td>
+                    </tr>   
+                    <tr class="p-x-assert h-x-assert">
+                        <td class="p-x-test">note[0]</td>
+                        <td class="p-x-result">IsEqualTo('Mitchell is responsible for setting the direction and scope of the Mozilla Foundation and its activities.')</td>
+                        <td class="p-summary">The note of the h-card</td>
+                    </tr>                 
+                    <tr class="p-x-assert h-x-assert">
+                        <td class="p-x-test">org[0]</td>
+                        <td class="p-x-result">IsEqualTo('Mozilla Foundation')</td>
+                        <td class="p-summary">The org of the h-card</td>
+                    </tr>
+                    <tr class="p-x-assert h-x-assert">
+                        <td class="p-x-test">photo[0]</td>
+                        <td class="p-x-result">IsEqualTo('http://blog.mozilla.org/press/files/2012/04/mitchell-baker.jpg')</td>
+                        <td class="p-summary">The photo of the h-card</td>
+                    </tr>
+                    <tr class="p-x-assert h-x-assert">
+                        <td class="p-x-test">url[1]</td>
+                        <td class="p-x-result">IsEqualTo('https://twitter.com/MitchellBaker')</td>
+                        <td class="p-summary">The second url of the h-card</td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+
+
+        </section>    
+  
+
+
+
+
+
+
+    <h2>Change log:</h2>
+    <ul>
+        <li class="p-x-history h-entry">
+            <span class="p-name">Updated format</span>: <abbr class="dt-published" title="2012-11-22">22 November 2012</abbr> 
+            <span class="p-description">Added new styling to breakup test fixtures visaully &ndash; by Glenn Jones</span>
+        </li>
+        <li class="p-x-history h-entry">
+            <span class="p-name">Updated format</span>: <abbr class="dt-published" title="2012-11-21">21 November 2012</abbr> 
+            <span class="p-description">Updated the format making an individual test fixtures for an individaul h-card &ndash; by Glenn Jones</span>
+        </li>
+        <li class="p-x-history h-entry">
+            <span class="p-name">Created</span>: <abbr class="dt-published" title="2012-09-10">10 September 2012</abbr> 
+            <span class="p-description">by Glenn Jones</span>
+        </li>
+    </ul>
+
+
+    <h2>Contributors :</h2>
+    <ul>
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://tantek.com/">Tantek Çelik</a> 
+        </li>
+        <li class="p-author h-card">
+            <a class="u-url p-name" rel="author" href="http://www.glennjones.net/">Glenn Jones</a> 
+        </li>
+    </ul>
+  
+        
+    <footer>
+        All content and code is released into the <a href="http://en.wikipedia.org/wiki/public_domain">public domain</a>
+    </footer>
+      
+</body>
+
+</html>

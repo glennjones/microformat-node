@@ -3,26 +3,40 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Microformats Node Parser</title>
+    <title>Microformats2 Node Parser</title>
     <link rel="stylesheet" href="css/site.css" type="text/css" />
   </head>
   <body>
-    <h1>microformats-node node.js Parser</h1>
+    <h1>microformats-node2 node.js parser</h1>
     <p class='notes'>Type in the address of a web page that contains a microformat and choose the microformat from the dropdown list.</p>
 
 
     <form method="get" action=".">
       <p><label for="url">url</label>
-        <input type="text" name="url" value="http://ufxtract.com/testsuite/hcard/hcard1.htm" />
+        <input type="text" name="url" value="http://localhost:8888/h-card/" />
       </p>
 
       <p><label for="callback">callback</label>
         <input type="text" name="callback"/>
       </p>
 
-      <p><label for="formats">formats</label>
+      <p><label for="formats">filter results</label>
       <select name="formats">
-         <option selected="selected" value="hCard,XFN,hReview,hCalendar,hAtom,hResume,geo,adr,tag,test-fixture,test-suite">All microformats</option>
+         <option selected="selected" value="">All microformats</option>
+
+         <option value="h-card">h-card</option>
+         <option value="h-adr">h-adr</option>
+         <option value="h-geo">h-geo</option>
+         <option value="h-tag">h-tag</option>
+         <option value="h-event">h-event</option>
+         <option value="h-resume">h-resume</option>
+         <option value="h-atom">h-atom</option>
+         <option value="h-entry">h-entry</option>
+         <option value="h-x-test-suite">h-x-test-suite</option>
+         <option value="h-x-test-fixture">h-x-test-fixture</option>
+         <option value="h-x-assert">h-x-assert</option>
+
+         <!--
          <option value="hCard">hCard</option>
          <option value="hReview">hReview</option>
          <option value="hCalendar">hCalendar</option>
@@ -34,6 +48,7 @@
          <option value="tag">rel-tag</option>
          <option value="test-suite">test-suite</option>
          <option value="test-fixture">test-fixture</option>
+       -->
        </select>
      </p>
       <input type="submit" value="Parse"/>

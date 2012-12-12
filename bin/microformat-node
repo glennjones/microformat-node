@@ -20,10 +20,15 @@ function handler(req, res) {
     writeHTML('/../static/unittests-auto.html');  
   }else if (req.url.indexOf('/unittests/') > -1 && !query.url) {
     writeHTML('/../static/unittests.html');
+  }else if (req.url.indexOf('/h-card/') > -1 && !query.url) {
+    writeHTML('/../static/h-card.html');
+
   }else if (req.url.indexOf('/javascript/') > -1 && !query.url) {
     writeJS(req.url);
   }else if (req.url.indexOf('/css/') > -1 && !query.url) {
     writeCSS(req.url);
+
+    
   }else{
     
     if(query.url){
