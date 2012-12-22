@@ -2,7 +2,8 @@
 
 var app      = require('http').createServer(handler),
     fs       = require('fs'),
-    parser  = require('../lib/parser.js');
+    parser  = require('../lib/parser.js')
+    testWriter  = require('../lib/helper-testWriter.js');
 
 //parser.setParserOptions({logLevel: 4})    
 
@@ -16,19 +17,54 @@ function handler(req, res) {
   // if the root is requested then demo form.
   if (req.url === '/') {
     writeHTML('/../static/index.html');
-  }else if (req.url.indexOf('/unittests/auto/') > -1 && !query.url) {
+
+/*  }else if (req.url.indexOf('/unittests/auto/') > -1 && !query.url) {
     writeHTML('/../static/unittests-auto.html');  
+
   }else if (req.url.indexOf('/unittests/') > -1 && !query.url) {
-    writeHTML('/../static/unittests.html');
-  }else if (req.url.indexOf('/h-card/') > -1 && !query.url) {
+    writeHTML('/../static/unittests.html');*/
+
+  }else if (req.url.indexOf('/test/update/') > -1 && !query.url) {
+    testWriter.updateTests();
+    res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+    res.end('<h1>Updating text how</h1>');
+
+  }else if (req.url.indexOf('/test/h-card/') > -1 && !query.url) {
     writeHTML('/../static/h-card.html');
+
+  }else if (req.url.indexOf('test/h-event/') > -1 && !query.url) {
+    writeHTML('/../static/h-event.html');
+
+  }else if (req.url.indexOf('test/h-entry/') > -1 && !query.url) {
+    writeHTML('/../static/h-entry.html');
 
   }else if (req.url.indexOf('/javascript/') > -1 && !query.url) {
     writeJS(req.url);
+
   }else if (req.url.indexOf('/css/') > -1 && !query.url) {
     writeCSS(req.url);
 
-    
+/*  // return plain text
+  }else if (req.url.indexOf('/api/text') > -1) {
+      if(query.cssquery){
+        options.cssquery = query.cssquery;
+      }
+      parser.parsePlainText(query.url, options, function(err, data){
+        res.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'});
+          res.end(data);
+      });
+
+  // return html
+  }else if (req.url.indexOf('/api/html') > -1) {
+      if(query.cssquery){
+        options.cssquery = query.cssquery;
+      }
+      parser.parseInnerHTML(query.url, options, function(err, data){
+        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+          res.end(data);
+      });*/
+
+  // return json uf  
   }else{
     
     if(query.url){
@@ -38,7 +74,9 @@ function handler(req, res) {
         options.formats = query.formats;
       }
 
-//      options.useCache = true;
+      if(query.formats){
+        options.formats = query.formats;
+      }
 
       parser.parseUrl(query.url, options, function(err, ufData){
         res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});

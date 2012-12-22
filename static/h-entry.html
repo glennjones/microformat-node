@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>h-entry parsing tests</title>
+
+    <link rel="stylesheet" href="/css/testsuite.css">
+    <link rel="stylesheet" href="/css/prettify.css">
+
+    <script src="/javascript/prettify.js"></script>
+    <script src="/javascript/testsuite.js"></script>
+   
+</head>
+<body class="h-x-test-suite">
+        
+
+
+        <h1 class="p-name">h-entry parsing tests</h1>
+        <p class="p-description">This page was design to test the parsing of h-entry. These tests are part of the micorformats 2 test suite.</p> 
+
+
+        <ul>
+            <li><a href="#justaname">Just a name</a></li>
+            <li><a href="#justahyperlink">Just a hyperlink</a></li>
+            <li><a href="#summarycontent">Entry with summary and content</a></li>
+        </ul>
+
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="justaname">Just a name</a> (<span class="p-format">h-entry</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<p class="h-entry">microformats.org at 7</p>
+
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{ 
+        "type": ["h-entry"],
+        "properties": {
+            "name": ["microformats.org at 7"] 
+        }
+    }]
+}
+</code></pre>
+
+
+        </section>
+
+
+
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="justahyperlink">Just a hyperlink</a> (<span class="p-format">h-entry</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<a  class="h-entry" href="http://microformats.org/2012/06/25/microformats-org-at-7">microformats.org at 7</a>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{ 
+        "type": ["h-entry"],
+        "properties": {
+            "name": ["microformats.org at 7"],
+            "url": ["http://microformats.org/2012/06/25/microformats-org-at-7"] 
+        }
+    }]
+}
+</code></pre>
+
+
+        </section>
+
+
+                <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="summarycontent">Entry with summary and content</a> (<span class="p-format">h-entry</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="h-entry">
+    <h1><a  class="p-name u-url" href="http://microformats.org/2012/06/25/microformats-org-at-7">microformats.org at 7</a></h1>
+    <div class="e-content">
+        <p  class="p-summary">Last week the microformats.org community 
+            celebrated its 7th birthday at a gathering hosted by Mozilla in 
+            San Francisco and recognized accomplishments, challenges, and 
+            opportunities.</p>
+
+        <p>The microformats tagline &#8220;humans first, machines second&#8221; 
+            forms the basis of many of our 
+            <a href="http://microformats.org/wiki/principles">principles</a>, and 
+            in that regard, we&#8217;d like to recognize a few people and 
+            thank them for their years of volunteer service </p>
+    </div>  
+    <p>Updated 
+        <time class="dt-updated" datetime="2012-06-25T17:08:26">June 25th, 2012</time> by
+        <a class="p-author h-card" href="http://tantek.com/">Tantek</a>
+    </p>
+</div>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{ 
+        "type": ["h-entry"],
+        "properties": {
+            "url": ["http://microformats.org/2012/06/25/microformats-org-at-7"],
+            "name": ["microformats.org at 7"],
+            "content": ["\n        &lt;p class=\"p-summary\"&gt;Last week the microformats.org community \n            celebrated its 7th birthday at a gathering hosted by Mozilla in \n            San Francisco and recognized accomplishments, challenges, and \n            opportunities.&lt;/p&gt;\n\n        &lt;p&gt;The microformats tagline &amp;#8220;humans first, machines second&amp;#8221; \n            forms the basis of many of our \n            &lt;a href=\"http://microformats.org/wiki/principles\"&gt;principles&lt;/a&gt;, and \n            in that regard, we&amp;#8217;d like to recognize a few people and \n            thank them for their years of volunteer service &lt;/p&gt;\n  "], 
+            "summary": ["Last week the microformats.org community celebrated its 7th birthday at a gathering hosted by Mozilla in San Francisco and recognized accomplishments, challenges, and opportunities."],
+            "updated": ["2012-06-25t17:08:26"], 
+            "author": [{
+                "value": "Tantek",
+                "type": ["h-card"],
+                "properties": {
+                    "name": ["Tantek"],
+                    "url": ["http://tantek.com/"]
+                }
+            }] 
+        }
+    },{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Tantek"],
+            "url": ["http://tantek.com/"]
+        }
+    }]
+}
+</code></pre>
+
+
+        </section>
+
+
+
+    
+
+    <h2>Change log:</h2>
+    <ul> 
+        <li class="p-x-history h-entry">
+            <span class="p-name">Reordered JSON</span>: <time class="dt-published" datetime="2012-12-22">22 December 2012</time> 
+            <span class="p-summary">Reordered JSON to match the parsing order. This allows direct matching of stringified JSON objects &ndash; </span> by <span class="p-author">Glenn Jones</span>
+        </li>       
+        <li class="p-x-history h-entry">
+            <span class="p-name">Created</span>: <time class="dt-published" datetime="2012-12-18">18 December 2012</time> 
+            by <span class="p-author">Glenn Jones</span>
+        </li>
+    </ul>
+
+
+    <h2>Contributors :</h2>
+    <ul>
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://tantek.com/">Tantek Çelik</a> 
+        </li>
+        <li class="p-author h-card">
+            <a class="u-url p-name" rel="author" href="http://www.glennjones.net/">Glenn Jones</a> 
+        </li>
+    </ul>
+  
+        
+    <footer>
+        All content and code is released into the <a href="http://en.wikipedia.org/wiki/public_domain">public domain</a>
+    </footer>
+      
+</body>
+
+</html>
