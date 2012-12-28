@@ -18,25 +18,14 @@ function handler(req, res) {
   if (req.url === '/') {
     writeHTML('/../static/index.html');
 
-/*  }else if (req.url.indexOf('/unittests/auto/') > -1 && !query.url) {
-    writeHTML('/../static/unittests-auto.html');  
-
-  }else if (req.url.indexOf('/unittests/') > -1 && !query.url) {
-    writeHTML('/../static/unittests.html');*/
-
   }else if (req.url.indexOf('/test/update/') > -1 && !query.url) {
     testWriter.updateTests();
     res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-    res.end('<h1>Updating text how</h1>');
+    res.end('<h1>Updating tests how...</h1>');
 
-  }else if (req.url.indexOf('/test/h-card/') > -1 && !query.url) {
-    writeHTML('/../static/h-card.html');
-
-  }else if (req.url.indexOf('test/h-event/') > -1 && !query.url) {
-    writeHTML('/../static/h-event.html');
-
-  }else if (req.url.indexOf('test/h-entry/') > -1 && !query.url) {
-    writeHTML('/../static/h-entry.html');
+  }else if (req.url.indexOf('/test/') > -1 && !query.url) {
+    var parts = req.url.split('/test/');
+    writeHTML('/../static/' + parts[1]);
 
   }else if (req.url.indexOf('/javascript/') > -1 && !query.url) {
     writeJS(req.url);
@@ -44,50 +33,39 @@ function handler(req, res) {
   }else if (req.url.indexOf('/css/') > -1 && !query.url) {
     writeCSS(req.url);
 
-/*  // return plain text
-  }else if (req.url.indexOf('/api/text') > -1) {
-      if(query.cssquery){
-        options.cssquery = query.cssquery;
-      }
-      parser.parsePlainText(query.url, options, function(err, data){
-        res.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'});
-          res.end(data);
-      });
-
-  // return html
-  }else if (req.url.indexOf('/api/html') > -1) {
-      if(query.cssquery){
-        options.cssquery = query.cssquery;
-      }
-      parser.parseInnerHTML(query.url, options, function(err, data){
-        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-          res.end(data);
-      });*/
 
   // return json uf  
   }else{
+
+    var options = {};
+    if(query.formats){
+      options.formats = query.formats;
+    }
+
+    if(query.formats){
+      options.formats = query.formats;
+    }
     
     if(query.url){
-
-      var options = {};
-      if(query.formats){
-        options.formats = query.formats;
-      }
-
-      if(query.formats){
-        options.formats = query.formats;
-      }
-
       parser.parseUrl(query.url, options, function(err, ufData){
         res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
-
         if (query.callback) {
           res.end(query.callback + '(' + JSON.stringify(ufData) + ')');
         } else {
           res.end(JSON.stringify(ufData));
         }
       });
+    }
 
+    if(query.html){
+      parser.parseHtml(query.html, options, query.baseurl, function(err, ufData){
+        res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
+        if (query.callback) {
+          res.end(query.callback + '(' + JSON.stringify(ufData) + ')');
+        } else {
+          res.end(JSON.stringify(ufData));
+        }
+      });
     }
 
   }
@@ -96,8 +74,25 @@ function handler(req, res) {
   function writeHTML(path){
     res.writeHead(200, {'Content-Type': 'text/html'});
     fs.readFile(__dirname + path, function (err, page) {
-      if (err) throw err;
-      res.end(page);
+      if(err) {
+        console.log(err)
+      }else{
+        res.end(page);
+      }
+    });
+    return;
+  };
+
+
+  function writeStaticHTML(path){
+    path = '/../static/' + path;
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    fs.readFile(__dirname + path, function (err, page) {
+      if(err) {
+        console.log(err)
+      }else{
+        res.end(page);
+      }
     });
     return;
   };
@@ -108,8 +103,11 @@ function handler(req, res) {
     path = '/../static/javascript/' + parts[1];
     res.writeHead(200, {'Content-Type': 'text/javascript'});
     fs.readFile(__dirname + path, function (err, page) {
-      if (err) throw err;
-      res.end(page);
+      if(err) {
+        console.log(err)
+      }else{
+        res.end(page);
+      }
     });
     return;
   };
@@ -119,8 +117,11 @@ function handler(req, res) {
     path = '/../static/css/' + parts[1];
     res.writeHead(200, {'Content-Type': 'text/css'});
     fs.readFile(__dirname + path, function (err, page) {
-      if (err) throw err;
-      res.end(page);
+      if(err) {
+        console.log(err)
+      }else{
+        res.end(page);
+      }
     });
     return;
   };

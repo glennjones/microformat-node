@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>h-card parsing tests</title>
+
+    <link rel="stylesheet" href="/css/testsuite.css">
+    <link rel="stylesheet" href="/css/prettify.css">
+
+    <script src="/javascript/prettify.js"></script>
+    <script src="/javascript/testsuite.js"></script>
+   
+</head>
+<body >
+
+
+
+
+
+<span class="h-event">
+    <span class="p-name">The 4th Microformat party</span> will be on 
+
+    <span class="dt-start">
+        <time class="value" datetime="2009-06-26">26 July</time>, from <time class="value">19:00</time>
+    </span> 
+
+        to 
+
+    <span class="dt-end">
+        <time class="value">22:00</time>
+    </span>.
+
+</span>
+
+
+<!-- microformats example we are going to test
+
+<span class="h-geo">The Bricklayer's Arms
+    <span class="p-latitude">
+        <span class="value-title" title="51.513458"> </span> 
+    </span>
+    <span class="p-longitude">
+        <span class="value-title" title="-0.14812"> </span>
+    </span>
+</span>
+
+
+<div class="h-card">
+  <a class="p-name u-url" href="http://blog.lizardwrangler.com/">Mitchell Baker</a> 
+  (<a class="p-org h-card" href="http://mozilla.org/">Mozilla Foundation</a>)
+</div>
+
+
+ 
+    <div class="h-card">
+  <a class="p-name u-url"
+     href="http://blog.lizardwrangler.com/" 
+    >Mitchell Baker</a> 
+  (<a class="h-org h-card" 
+      href="http://mozilla.org/"
+     >Mozilla Foundation</a>)
+</div>
+
+        
+
+<div class="h-card">
+  <a class="p-name u-url" href="http://blog.lizardwrangler.com/">Mitchell Baker</a> 
+  (<a class="p-org h-card h-org" href="http://mozilla.org/">Mozilla Foundation</a>)
+</div>
+-->       
+
+<!-- microformats example we are going to test 
+
+<div class="h-card">
+  <a class="p-name u-url"
+     href="http://blog.lizardwrangler.com/" 
+    >Mitchell Baker</a> 
+  (<a class="p-org h-card" 
+      href="http://mozilla.org/"
+     >Mozilla Foundation</a>)
+</div>
+-->
+
+<!-- microformats example we are going to test 
+
+<div class="h-card">
+    <p>
+        <a class="p-name u-url" href="http://blog.lizardwrangler.com/" >Mitchell Baker</a> 
+    </p>
+    <p class="p-org h-card">
+        <a class="p-url p-name" href="http://mozilla.org/">Mozilla Foundation</a>
+    </p>
+</div>
+-->
+
+      
+</body>
+
+</html>

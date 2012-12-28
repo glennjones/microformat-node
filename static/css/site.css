@@ -48,7 +48,7 @@ body {
   padding: 3em;
 }
 
-h1{
+h1, h2{
   margin: 1em 0 1em 0;
   font-weight: normal;
 }
@@ -82,4 +82,9 @@ footer{
 
 a{
   color: #999;
+}
+
+ul{
+  margin-left: 2em
+
 }

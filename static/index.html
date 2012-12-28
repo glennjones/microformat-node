@@ -13,7 +13,7 @@
 
     <form method="get" action=".">
       <p><label for="url">url</label>
-        <input type="text" name="url" value="http://microformat2-node.jit.su/h-card.html" />
+        <input type="text" name="url" value="http://localhost:8888/h-card.html" />
       </p>
 
       <p><label for="callback">callback</label>
@@ -30,7 +30,6 @@
          <option value="h-tag">h-tag</option>
          <option value="h-event">h-event</option>
          <option value="h-resume">h-resume</option>
-         <option value="h-atom">h-atom</option>
          <option value="h-entry">h-entry</option>
          <option value="h-x-test-suite">h-x-test-suite</option>
          <option value="h-x-test-fixture">h-x-test-fixture</option>
@@ -54,9 +53,20 @@
       <input type="submit" value="Parse"/>
      </form>
 
-     <p>
-        <a href="/unittests/auto/">Autorun the unit test suite</a> and <a href="/unittests/"> Single unit tests</a>
-     </p>
+
+    <h2>Run tests</h2>
+    <p>The test suite pages have been parsed and turned into a set of <a href="test/mocha.html">integration tests</a> using the javascript test framework mocha. The test can be run from a command line or view in the browser based test runner which calls the API.<p>  
+
+
+
+     <h2>Microformats Test Suite</h2>
+     <ul>
+      <li><a href="test/h-card.html">h-card</a></li>
+      <li><a href="test/h-entry.html">h-entry</a></li>
+      <li><a href="test/h-event.html">h-event</a></li>
+      <li><a href="test/h-geo.html">h-geo</a></li>
+     </ul>
+
 
      <footer class="vcard">
         <p class="copyright"><span>All content and code is licensed under <a href="https://raw.github.com/glennjones/microformat-node/master/license.txt" rel="license">Mozilla Public License/GNU/LGPL License</a></span> © Copyright <a rel="me" href="http://www.glennjones.net" class="fn url">Glenn Jones</a> 2012. All Rights Reserved.</p>

@@ -24,6 +24,7 @@
             <li><a href="#justahyperlink">Just a hyperlink</a></li>
             <li><a href="#attendees">Event with attendees</a></li>
             <li><a href="#combining">Combining h-event with h-card</a></li>
+            <li><a href="#concatenate">Concatenate multiple datetime elements</a></li>
         </ul>
 
         <!-- a test -->
@@ -229,8 +230,38 @@
         </section> 
 
 
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="concatenate">Concatenate multiple datetime elements</a> (<span class="p-format">h-event</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<span class="h-event">
+ <span class="p-name">The 4th Microformat party</span> will be on 
+ <span class="dt-start">
+  <time class="value" datetime="2009-06-26">26 July</time>, from
+  <time class="value">19:00</time></span> to 
+ <span class="dt-end"><time class="value">22:00</time></span>.
+</span>
+</div>
 
 
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{ 
+        "type": ["h-event"],
+        "properties": {
+            "name": ["The 4th Microformat party"],
+            "start": ["2009-06-26T19:00"],
+            "end": ["2009-06-26T22:00"]
+        }
+    }]
+}
+</code></pre>
+
+ 
+        </section> 
 
 
     
