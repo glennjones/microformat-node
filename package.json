@@ -18,7 +18,8 @@
     "type": "git",
     "url": "git://github.com/glennjones/microformat-node.git"
   },
-  "main": "./bin/microformat-node",
+  "main": "index",
+  "bin": { "microformat-node": "./bin/microformat-node" },
   "dependencies": {
     "request": "2.10.x",
     "cheerio": "0.10.x",
