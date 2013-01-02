@@ -1,9 +1,18 @@
-/*!
-    isodate.js
-    Parses and builds ISO dates to the W3C or RFC3339 profiles
-    Copyright (C) 2010 - 2012 Glenn Jones. All Rights Reserved.
-    Open License: https://raw.github.com/glennjones/microformat-node/master/license.txt
-*/
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>test</title>
+
+   
+</head>
+<body>
+
+
+
+
+<script>
 
 function ISODate() {
     this.dY;
@@ -44,10 +53,7 @@ ISODate.prototype = {
                 var tzArray = timePart.split('Z');
                 timePart = tzArray[0];
                 timeZonePart = tzArray[1];
-
-                if (timePart.indexOf('Z') > -1){
-                    this.z = true;
-                }
+                this.z = true;
 
                 // Timezone
                 if (timePart.indexOf('+') > -1 || timePart.indexOf('-') > -1) {
@@ -205,7 +211,7 @@ function isFullDate(str) {
 function isTime(str) {
     str = str.toLowerCase();
     // make sure it does not have the pattern of a duration or date
-    if(!isDuration(str) && !str.match('-') && !str.match('t')){
+    if(!isDuration(str) && !str.match('t')){
         var iso = new ISODate();
         iso.ParseTime( parseAmPmTime(str) );
         return iso.hasTime();
@@ -348,16 +354,19 @@ function isString(obj) {
 }
 
 
+// ========================================
+
+
+var date = isTime('2012-10-10')
+document.write( date )
+
+
+</script>
 
 
 
-exports.ISODate = ISODate;
-exports.isFullDate = isFullDate;
-exports.isTime = isTime;
-exports.isTimeZone = isTimeZone;
-exports.isDuration = isDuration;
-exports.dateTimeUnion = dateTimeUnion
-exports.concatFragments = concatFragments;
-exports.parseAmPmTime = parseAmPmTime;
 
+      
+</body>
 
+</html>

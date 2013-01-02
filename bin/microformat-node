@@ -33,6 +33,9 @@ function handler(req, res) {
   }else if (req.url.indexOf('/css/') > -1 && !query.url) {
     writeCSS(req.url);
 
+  }else if (req.url.indexOf('/iamges/') > -1 && !query.url) {
+    writeImages(req.url);
+
 
   // return json uf  
   }else{
@@ -116,6 +119,21 @@ function handler(req, res) {
     var parts = path.split('/css/');
     path = '/../static/css/' + parts[1];
     res.writeHead(200, {'Content-Type': 'text/css'});
+    fs.readFile(__dirname + path, function (err, page) {
+      if(err) {
+        console.log(err)
+      }else{
+        res.end(page);
+      }
+    });
+    return;
+  };
+
+
+  function writeImages(path){
+    var parts = path.split('/images/');
+    path = '/../static/images/' + parts[1];
+    res.writeHead(200, {'Content-Type': 'image/gif'});
     fs.readFile(__dirname + path, function (err, page) {
       if(err) {
         console.log(err)

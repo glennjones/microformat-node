@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/site.css" type="text/css" />
   </head>
   <body>
-    <h1>microformats-node2 node.js parser</h1>
+    <h1>Microformats2 Node Parser</h1>
     <p class='notes'>Type in the address of a web page that contains a microformat and choose the microformat from the dropdown list.</p>
 
 
@@ -31,9 +31,8 @@
          <option value="h-event">h-event</option>
          <option value="h-resume">h-resume</option>
          <option value="h-entry">h-entry</option>
-         <option value="h-x-test-suite">h-x-test-suite</option>
-         <option value="h-x-test-fixture">h-x-test-fixture</option>
-         <option value="h-x-assert">h-x-assert</option>
+
+
 
          <!--
          <option value="hCard">hCard</option>
@@ -54,18 +53,24 @@
      </form>
 
 
-    <h2>Run tests</h2>
-    <p>The test suite pages have been parsed and turned into a set of <a href="test/mocha.html">integration tests</a> using the javascript test framework mocha. The test can be run from a command line or view in the browser based test runner which calls the API.<p>  
 
 
+    <h2>Microformats Test Suite</h2>
 
-     <h2>Microformats Test Suite</h2>
-     <ul>
+    <h3>Version 2 test <strong><a href="test/mocha-v2.html">Run tests</a></strong></h3>
+    <ul>
+      <li><a href="test/h-adr.html">h-adr</a></li>
       <li><a href="test/h-card.html">h-card</a></li>
       <li><a href="test/h-entry.html">h-entry</a></li>
       <li><a href="test/h-event.html">h-event</a></li>
       <li><a href="test/h-geo.html">h-geo</a></li>
-     </ul>
+      <li><a href="test/h-resume.html">h-resume</a></li>
+    </ul>
+
+    <h3>Version 1 test (backwards compatibility tests) <strong><a href="test/mocha-v1.html">Run tests</a></strong></h3>
+    <ul>
+      <li><a href="test/hcard.html">hcard</a></li>
+    </ul>
 
 
      <footer class="vcard">

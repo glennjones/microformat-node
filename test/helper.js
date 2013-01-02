@@ -12,6 +12,11 @@ function parseHTML(html, baseUrl){
         rootNode,
         ownerDocument;
 
+
+    if(html.indexOf('<html') === -1){
+      html = '<html>' + html + '</html>';
+    }    
+
 	$ = cheerio.load(html); 
     // find base tag if its exists in the header
     baseTag = $('base');
@@ -21,43 +26,11 @@ function parseHTML(html, baseUrl){
           baseUrl = href;
     }
 
+
+
     // define containing/root node - take hash from url
     rootNode = ownerDocument = $('html');
     return uf2Parser.get($, rootNode, baseUrl, ownerDocument, null);
 }
 
 exports.parseHTML = parseHTML;
-/*
-
- request({uri: url}, function(requestErrors, response, body){
-            if(!requestErrors && response.statusCode === 200){
-
-                var $,
-                    baseUrl,
-                    baseTag,
-                    href,
-                    rootNode,
-                    ownerDocument;
-
-
-                $ = cheerio.load(body); 
-                baseUrl = url;
-                // find base tag if its exists in the header
-                baseTag = $('base');
-                if(baseTag.length > 0){
-                  href = $(baseTag).attr('href');
-                  if(href)
-                      baseUrl = href;
-                }
-
-                // define containing/root node - take hash from url
-                rootNode = ownerDocument = $('html');
-                data = uf2Parser.get($, rootNode, baseUrl, ownerDocument, null);
-
-                console.log('done');
-                done();
-
-            }else{
-                console.log(requestErrors);
-            }  
-        });*/

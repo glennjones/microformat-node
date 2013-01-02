@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>h-adr parsing tests</title>
+
+    <link rel="stylesheet" href="/css/testsuite.css">
+    <link rel="stylesheet" href="/css/prettify.css">
+
+    <script src="/javascript/prettify.js"></script>
+    <script src="/javascript/testsuite.js"></script>
+   
+</head>
+<body class="h-x-test-suite">
+        
+
+
+        <h1 class="p-name">h-adr parsing tests</h1>
+        <p class="p-description">This page was design to test the parsing of h-adr. These tests are part of the micorformats 2 test suite.</p> 
+
+
+        <ul>
+            <li><a href="#justaname">Just a name</a></li>
+            <li><a href="#simpleproperties">Broken into properties</a></li>
+            <li><a href="#geo">With geo data</a></li>
+            <li><a href="#geourl">With geo url</a></li>
+        </ul>
+
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="justaname">Just a name</a> (<span class="p-format">h-adr</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<p class="h-adr">665 3rd St. Suite 207 San Francisco, CA 94107 U.S.A.</p>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{
+        "type": ["h-adr"],
+        "properties": {
+            "name": ["665 3rd St. Suite 207 San Francisco, CA 94107 U.S.A."]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="simpleproperties">Broken into properties</a> (<span class="p-format">h-adr</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<p class="h-adr">
+    <span class="p-street-address">665 3rd St.</span>  
+    <span class="p-extended-address">Suite 207</span>  
+    <span class="p-locality">San Francisco</span>,  
+    <span class="p-region">CA</span>  
+    <span class="p-postal-code">94107</span>  
+    <span class="p-country-name">U.S.A.</span>  
+</p>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{
+        "type": ["h-adr"],
+        "properties": {
+            "street-address": ["665 3rd St."], 
+            "extended-address": ["Suite 207"], 
+            "locality": ["San Francisco"], 
+            "region": ["CA"], 
+            "postal-code": ["94107"], 
+            "country-name": ["U.S.A."], 
+            "name": ["665 3rd St. Suite 207 San Francisco, CA 94107 U.S.A."]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+              <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="geo">With geo data</a> (<span class="p-format">h-adr</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<p class="h-adr">
+    <span class="p-name">Bricklayer's Arms</span>
+    <span class="p-label"> 
+        <span class="p-street-address">3 Charlotte Road</span>,  
+        <span class="p-locality">City of London</span>,  
+        <span class="p-postal-code">EC2A 3PE</span>, 
+        <span class="p-country-name">UK</span> 
+    </span> &ndash; 
+    Geo:(<span class="p-geo">51.526421;-0.081067</span>) 
+</p>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{
+        "type": ["h-adr"],
+        "properties": {
+            "name": ["Bricklayer's Arms"],
+            "label": ["3 Charlotte Road, City of London, EC2A 3PE, UK"],
+            "street-address": ["3 Charlotte Road"],
+            "locality": ["City of London"],
+            "postal-code": ["EC2A 3PE"],
+            "country-name": ["UK"],
+            "geo": ["51.526421;-0.081067"]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+                      <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="geourl">With geo url</a> (<span class="p-format">h-adr</span> parsing test)</h1>
+
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<p class="h-adr">
+    <a  class="p-name u-geo" href="geo:51.526421;-0.081067;crs=wgs84;u=40">Bricklayer's Arms</a>, 
+    <span class="p-locality">London</span> 
+</p>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{
+        "type": ["h-adr"],
+        "properties": {
+            "name": ["Bricklayer's Arms"],
+            "geo": ["geo:51.526421;-0.081067;crs=wgs84;u=40"],
+            "locality": ["London"]
+        }
+    }]
+}
+</code></pre>
+            <p>Note: The geo format is taken from <a href="http://tools.ietf.org/html/rfc5870">rfc5870</a> spec.</p>
+        </section> 
+
+
+
+    <h2>Change log:</h2>
+    <ul>
+        <li class="p-x-history h-entry">
+            <span class="p-name">Created</span>: <time class="dt-published" datetime="2012-12-29">29 December 2012</time>  by <span class="p-author">Glenn Jones</span>
+        </li>
+    </ul>
+
+
+    <h2>Contributors :</h2>
+    <ul>
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://tantek.com/">Tantek Çelik</a> 
+        </li>
+        <li class="p-author h-card">
+            <a class="u-url p-name" rel="author" href="http://www.glennjones.net/">Glenn Jones</a> 
+        </li>
+    </ul>
+  
+        
+    <footer>
+        All content and code is released into the <a href="http://en.wikipedia.org/wiki/public_domain">public domain</a>
+    </footer>
+      
+</body>
+
+</html>

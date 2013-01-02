@@ -157,3 +157,8 @@ section.h-x-test-fixture h2, section.h-x-test-fixture h3 {
 h1.p-name a{
   font-weight: bold;
 }
+
+.e-x-microformat p{
+  padding: 0;
+  margin: 0;
+}
