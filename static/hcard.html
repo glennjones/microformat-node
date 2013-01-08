@@ -16,13 +16,223 @@
         <h1 class="p-name">hcard parsing tests</h1>
         <p class="p-description">This page was design to test the parsing of hcard and its output to the newer JSON structure of micorformats 2. These tests are part of the micorformats 2 test suite.</p> 
 
-        <p class="p-description"><strong>Theses are backwards compatibility tests for the older version 1 microformats specification. Please do not use this as a reference or guide to current microformat mark-up.</strong></p>  
+        <p class="p-description"><strong>Theses are backwards compatibility tests for the older version 1 microformats specification. Please do not use this as a reference for authoring microformats.</strong></p>  
 
 
         <ul>
+            <li><a href="#justaname">Just a name</a></li>
+            <li><a href="#justahyperlink">Just a hyperlink</a></li>
+            <li><a href="#hyperlinkedphoto">Hyperlinked photo</a></li>
+            <li><a href="#name">Name properties</a></li>
+            <li><a href="#format">Class attribute format</a></li>
+            <li><a href="#email">Email parsing</a></li>
             <li><a href="#single">Single occurrence properties</a></li>
             <li><a href="#multiple">Multiple occurrence properties</a></li>
         </ul>
+
+
+ <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="justaname">Just a name</a> (<span class="p-format">hcard</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<p class="vcard">Frances Berriman</p>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Frances Berriman"]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+
+
+
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="justahyperlink">Just a hyperlink</a> (<span class="p-format">hcard</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<a class="vcard" href="http://benward.me/">Ben Ward</a>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Ben Ward"],
+            "url": ["http://benward.me/"]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="hyperlinkedphoto">A hyperlinked photo</a> (<span class="p-format">hcard</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+    <a class="vcard" href="http://rohit.khare.org/">
+   <img alt="Rohit Khare" src="https://twimg0-a.akamaihd.net/profile_images/53307499/180px-Rohit-sq.jpg" />
+</a>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Rohit Khare"],
+            "photo": ["https://twimg0-a.akamaihd.net/profile_images/53307499/180px-Rohit-sq.jpg"],
+            "url": ["http://rohit.khare.org/"]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+
+
+
+
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="name">Name properties</a> (<span class="p-format">hcard</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<p class="vcard">
+    <span class="fn n">
+        <span class="honorific-prefix">Dr</span> 
+        <span class="given-name">John</span> 
+        <span class="additional-name">Peter</span> 
+        <span class="family-name">Doe</span> 
+        <span class="honorific-suffix">MSc</span>, 
+        <span class="honorific-suffix">PHD</span>
+    </span>
+</p>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Dr John Peter Doe MSc, PHD"],
+            "honorific-prefix": ["Dr"],
+            "given-name": ["John"],
+            "additional-name": ["Peter"],
+            "family-name": ["Doe"],
+            "honorific-suffix": ["MSc","PHD"]
+        }
+    }]
+}
+</code></pre>
+
+        </section>
+
+
+                <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="format">Class attribute format</a> (<span class="p-format">hcard</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<p class="vcard">
+    <span class="profile-name fn n">
+        <span class=" given-name ">John</span> 
+        <span class="FAMILY-NAME">Doe</span> 
+    </span>
+</p>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["John Doe"],
+            "given-name": ["John"]
+        }
+    }]
+}
+</code></pre>
+
+        </section>
+
+
+                <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="email">Emails</a> (<span class="p-format">hcard</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<p class="vcard">
+    <span class="fn">John Doe</span> 
+    <ul>
+        <li><a class="email" href="mailto:john@example.com">notthis@example.com</a></li>
+        <li>
+            <span class="email">
+                <span class="type">internet</span> 
+                <a class="value" href="mailto:john@example.com">notthis@example.com</a>
+            </span>
+        </li> 
+        <li><a class="email" href="mailto:john@example.com?subject=parser-test">notthis@example.com</a></li>
+        <li class="email">john@example.com</li>
+    </ul>
+</p>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["John Doe"],
+            "email": [
+                "mailto:john@example.com", 
+                "mailto:john@example.com",
+                "mailto:john@example.com?subject=parser-test",
+                "john@example.com"
+            ]
+        }
+    }]
+}
+</code></pre>
+<p>Note: The second example (value pattern) parses differently to a V1 parser</P>
+        </section>
+
+
+
 
         <!-- a test -->
         <section class="p-x-test-fixture h-x-test-fixture">
@@ -39,7 +249,7 @@
         <div>Time zone: <abbr class="tz" title="-05:00">Eastern Standard Time</abbr></div>
         
         <div>Profile details:
-            <div>Profile id: <span class="uid">com.johndoe/profiles/johndoe</span></div>
+            <div>Profile id: <span class="uid">http://example.com/profiles/johndoe</span></div>
             <div>Details are: <span class="class">Public</span></div>
             <div>Last updated: <abbr class="rev" title="2008-01-01T13:45:00">January 1st, 2008 - 13:45</abbr></div>
         </div>
@@ -56,17 +266,17 @@
             "name": ["John Doe"],
             "given-name": ["John"],
             "sort-string": ["John"],
-            "bday": ["2000-01-01T00:00:00-08:00"],
+            "bday": ["2000-01-01T00:00:00-0800"],
             "role": ["Designer"],
             "geo": [{
-                "value": ["30.267991;-97.739568"],
+                "value": "Brighton",
                 "type": ["h-geo"],
                 "properties": {
                     "name": ["30.267991;-97.739568"]
                 }
             }],
             "tz": ["-05:00"],
-            "uid": ["com.johndoe/profiles/johndoe"],
+            "uid": ["http://example.com/profiles/johndoe"],
             "class": ["Public"],
             "rev": ["2008-01-01T13:45:00"]
         }
@@ -135,28 +345,29 @@
         <li><a class="email" href="mailto:john.doe@webfeetmedia.com">John Doe at Web Feet Media</a></li>
     </ul>
     <p>John Doe uses <span class="mailer">PigeonMail 2.1</span> or <span class="mailer">Outlook 2007</span> for email.</p>
-    
+
     <p>Addresses:</p>
     <ul>
-        <li class="adr">
-            <span class="type">Work</span>: 
-            <div class="label">
+        <li class="label">
+            <span class="adr">
+                <span class="type">Work</span>: 
                 <span class="street-address">North Street</span>, 
                 <span class="locality">Brighton</span>, 
                 <span class="country-name">United Kingdom</span>
-            </div>
+            </span>
+            
         </li>
-        <li class="adr">
-            <span class="type">Home</span>: 
-            <div class="label">
+        <li class="label">
+            <span class="adr">
+                <span class="type">Home</span>: 
                 <span class="street-address">West Street</span>, 
                 <span class="locality">Brighton</span>, 
                 <span class="country-name">United Kingdom</span>
-            </div>
+            </span>
         </li>
     </ul>
     
-    <p>In emergency contact: <span class="agent">Jane Doe</span> or <span class="agent">Dave Doe</span>.</p>
+    <p>In emergency contact: <span class="agent">Jane Doe</span> or <span class="agent vcard">Dave Doe</span>.</p>
     <p>Key: <span class="key">hd02$Gfu*d%dh87KTa2=23934532479</span></p>
 </div>
 </div>
@@ -179,44 +390,38 @@
                 "It can be a real problem booking a hotel room with the name John Doe."
             ],
             "url": ["http://www.madgex.com/", "http://www.webfeetmedia.com/"],
-            "org": [{
-                "value": ["Madgex"],
-                "type": ["h-org"],
-                "properties": {
-                    "name": ["Madgex"]
-                }
-            },{
-                "value": ["Web Feet Media Ltd"],
-                "type": ["h-org"],
-                "properties": {
-                    "name": ["Web Feet Media Ltd"]
-                }
-            }],
-            "url": ["Creative Director", "Owner"],
+            "org": ["Madgex","Web Feet Media Ltd"],
+            "title": ["Creative Director", "Owner"],
             "category": ["design", "development", "web"],
             "tel": ["+1 415 555 100", "+1 415 555 200", "+1 415 555 300"],
-            "email": ["john.doe@madgex.com", "john.doe@webfeetmedia.com"],
+            "email": ["mailto:john.doe@madgex.com", "mailto:john.doe@webfeetmedia.com"],
             "mailer": ["PigeonMail 2.1","Outlook 2007"],
             "adr": [{
-                "value": ["North Street, Brighton, United Kingdom"],
+                "value": "Work: North Street, Brighton, United Kingdom",
                 "type": ["h-adr"],
                 "properties": {
-                    "label": ["North Street, Brighton, United Kingdom"],
                     "street-address": ["North Street"],
                     "locality": ["Brighton"],
                     "country-name": ["United Kingdom"]
                 }
             },{
-                "value": ["West Street, Brighton, United Kingdom"],
+                "value": "Home: West Street, Brighton, United Kingdom",
                 "type": ["h-adr"],
                 "properties": {
-                    "label": ["West Street, Brighton, United Kingdom"],
                     "street-address": ["West Street"],
                     "locality": ["Brighton"],
                     "country-name": ["United Kingdom"]
                 }
             }],
-            "agent": ["Jane Doe","Dave Doe"],
+            "label": ["Work: North Street, Brighton, United Kingdom", "Home: West Street, Brighton, United Kingdom"],
+            "agent": ["Jane Doe",
+            {
+                "value": "Dave Doe",
+                "type": ["h-card"],
+                "properties": {
+                    "name": ["Dave Doe"]
+                }
+            }],
             "key": ["hd02$Gfu*d%dh87KTa2=23934532479"]
         }
     }]
@@ -224,10 +429,6 @@
 </code></pre>
 
         </section> 
-
-
-
-
 
 
 

@@ -22,31 +22,17 @@
 
       <p><label for="formats">filter results</label>
       <select name="formats">
-         <option selected="selected" value="">All microformats</option>
+        <option selected="selected" value="">All microformats</option>
 
-         <option value="h-card">h-card</option>
-         <option value="h-adr">h-adr</option>
-         <option value="h-geo">h-geo</option>
-         <option value="h-tag">h-tag</option>
-         <option value="h-event">h-event</option>
-         <option value="h-resume">h-resume</option>
-         <option value="h-entry">h-entry</option>
+        <option value="h-adr">h-adr</option>
+        <option value="h-card" selected="selected">h-card</option>
+        <option value="h-entry">h-entry</option>
+        <option value="h-event">h-event</option> 
+        <option value="h-geo">h-geo</option>
+        <option value="h-org">h-org</option>
+        <option value="h-resume">h-resume</option>
+        <option value="h-review">h-review</option>
 
-
-
-         <!--
-         <option value="hCard">hCard</option>
-         <option value="hReview">hReview</option>
-         <option value="hCalendar">hCalendar</option>
-         <option value="hAtom">hAtom</option>
-         <option value="hResume">hResume</option>
-         <option value="XFN">XFN</option>
-         <option value="geo">geo</option>
-         <option value="adr">adr</option>
-         <option value="tag">rel-tag</option>
-         <option value="test-suite">test-suite</option>
-         <option value="test-fixture">test-fixture</option>
-       -->
        </select>
      </p>
       <input type="submit" value="Parse"/>
@@ -64,12 +50,20 @@
       <li><a href="test/h-entry.html">h-entry</a></li>
       <li><a href="test/h-event.html">h-event</a></li>
       <li><a href="test/h-geo.html">h-geo</a></li>
+      <li><a href="test/h-org.html">h-org</a></li>
       <li><a href="test/h-resume.html">h-resume</a></li>
+      <li><a href="test/h-review.html">h-review</a></li>
     </ul>
 
     <h3>Version 1 test (backwards compatibility tests) <strong><a href="test/mocha-v1.html">Run tests</a></strong></h3>
     <ul>
+      <li><a href="test/adr.html">adr</a></li>
+      <li><a href="test/geo.html">geo</a></li>
+      <li><a href="test/hcalendar.html">hcalendar</a></li>
       <li><a href="test/hcard.html">hcard</a></li>
+      <li><a href="test/hentry.html">hentry</a></li>
+      <li><a href="test/hresume.html">hresume</a></li>
+      <li><a href="test/hreview.html">hreview</a></li>
     </ul>
 
 

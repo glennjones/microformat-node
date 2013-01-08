@@ -197,11 +197,6 @@ and then add this interface to the `logger` property of the options object passe
 Having trouble with microformat-node? Please raise an issue at: https://github.com/glennjones/microformat-node/issues
 
 
-### Authors and Contributors
-
-This project uses a refactored/rebuilt version of the Mozilla Operator Extension which Mozilla open sourced under the Mozilla Public License. It is currently maintained by Glenn Jones, but I would like to thank the authors and contributors of the original source code from which this project is derived. Michael Kaply, Andy Mitchell, Elias Torres, Alex Faaborg, David I. Lehn and Keith Alexander.
-
-
 ### License
 
-The project is open sourced under MPL, GPL and LGPL licenses. See the [license.txt](https://raw.github.com/glennjones/microformat-node/master/license.txt "license.txt") file within the project source.
+The project is open sourced under MIT licenses. See the [license.txt](https://raw.github.com/glennjones/microformat-node/master/license.txt "license.txt") file within the project source.

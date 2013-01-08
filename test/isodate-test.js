@@ -20,22 +20,22 @@ describe('ISO datetime helper -', function(){
         	assert.equal(new lib.ISODate('2007-05-01').toString(), "2007-05-01");
         });
         it('2007-05-01T21:30', function(){
-        	assert.equal(new lib.ISODate('2007-05-01T21:30').toString(), "2007-05-01T21:30");
+        	assert.equal(new lib.ISODate('2007-05-01T21:30').toString(), "2007-05-01T21:30:00");
         });
         it('2007-05-01T21:30Z', function(){
-        	assert.equal(new lib.ISODate('2007-05-01T21:30Z').toString(), "2007-05-01T21:30Z");
+        	assert.equal(new lib.ISODate('2007-05-01T21:30Z').toString(), "2007-05-01T21:30:00Z");
         });
         it('2007-05-01T21:30:00Z', function(){
         	assert.equal(new lib.ISODate('2007-05-01T21:30:00Z').toString(), "2007-05-01T21:30:00Z");
         });
         it('2007-05-01T21:30:00Z02:00', function(){
-        	assert.equal(new lib.ISODate('2007-05-01T21:30:00Z02:00').toString(), "2007-05-01T21:30:00Z+02:00"); 
+        	assert.equal(new lib.ISODate('2007-05-01T21:30:00+02:00').toString(), "2007-05-01T21:30:00+0200"); 
         });
         it('2007-05-01T21:30+08:00', function(){
-        	assert.equal(new lib.ISODate('2007-05-01T21:30+08:00').toString(), "2007-05-01T21:30Z+08:00"); 
+        	assert.equal(new lib.ISODate('2007-05-01T21:30+08:00').toString(), "2007-05-01T21:30:00+0800"); 
         });
         it('2007-05-01T21:30:00+08:00', function(){
-        	assert.equal(new lib.ISODate('2007-05-01T21:30:00+08:00').toString(), "2007-05-01T21:30:00Z+08:00");  
+        	assert.equal(new lib.ISODate('2007-05-01T21:30:00+08:00').toString(), "2007-05-01T21:30:00+0800");  
         });
         it('2007-05-01T21:30:00.0150', function(){
         	assert.equal(new lib.ISODate('2007-05-01T21:30:00.0150').toString(), "2007-05-01T21:30:00.0150");
@@ -51,7 +51,7 @@ describe('ISO datetime helper -', function(){
         	assert.equal(new lib.ISODate('20080121').toString(), "2008-01-21");
         });
         it('20070501T1130', function(){
-        	assert.equal(new lib.ISODate('20070501T1130').toString(), "2007-05-01T11:30");
+        	assert.equal(new lib.ISODate('20070501T1130').toString(), "2007-05-01T11:30:00");
         });
         it('20070501T113015', function(){
         	assert.equal(new lib.ISODate('20070501T113015').toString(), "2007-05-01T11:30:15");
@@ -63,7 +63,7 @@ describe('ISO datetime helper -', function(){
         	assert.equal(new lib.ISODate('20070501t113025z').toString(), "2007-05-01T11:30:25Z");
         });
         it('20070501t113025+01:00', function(){
-        	assert.equal(new lib.ISODate('20070501t113025+01:00').toString(), "2007-05-01T11:30:25Z+01:00");
+        	assert.equal(new lib.ISODate('20070501t113025+01:00').toString(), "2007-05-01T11:30:25+0100");
         });
     })
 
@@ -90,7 +90,7 @@ describe('ISO datetime helper -', function(){
         	assert.isTrue(lib.isDuration('pw34'));
         });
 
-
+        // Not
         it('11:00pm - false', function(){
         	assert.isFalse(lib.isDuration('11:00pm'));
         });
@@ -123,6 +123,7 @@ describe('ISO datetime helper -', function(){
         	assert.isTrue(lib.isTime('200734'));
         });
 
+        // Not
         it('PY1M11 - false', function(){
         	assert.isFalse(lib.isTime('PY1M11'));
         });
@@ -144,13 +145,14 @@ describe('ISO datetime helper -', function(){
         it('-01:00 - true', function(){
         	assert.isTrue(lib.isTimeZone('-01:00')); // failing
         });
-        it('Z01:00 - true', function(){
-        	assert.isTrue(lib.isTimeZone('Z01:00')); // failing
+        it('+01 - true', function(){
+            assert.isTrue(lib.isTimeZone('+0100')); // failing
         });
-        it('Z01:00 - true', function(){
-        	assert.isTrue(lib.isTimeZone('z01')); // failing
+        it('Z - true', function(){
+        	assert.isTrue(lib.isTimeZone('Z')); // failing
         });
-
+     
+        // Not
    		it('11:00pm - false', function(){
         	assert.isFalse(lib.isTimeZone('11:00pm')); // failing
         });
@@ -186,7 +188,7 @@ describe('ISO datetime helper -', function(){
         	assert.isTrue(lib.isFullDate('20070501')); // failing
         });
 
-
+        // Not
         it('2007-05-01T21:30:00.0150 - false', function(){
         	assert.isFalse(lib.isFullDate('2007-05-01T21:30:00.0150'));
         });
@@ -211,8 +213,8 @@ describe('ISO datetime helper -', function(){
         it('-01:00 - false', function(){
         	assert.isFalse(lib.isFullDate('-01:00'));
         });
-        it('Z01:00 - false', function(){
-        	assert.isFalse(lib.isFullDate('Z01:00'));
+        it('Z - false', function(){
+        	assert.isFalse(lib.isFullDate('Z'));
         });
         it('PY1M11 - false', function(){
         	assert.isFalse(lib.isFullDate('PY1M11'));
@@ -256,40 +258,52 @@ describe('ISO datetime helper -', function(){
 
 
 
-/*
+
     describe('concatFragments', function(){
         it("['2007-05-01','21:30']", function(){
-        	assert.equal(lib.concatFragments(['2007-05-01','21:30']), "2007-05-01T21:30");
+        	assert.equal(lib.concatFragments(['2007-05-01','21:30']).toString(), "2007-05-01T21:30:00");
         });
         it("['2007-05-01','9:30pm']", function(){
-        	assert.equal(lib.concatFragments(['2007-05-01','9:30pm']), "2007-05-01T21:30");
+        	assert.equal(lib.concatFragments(['2007-05-01','9:30pm']).toString(), "2007-05-01T21:30:00");
         });
         it("['2007-05-01','9:30A.M.']", function(){
-        	assert.equal(lib.concatFragments(['2007-05-01','9:30A.M.']), "2007-05-01T09:30");
+        	assert.equal(lib.concatFragments(['2007-05-01','9:30A.M.']).toString(), "2007-05-01T09:30:00");
         });
         it("['2007-05-01','9:30 pm']", function(){
-        	assert.equal(lib.concatFragments(['2007-05-01','9:30 pm']), "2007-05-01T21:30");
+        	assert.equal(lib.concatFragments(['2007-05-01','9:30 pm']).toString(), "2007-05-01T21:30:00");
         });
         it("['2007-05-01','09:30 pm']", function(){
-        	assert.equal(lib.concatFragments(['2007-05-01','9:30 pm']), "2007-05-01T21:30");
+        	assert.equal(lib.concatFragments(['2007-05-01','9:30 pm']).toString(), "2007-05-01T21:30:00");
         });
         it("['2007-05-01','09:30:24 pm']", function(){
-        	assert.equal(lib.concatFragments(['2007-05-01','9:30 pm']), "2007-05-01T21:30:24");
+        	assert.equal(lib.concatFragments(['2007-05-01','9:30:24 pm']).toString(), "2007-05-01T21:30:24");
         });
-        it("['2007-05-01','09:30:24','-01:00']", function(){
-        	assert.equal(lib.concatFragments(['2007-05-01','9:30 pm']), "2007-05-01T21:30:24-01:00");
+        it("['2007-05-01','09:30:24 pm','-01:00']", function(){
+        	assert.equal(lib.concatFragments(['2007-05-01','09:30:24 pm', '-01:00']).toString(), "2007-05-01T21:30:24-0100");
         });
         it("['2007-05-01','09:30:24','+01:00']", function(){
-        	assert.equal(lib.concatFragments(['2007-05-01','9:30 pm']), "2007-05-01T21:30:24+01:00");
+        	assert.equal(lib.concatFragments(['2007-05-01','09:30:24','+01:00']).toString(), "2007-05-01T09:30:24+0100");
         });
-        it("['2007-05-01','09:30:24','Z01:00']", function(){
-        	assert.equal(lib.concatFragments(['2007-05-01','9:30 pm']), "2007-05-01T21:30:24Z01:00");
-        });
-        it("['2007-05-01','09:30:24','01:00']", function(){
-        	assert.equal(lib.concatFragments(['2007-05-01','9:30 pm']), "2007-05-01T21:30:24Z01:00");
+        it("['2007-05-01','09:30:24','Z']", function(){
+        	assert.equal(lib.concatFragments(['2007-05-01','9:30:24 pm','Z']).toString(), "2007-05-01T21:30:24Z");
         });
     })
-*/
+
+
+    describe('dateTimeUnion', function(){
+        it("'2007-05-01T19:30','21:30'", function(){
+            assert.equal(lib.dateTimeUnion('2007-05-01T19:30','21:30').toString(), "2007-05-01T21:30:00");
+        });
+
+        it("'2007-05-01T19:30','21:30'", function(){
+            assert.equal(lib.dateTimeUnion('2007-05-01','9:30pm').toString(), "2007-05-01T21:30:00");
+        });
+    })
+
+
+
+
+
 
 })
  

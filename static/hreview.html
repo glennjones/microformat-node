@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>adr parsing backwards compatibility tests</title>
+
+    <link rel="stylesheet" href="/css/testsuite.css">
+    <link rel="stylesheet" href="/css/prettify.css">
+
+    <script src="/javascript/prettify.js"></script>
+    <script src="/javascript/testsuite.js"></script>
+   
+</head>
+<body class="h-x-test-suite">
+        
+        <h1 class="p-name">adr parsing tests</h1>
+        <p class="p-description">This page was design to test the parsing of adr and its output to the newer JSON structure of micorformats 2. These tests are part of the micorformats 2 test suite.</p> 
+
+        <p class="p-description"><strong>Theses are backwards compatibility tests for the older version 1 microformats specification. Please do not use this as a reference for authoring microformats.</strong></p>  
+
+
+        <ul>
+            <li><a href="#justaname">Just a name</a></li>
+            <li><a href="#simpleproperties">Broken into properties</a></li>
+        </ul>
+
+
+ <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="justaname">Just a name</a> (<span class="p-format">hreview</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<p class="hreview">Crepes on Cole</p>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{
+        "type": ["h-review"],
+        "properties": {
+            "name": ["Crepes on Cole"]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+
+  <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="simpleproperties">Broken into properties</a> (<span class="p-format">hreview</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="hreview">
+    <span><span class="rating">5</span> out of 5 stars</span>
+    <h4 class="summary">Crepes on Cole is awesome</h4>
+    <span class="reviewer vcard">
+        Reviewer: <span class="fn">Tantek</span> - 
+    </span>
+    <time class="reviewed" datetime="2005-04-18">April 18, 2005</time>
+    <div class="description">
+        <p class="item vcard">
+        <span class="fn org">Crepes on Cole</span> is one of the best little 
+        creperies in <span class="adr"><span class="locality">San Francisco</span></span>.
+        Excellent food and service. Plenty of tables in a variety of sizes 
+        for parties large and small.  Window seating makes for excellent 
+        people watching to/from the N-Judah which stops right outside.  
+        I've had many fun social gatherings here, as well as gotten 
+        plenty of work done thanks to neighborhood WiFi.
+        </p>
+    </div>
+    <p>Visit date: <span>April 2005</span></p>
+    <p>Food eaten: <span>Florentine crepe</span></p>
+</div>
+
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{
+        "type": ["h-review"],
+        "properties": {
+            "rating": ["5"],
+            "name": ["Crepes on Cole is awesome"], 
+            "reviewer": [{
+                "value": "Reviewer: Tantek -",
+                "type": ["h-card"],
+                "properties": {
+                    "name": ["Tantek"]
+                }
+            }],
+            "description": ["Crepes on Cole is one of the best little creperies in San Francisco. Excellent food and service. Plenty of tables in a variety of sizes for parties large and small. Window seating makes for excellent people watching to/from the N-Judah which stops right outside. I've had many fun social gatherings here, as well as gotten plenty of work done thanks to neighborhood WiFi."],
+            "item": [{
+                "value": "Crepes on Cole is one of the best little creperies in San Francisco. Excellent food and service. Plenty of tables in a variety of sizes for parties large and small. Window seating makes for excellent people watching to/from the N-Judah which stops right outside. I've had many fun social gatherings here, as well as gotten plenty of work done thanks to neighborhood WiFi.",
+                "type": ["h-card"],
+                "properties": {
+                    "name": ["Crepes on Cole"], 
+                    "org": ["Crepes on Cole"], 
+                    "adr": [{
+                        "value": "San Francisco",
+                        "type": ["h-adr"],
+                        "properties": {
+                            "locality": ["San Francisco"],
+                            "name": ["San Francisco"]
+                        }
+                    }]
+                }
+            }]
+        }
+    }]
+}
+</code></pre>
+
+
+
+
+
+
+
+    <h2>Change log:</h2>
+    <ul>
+        <li class="p-x-history h-entry">
+            <span class="p-name">Copied from version 1 test suite</span>: <time class="dt-published" datetime="2013-01-07">7 January 2013</time> by <span class="p-author">Glenn Jones</span>
+        </li>
+    </ul>
+
+
+    <h2>Contributors:</h2>
+    <ul>
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://tantek.com/">Tantek Çelik</a> 
+        </li>
+        <li class="p-author h-card">
+            <a class="u-url p-name" rel="author" href="http://www.glennjones.net/">Glenn Jones</a> 
+        </li>
+    </ul>
+    <p>The orginal test also had contributions from: </p>
+    <ul>
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://mike.kaply.com/">Mike Kaply</a> 
+        </li>    
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://tobyinkster.co.uk/">Toby Inkster</a> 
+        </li>
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://georgebrock.com/">George Brocklehurst</a> 
+        </li>
+    </ul>
+
+  
+        
+    <footer>
+        All content and code is released into the <a href="http://en.wikipedia.org/wiki/public_domain">public domain</a>
+    </footer>
+      
+</body>
+
+</html>

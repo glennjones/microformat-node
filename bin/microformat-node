@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-var app      = require('http').createServer(handler),
-    fs       = require('fs'),
-    parser  = require('../lib/parser.js')
-    testWriter  = require('../lib/helper-testWriter.js');
+var app         = require('http').createServer(handler),
+    fs          = require('fs'),
+    parser      = require('../lib/parser.js')
+    testWriter  = require('../test/testWriter.js');
 
 //parser.setParserOptions({logLevel: 4})    
 

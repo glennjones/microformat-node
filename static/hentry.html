@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>hentry parsing backwards compatibility tests</title>
+
+    <link rel="stylesheet" href="/css/testsuite.css">
+    <link rel="stylesheet" href="/css/prettify.css">
+
+    <script src="/javascript/prettify.js"></script>
+    <script src="/javascript/testsuite.js"></script>
+   
+</head>
+<body class="h-x-test-suite">
+        
+        <h1 class="p-name">hentry parsing tests</h1>
+        <p class="p-description">This page was design to test the parsing of hentry and its output to the newer JSON structure of micorformats 2. These tests are part of the micorformats 2 test suite.</p> 
+
+        <p class="p-description"><strong>Theses are backwards compatibility tests for the older version 1 microformats specification. Please do not use this as a reference for authoring microformats.</strong></p>  
+
+
+        <ul>
+            <li><a href="#justaname">Just a name</a></li>
+            <li><a href="#justahyperlink">Just a hyperlink</a></li>
+            <li><a href="#summarycontent">Entry with summary and content</a></li>
+        </ul>
+
+
+ <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="justaname">Just a name</a> (<span class="p-format">hentry</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<a  class="hentry" href="http://microformats.org/2012/06/25/microformats-org-at-7">microformats.org at 7</a>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{ 
+        "type": ["h-entry"],
+        "properties": {
+            "name": ["microformats.org at 7"],
+            "url": ["http://microformats.org/2012/06/25/microformats-org-at-7"] 
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="justahyperlink">Just a hyperlink</a> (<span class="p-format">hentry</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<a  class="hentry" href="http://microformats.org/2012/06/25/microformats-org-at-7">microformats.org at 7</a>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{ 
+        "type": ["h-entry"],
+        "properties": {
+            "name": ["microformats.org at 7"],
+            "url": ["http://microformats.org/2012/06/25/microformats-org-at-7"] 
+        }
+    }]
+}
+</code></pre>
+
+
+        </section>
+
+
+
+                <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="summarycontent">Entry with summary and content</a> (<span class="p-format">hentry</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="hentry">
+    <h1><a  class="entry-title" href="http://microformats.org/2012/06/25/microformats-org-at-7">microformats.org at 7</a></h1>
+    <div class="entry-content">
+        <p  class="entry-summary">Last week the microformats.org community 
+            celebrated its 7th birthday at a gathering hosted by Mozilla in 
+            San Francisco and recognized accomplishments, challenges, and 
+            opportunities.</p>
+
+        <p>The microformats tagline &#8220;humans first, machines second&#8221; 
+            forms the basis of many of our 
+            <a href="http://microformats.org/wiki/principles">principles</a>, and 
+            in that regard, we&#8217;d like to recognize a few people and 
+            thank them for their years of volunteer service </p>
+    </div>  
+    <p>Updated 
+        <time class="updated" datetime="2012-06-25T17:08:26">June 25th, 2012</time> by
+        <a class="author vcard" href="http://tantek.com/">Tantek</a>
+    </p>
+</div>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{ 
+        "type": ["h-entry"],
+        "properties": {
+            "name": ["microformats.org at 7"],
+            "content": ["\n        &lt;p class=\&quot;p-summary\&quot;&gt;Last week the microformats.org community \n            celebrated its 7th birthday at a gathering hosted by Mozilla in \n            San Francisco and recognized accomplishments, challenges, and \n            opportunities.&lt;/p&gt;\n\n        &lt;p&gt;The microformats tagline “humans first, machines second” \n            forms the basis of many of our \n            &lt;a href=\&quot;http://microformats.org/wiki/principles\&quot;&gt;principles&lt;/a&gt;, and \n            in that regard, we’d like to recognize a few people and \n            thank them for their years of volunteer service &lt;/p&gt;\n    "], 
+            "summary": ["Last week the microformats.org community celebrated its 7th birthday at a gathering hosted by Mozilla in San Francisco and recognized accomplishments, challenges, and opportunities."],
+            "updated": ["2012-06-25T17:08:26"], 
+            "author": [{
+                "value": "Tantek",
+                "type": ["h-card"],
+                "properties": {
+                    "name": ["Tantek"],
+                    "url": ["http://tantek.com/"]
+                }
+            }] 
+        }
+    },{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Tantek"],
+            "url": ["http://tantek.com/"]
+        }
+    }]
+}
+</code></pre>
+
+
+        </section>
+
+
+
+
+
+
+
+    <h2>Change log:</h2>
+    <ul>
+        <li class="p-x-history h-entry">
+            <span class="p-name">Copied from version 1 test suite</span>: <time class="dt-published" datetime="2013-01-07">7 January 2013</time> by <span class="p-author">Glenn Jones</span>
+        </li>
+    </ul>
+
+
+    <h2>Contributors:</h2>
+    <ul>
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://tantek.com/">Tantek Çelik</a> 
+        </li>
+        <li class="p-author h-card">
+            <a class="u-url p-name" rel="author" href="http://www.glennjones.net/">Glenn Jones</a> 
+        </li>
+    </ul>
+    <p>The orginal test also had contributions from: </p>
+    <ul>
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://mike.kaply.com/">Mike Kaply</a> 
+        </li>    
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://tobyinkster.co.uk/">Toby Inkster</a> 
+        </li>
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://georgebrock.com/">George Brocklehurst</a> 
+        </li>
+    </ul>
+
+  
+        
+    <footer>
+        All content and code is released into the <a href="http://en.wikipedia.org/wiki/public_domain">public domain</a>
+    </footer>
+      
+</body>
+
+</html>

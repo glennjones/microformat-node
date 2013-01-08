@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>h-org parsing tests</title>
+
+    <link rel="stylesheet" href="/css/testsuite.css">
+    <link rel="stylesheet" href="/css/prettify.css">
+
+    <script src="/javascript/prettify.js"></script>
+    <script src="/javascript/testsuite.js"></script>
+   
+</head>
+<body class="h-x-test-suite">
+        
+
+        <h1 class="p-name">h-org parsing tests</h1>
+        <p class="p-description">This page was design to test the parsing of h-org. These tests are part of the micorformats 2 test suite.</p> 
+
+
+        <ul>
+            <li><a href="#simple">Simple org</a></li>
+            <li><a href="#hyperlink">Just a hyperlink</a></li>
+            <li><a href="#simpleproperties">Visualable properties</a></li>
+        </ul>
+
+
+         <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="simple">Simple org</a> (<span class="p-format">h-org</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<span class="h-org">Mozilla Foundation</span>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{ 
+        "type": ["h-org"],
+        "properties": {
+            "name": ["Mozilla Foundation"]
+        }
+    }]
+}
+</code></pre>
+        </section>
+
+
+
+         <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="hyperlink">Just a hyperlink</a> (<span class="p-format">h-org</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<a class="h-org" href="http://mozilla.org/">Mozilla Foundation</a>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{ 
+        "type": ["h-org"],
+        "properties": {
+            "name": ["Mozilla Foundation"],
+            "url": ["http://mozilla.org/"]
+        }
+    }]
+}
+</code></pre>
+<p>Note: URL is not part of the schema for h-org, but is added here as an <a href="http://microformats.org/wiki/microformats2-parsing#parsing_for_implied_properties">implied rule</a>.<p>
+        </section>
+
+
+
+         <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="simpleproperties">Simple properties</a> (<span class="p-format">h-org</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<p class="h-org">
+    <span class="p-organization-name">W3C</span> - 
+    <span class="p-organization-unit">CSS Working Group</span>
+</p>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{ 
+        "type": ["h-org"],
+        "properties": {
+            "organization-name": ["W3C"],
+            "organization-unit": ["CSS Working Group"],
+            "name": ["W3C - CSS Working Group"]
+        }
+    }]
+}
+</code></pre>
+
+
+        </section>
+
+
+    
+
+    <h2>Change log:</h2>
+    <ul>    
+        <li class="p-x-history h-entry">
+            <span class="p-name">Created</span>: <time class="dt-published" datetime="2013-01-04">4 January 2013</time> 
+            by <span class="p-author">Glenn Jones</span>
+        </li>
+    </ul>
+
+
+    <h2>Contributors :</h2>
+    <ul>
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://tantek.com/">Tantek Çelik</a> 
+        </li>
+        <li class="p-author h-card">
+            <a class="u-url p-name" rel="author" href="http://www.glennjones.net/">Glenn Jones</a> 
+        </li>
+    </ul>
+  
+        
+    <footer>
+        All content and code is released into the <a href="http://en.wikipedia.org/wiki/public_domain">public domain</a>
+    </footer>
+      
+</body>
+
+</html>

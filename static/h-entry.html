@@ -23,6 +23,7 @@
             <li><a href="#justaname">Just a name</a></li>
             <li><a href="#justahyperlink">Just a hyperlink</a></li>
             <li><a href="#summarycontent">Entry with summary and content</a></li>
+            <li><a href="#u-property">u-property</a></li>
         </ul>
 
         <!-- a test -->
@@ -141,12 +142,79 @@
 
         </section>
 
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="u-property">u-property</a> (<span class="p-format">h-entry</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="h-entry">
+    <p class="p-name">microformats.org at 7</p>
+
+    <!-- value and value-title patterns -->
+    <p class='u-url'>
+      <span class='value-title' title='http://microformats.org/'> </span>
+      Article permalink
+    </p>
+    <p class="u-url">
+        <span class="value">http://microformats.org/</span> - 
+        <span class="value">2012/06/25/microformats-org-at-7</span> 
+    </p> 
+
+    <p><a class="u-url" href="http://microformats.org/2012/06/25/microformats-org-at-7">Article permalink</a></p>
+
+    <img src="images/logo.gif" alt="company logos" usemap="#logomap" />
+    <map name="logomap">
+        <area class="u-url" shape="rect" coords="0,0,82,126" href="http://microformats.org/" alt="microformats.org"/>
+    </map>
+
+    <img class="u-photo" src="images/logo.gif" alt="company logos" />
+
+    <object class="u-url" data="http://microformats.org/wiki/microformats2-parsing"></object>
+
+    <abbr class="u-url" title="http://microformats.org/wiki/value-class-pattern">value-class-pattern</abbr> 
+    <data class="u-url" value="http://microformats.org/wiki/"></data>
+    <p class="u-url">http://microformats.org/discuss</p>
+</div>
+</div>
+
+
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="p-x-output prettyprint"><code class="language-json">
+{
+    "items": [{ 
+        "type": ["h-entry"],
+        "properties": {
+            "name": ["microformats.org at 7"],
+            "url": [
+                "http://microformats.org/",
+                "http://microformats.org/2012/06/25/microformats-org-at-7",
+                "http://microformats.org/2012/06/25/microformats-org-at-7",
+                "http://microformats.org/",
+                "http://microformats.org/wiki/microformats2-parsing",
+                "http://microformats.org/wiki/value-class-pattern",
+                "http://microformats.org/wiki/",
+                "http://microformats.org/discuss"
+            ],
+            "photo": ["http://example.com/images/logo.gif"]
+        }
+    }]
+}
+</code></pre>
+<p>Note: This test the parse order of elements and attributes as laid out in <a href="http://microformats.org/wiki/microformats2-parsing">http://microformats.org/wiki/microformats2-parsing</a> wiki page.<p>
+        </section>          
 
 
     
 
     <h2>Change log:</h2>
     <ul> 
+        <li class="p-x-history h-entry">
+            <span class="p-name">Add u-proprety test</span>: <time class="dt-published" datetime="2013-01-06">6 January 2013</time> 
+            <span class="p-summary">It test the parse order of elements and attributes for any property with the u-x prefix</span> &ndash; by <span class="p-author">Glenn Jones</span>
+        </li>  
         <li class="p-x-history h-entry">
             <span class="p-name">Reordered JSON</span>: <time class="dt-published" datetime="2012-12-22">22 December 2012</time> 
             <span class="p-summary">Reordered JSON to match the parsing order. This allows direct matching of stringified JSON objects</span>  &ndash; by <span class="p-author">Glenn Jones</span>
