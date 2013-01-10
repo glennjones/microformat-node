@@ -26,7 +26,8 @@
               'http://localhost:8888/test/hcard.html',
               'http://localhost:8888/test/hentry.html',
               'http://localhost:8888/test/hresume.html',
-              'http://localhost:8888/test/hreview.html']
+              'http://localhost:8888/test/hreview.html',
+              'http://localhost:8888/test/mixed-versions.html']
 
 
 

@@ -1,6 +1,6 @@
 /*
 Mocha integration test from: h-card.html
-The test was built on Tue Jan 08 2013 16:10:56 GMT+0000 (GMT)
+The test was built on Thu Jan 10 2013 17:03:48 GMT+0000 (GMT)
 */
 
 var assert = chai.assert;

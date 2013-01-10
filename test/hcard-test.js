@@ -1,6 +1,6 @@
 /*
 Mocha integration test from: hcard.html
-The test was built on Tue Jan 08 2013 16:10:57 GMT+0000 (GMT)
+The test was built on Thu Jan 10 2013 17:03:49 GMT+0000 (GMT)
 */
 
 var chai = require('chai'),
