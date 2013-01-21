@@ -42,7 +42,7 @@ or with raw html
     var microformats = require('microformat-node');
 
     var html = '<p class="vcard"><a class="fn url" href="http://glennjones.net">Glenn Jones</a></p>';
-    shiv.parseHtml(html, function(err, data){
+    shiv.parseHtml(html, {}, "", function(err, data){
         // do something with data
     });
 
