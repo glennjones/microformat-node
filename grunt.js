@@ -1,8 +1,8 @@
-module.exports = function(grunt) {
+module.exports = function( grunt ) {
 	grunt.loadNpmTasks('grunt-mocha-test');
 	grunt.initConfig({
 		lint: {
-			files: ['grunt.js', 'lib/utilities.js']
+			files: ['grunt.js', 'lib/*.js', 'lib/maps/*.js']
 		},
 		jshint: {
 			options: {
@@ -16,7 +16,10 @@ module.exports = function(grunt) {
 				undef: true,
 				boss: true,
 				eqnull: true,
-				browser: true
+				browser: false,
+				node: true,
+				strict: false,
+				quotmark: 'single'
 			},
 			globals: {}
 		},
@@ -29,5 +32,5 @@ module.exports = function(grunt) {
 		}
 	});
 	// Default task.
-	grunt.registerTask('default', 'mochaTest', 'lint' );
+	grunt.registerTask( 'default', 'mochaTest', 'lint' );
 };
