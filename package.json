@@ -3,7 +3,7 @@
   "name": "microformat-node",
   "description": "A microformat parser for node.js",
   "version": "0.0.2-0",
-  "license": "MPL, GPL or LGPL",
+  "license": "MIT",
   "keywords": [
     "parser",
     "microfomats",

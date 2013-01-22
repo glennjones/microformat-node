@@ -45,8 +45,8 @@ function handler(req, res) {
       options.formats = query.formats;
     }
 
-    if(query.formats){
-      options.formats = query.formats;
+    if(query.useincludes){
+      options.useIncludes = query.useincludes;
     }
     
     if(query.url){

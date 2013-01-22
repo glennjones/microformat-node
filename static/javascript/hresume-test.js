@@ -1,6 +1,6 @@
 /*
 Mocha integration test from: hresume.html
-The test was built on Thu Jan 10 2013 17:03:49 GMT+0000 (GMT)
+The test was built on Mon Jan 21 2013 16:51:12 GMT+0000 (GMT)
 */
 
 var assert = chai.assert;
@@ -307,56 +307,6 @@ describe('Affiliations (h-resume parsing test)', function() {
 
    it("found.items[0].properties['affiliation'][0].properties['url'][0]", function(){
       assert.equal(found.items[0].properties["affiliation"][0].properties["url"][0].toString(), "http://www.w3.org/");
-   })
-
-})
-
-
-
-
-describe('Competency - Experimental property (h-resume parsing test)', function() {
-   var htmlFragment = "\n<div class=\"h-resume\">\n    <p>\n        <span class=\"contact vcard\"><span class=\"fn\">Tim Berners-Lee</span></span>, \n        <span class=\"summary\">invented the World Wide Web</span>.\n    </p>\n    Experience and skills:     \n    <ul>\n        <li class=\"skill competency\">\n            <span class=\"summary\">information systems</span> (\n                <span class=\"rate\">5</span>/5  –  \n                <time class=\"duration\" datetime=\"PY37\">37 years</time>\n        )</li>\n        <li class=\"skill competency\">\n            <span class=\"summary\">advocacy</span> (\n                <span class=\"rate\">4</span>/5  – \n                <time class=\"duration\" datetime=\"PY22\">22 years</time>\n        )</li>\n        <li class=\"skill competency\">\n            <span class=\"summary\">leadership</span> (\n                <span class=\"rate\">5</span>/5  – \n                <time class=\"duration\" datetime=\"PY22\">22 years</time>\n        )</li>\n    <ul>   \n</ul></ul></div>\n"
-   var found = helper.parseHTML(htmlFragment,'http://example.com/')
-   var expected = {"items":[{"type":["h-resume"],"properties":{"contact":[{"value":"Tim Berners-Lee","type":["h-card"],"properties":{"name":["Tim Berners-Lee"]}}],"summary":["invented the World Wide Web"],"skill":[{"value":"information systems ( 5/5 - 37 years )","type":["h-competency"],"properties":{"name":["information systems"],"rate":["5"],"duration":["PY37"]}},{"value":"advocacy ( 5/5 – 22 years )","type":["h-competency"],"properties":{"name":["advocacy"],"rate":["5"],"duration":["PY22"]}},{"value":"advocacy ( 5/5 – 22 years )","type":["h-competency"],"properties":{"name":["leadership"],"rate":["5"],"duration":["PY22"]}}]}},{"type":["h-card"],"properties":{"name":["Tim Berners-Lee"]}},{"type":["h-competency"],"properties":{"name":["information systems"],"rate":["5"],"duration":["PY37"]}},{"type":["h-competency"],"properties":{"name":["advocacy"],"rate":["5"],"duration":["PY22"]}},{"type":["h-competency"],"properties":{"name":["leadership"],"rate":["5"],"duration":["PY22"]}}]}
-
-   it("found.items[0].type[0]", function(){
-      assert.equal(found.items[0].type[0].toString(), "h-resume");
-   })
-
-   it("found.items[0].properties['contact'][0].value", function(){
-      assert.equal(found.items[0].properties["contact"][0].value, "Tim Berners-Lee");
-   })
-
-   it("found.items[0].properties['contact'][0].type[0]", function(){
-      assert.equal(found.items[0].properties["contact"][0].type[0].toString(), "h-card");
-   })
-
-   it("found.items[0].properties['contact'][0].properties['name'][0]", function(){
-      assert.equal(found.items[0].properties["contact"][0].properties["name"][0].toString(), "Tim Berners-Lee");
-   })
-
-   it("found.items[0].properties['summary'][0]", function(){
-      assert.equal(found.items[0].properties["summary"][0].toString(), "invented the World Wide Web");
-   })
-
-   it("found.items[0].properties['skill'][0].value", function(){
-      assert.equal(found.items[0].properties["skill"][0].value, "information systems ( 5/5 - 37 years )");
-   })
-
-   it("found.items[0].properties['skill'][0].type[0]", function(){
-      assert.equal(found.items[0].properties["skill"][0].type[0].toString(), "h-competency");
-   })
-
-   it("found.items[0].properties['skill'][0].properties['name'][0]", function(){
-      assert.equal(found.items[0].properties["skill"][0].properties["name"][0].toString(), "information systems");
-   })
-
-   it("found.items[0].properties['skill'][0].properties['rate'][0]", function(){
-      assert.equal(found.items[0].properties["skill"][0].properties["rate"][0].toString(), "5");
-   })
-
-   it("found.items[0].properties['skill'][0].properties['duration'][0]", function(){
-      assert.equal(found.items[0].properties["skill"][0].properties["duration"][0].toString(), "PY37");
    })
 
 })

@@ -7,29 +7,35 @@
 
 
   var uf2Parser = new Uf2Parser()
-      urls = ['https://raw.github.com/microformats/tests/master/h-card.html',
-              'https://raw.github.com/microformats/tests/master/h-event.html',
-              'https://raw.github.com/microformats/tests/master/h-entry.html',
-              'https://raw.github.com/microformats/tests/master/h-geo.html']
 
       urls = ['http://localhost:8888/test/h-adr.html',
               'http://localhost:8888/test/h-card.html',
               'http://localhost:8888/test/h-event.html',
               'http://localhost:8888/test/h-entry.html',
               'http://localhost:8888/test/h-geo.html',
+              'http://localhost:8888/test/h-news.html',
               'http://localhost:8888/test/h-org.html',
+              'http://localhost:8888/test/h-product.html',
+              'http://localhost:8888/test/h-recipe.html',
               'http://localhost:8888/test/h-resume.html',
+              'http://localhost:8888/test/h-review-aggregate.html',
               'http://localhost:8888/test/h-review.html',
+              'http://localhost:8888/test/rel.html',
+              'http://localhost:8888/test/includes.html',
+
               'http://localhost:8888/test/adr.html',
               'http://localhost:8888/test/geo.html',
               'http://localhost:8888/test/hcalendar.html',
               'http://localhost:8888/test/hcard.html',
+              'http://localhost:8888/test/hnews.html',
+              'http://localhost:8888/test/hproduct.html',
               'http://localhost:8888/test/hentry.html',
               'http://localhost:8888/test/hresume.html',
+              'http://localhost:8888/test/hreview-aggregate.html',
               'http://localhost:8888/test/hreview.html',
               'http://localhost:8888/test/mixed-versions.html']
 
-
+           
 
   function updateTests(){
 
@@ -101,14 +107,17 @@
   function parseTestFixtures(html, url){
     var $ = cheerio.load(html); 
     var rootNode = ownerDocument = $('html');
-    return uf2Parser.get($, rootNode, url, ownerDocument, 'h-x-test-fixture');
+    //dom, rootNode, baseURL, filters, options
+    return uf2Parser.get($, rootNode, url, 'h-x-test-fixture', {useIncludes: false});
   }
 
 
   function parseFragment(htmlFragment){
     var $ = cheerio.load(htmlFragment); 
     var rootNode = ownerDocument = $('html');
-    return uf2Parser.get($, rootNode, 'http://example.com/', ownerDocument);
+
+    //dom, rootNode, baseURL, filters, options
+    return uf2Parser.get($, rootNode, 'http://example.com/', null);
   }
 
 
@@ -291,11 +300,13 @@
 
 
 
-
   // replaces quotes and return chars to escape string for javascript
   function escapeText(str){
-      return JSON.stringify(str).substr(1,str.length);
+      var out = JSON.stringify(str);
+      return out.substr(1,out.length-2);
   }
+
+
 
   function isString(obj) {
       return typeof (obj) == 'string';

@@ -41,7 +41,7 @@
 
 
             <h3>The expected JSON output:</h3>
-<pre class="p-x-output prettyprint"><code class="language-json">
+<pre class="prettyprint"><code class="e-x-output language-json">
 {
     "items": [{
         "type": ["h-resume"],
@@ -82,7 +82,7 @@
 </div>
 
             <h3>The expected JSON output:</h3>
-<pre class="p-x-output prettyprint"><code class="language-json">
+<pre class="prettyprint"><code class="e-x-output language-json">
 {
     "items": [{
         "type": ["h-resume"],
@@ -164,7 +164,7 @@
 </div>
 
             <h3>The expected JSON output:</h3>
-<pre class="p-x-output prettyprint"><code class="language-json">
+<pre class="prettyprint"><code class="e-x-output language-json">
 {
     "items": [{
         "type": ["h-resume"],
@@ -242,7 +242,7 @@
 </div>
 
             <h3>The expected JSON output:</h3>
-<pre class="p-x-output prettyprint"><code class="language-json">
+<pre class="prettyprint"><code class="e-x-output language-json">
 {
     "items": [{
         "type": ["h-resume"],
@@ -319,7 +319,7 @@
 
 
             <h3>The expected JSON output:</h3>
-<pre class="p-x-output prettyprint"><code class="language-json">
+<pre class="prettyprint"><code class="e-x-output language-json">
 {
     "items": [{
         "type": ["h-resume"],
@@ -364,7 +364,7 @@
 
 
             <h3>The expected JSON output:</h3>
-<pre class="p-x-output prettyprint"><code class="language-json">
+<pre class="prettyprint"><code class="e-x-output language-json">
 {
     "items": [{
         "type": ["h-resume"],
@@ -401,125 +401,16 @@
         </section> 
 
 
-        <!-- a test -->
-        <section class="p-x-test-fixture h-x-test-fixture">
-            <h1 class="p-name"><a name="competency">Competency &ndash; Experimental property</a> (<span class="p-format">h-resume</span> parsing test)</h1>
-
-<!-- microformats example we are going to test -->
-<div class="e-x-microformat">
-<div class="h-resume">
-    <p>
-        <span class="contact vcard"><span class="fn">Tim Berners-Lee</span></span>, 
-        <span class="summary">invented the World Wide Web</span>.
-    </p>
-    Experience and skills:     
-    <ul>
-        <li class="skill competency">
-            <span class="summary">information systems</span> (
-                <span class="rate">5</span>/5  &ndash;  
-                <time class="duration" datetime="PY37">37 years</time>
-        )</li>
-        <li class="skill competency">
-            <span class="summary">advocacy</span> (
-                <span class="rate">4</span>/5  &ndash; 
-                <time class="duration" datetime="PY22">22 years</time>
-        )</li>
-        <li class="skill competency">
-            <span class="summary">leadership</span> (
-                <span class="rate">5</span>/5  &ndash; 
-                <time class="duration" datetime="PY22">22 years</time>
-        )</li>
-    <ul>   
-</div>
-</div>
-
-
-            <h3>The expected JSON output:</h3>
-<pre class="p-x-output prettyprint"><code class="language-json">
-{
-    "items": [{
-        "type": ["h-resume"],
-        "properties": {
-            "contact": [{
-                "value": "Tim Berners-Lee",
-                "type": ["h-card"],
-                "properties": {
-                    "name": ["Tim Berners-Lee"]
-                }
-            }],
-            "summary": ["invented the World Wide Web"],
-            "skill": [{
-                "value": "information systems ( 5/5 – 37 years )",
-                "type": ["h-competency"],
-                "properties": {
-                    "name": ["information systems"],
-                    "rate": ["5"],
-                    "duration": ["PY37"]
-                }
-            },{
-                "value": "advocacy ( 5/5 – 22 years )",
-                "type": ["h-competency"],
-                "properties": {
-                    "name": ["advocacy"],
-                    "rate": ["5"],
-                    "duration": ["PY22"]
-                }
-            },{
-                "value": "advocacy ( 5/5 – 22 years )",
-                "type": ["h-competency"],
-                "properties": {
-                    "name": ["leadership"],
-                    "rate": ["5"],
-                    "duration": ["PY22"]
-                }
-            }]
-        }
-    },{            
-        "type": ["h-card"],
-        "properties": {
-            "name": ["Tim Berners-Lee"]
-        }
-     },{
-        "type": ["h-competency"],
-        "properties": {
-            "name": ["information systems"],
-            "rate": ["5"],
-            "duration": ["PY37"]
-        }
-    },{
-        "type": ["h-competency"],
-        "properties": {
-            "name": ["advocacy"],
-            "rate": ["5"],
-            "duration": ["PY22"]
-        }
-    },{
-        "type": ["h-competency"],
-        "properties": {
-            "name": ["leadership"],
-            "rate": ["5"],
-            "duration": ["PY22"]
-        }
-    }]
-}
-</code></pre>
-
-        </section> 
-
-
-
-
-
-
-
-
-
 
 
 
 
     <h2>Change log:</h2>
     <ul>
+        <li class="p-x-history h-entry">
+            <span class="p-name">Removed competency tests</span>: <time class="dt-published" datetime="2013-01-11">11 January 2013</time> 
+            <span class="p-summary">Its not part of the core spec</span> &ndash; by <span class="p-author">Glenn Jones</span>
+        </li> 
         <li class="p-x-history h-entry">
             <span class="p-name">Copied from version 1 test suite</span>: <time class="dt-published" datetime="2013-01-07">7 January 2013</time> by <span class="p-author">Glenn Jones</span>
         </li>

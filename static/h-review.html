@@ -22,8 +22,12 @@
         <ul>
             <li><a href="#justaname">Just a name</a></li>
             <li><a href="#hyperlink">Just a hyperlink</a></li>
-            <li><a href="#simpleproperties">Broken into properties</a></li>
+            <li><a href="#photo">Just a photo</a></li>
+            <li><a href="#implieditem">With implied item name and url</a></li>
+            <li><a href="#item">With item</a></li>
+            <li><a href="#vcard">With vcard item</a></li>
         </ul>
+
 
         <!-- a test -->
         <section class="p-x-test-fixture h-x-test-fixture">
@@ -36,7 +40,7 @@
 
 
             <h3>The expected JSON output:</h3>
-<pre class="p-x-output prettyprint"><code class="language-json">
+<pre class="prettyprint"><code class="e-x-output language-json">
 {
     "items": [{
         "type": ["h-review"],
@@ -52,7 +56,7 @@
 
                 <!-- a test -->
         <section class="p-x-test-fixture h-x-test-fixture">
-            <h1 class="p-name"><a name="justahyperlink">Just a hyperlink</a> (<span class="p-format">h-review</span> parsing test)</h1>
+            <h1 class="p-name"><a name="hyperlink">Just a hyperlink</a> (<span class="p-format">h-review</span> parsing test)</h1>
 
 <!-- microformats example we are going to test -->
 <div class="e-x-microformat">
@@ -61,7 +65,7 @@
 
 
             <h3>The expected JSON output:</h3>
-<pre class="p-x-output prettyprint"><code class="language-json">
+<pre class="prettyprint"><code class="e-x-output language-json">
 {
     "items": [{
         "type": ["h-review"],
@@ -76,11 +80,115 @@
         </section> 
 
 
+                                <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="photo">Just a photo</a> (<span class="p-format">hreview</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<img class="h-review" src="images/photo.gif" alt="Crepes on Cole" />
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{
+        "type": ["h-review"],
+        "properties": {
+            "name": ["Crepes on Cole"],
+            "photo": ["images/photo.gif"]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+
+                   <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="implieditem">With implied item name and url</a> (<span class="p-format">hreview</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="h-review">
+    <a class="p-item h-item" href="http://example.com/crepeoncole">Crepes on Cole</a>
+    <p><span class="rating">4.7</span> out of 5 stars</p>
+</div>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{
+        "type": ["h-review"],
+        "properties": {
+            "item": [{
+                "value": "Crepes on Cole",
+                "type": ["h-item"],
+                "properties": {
+                    "name": ["Crepes on Cole"],
+                    "url": ["http://example.com/crepeoncole"] 
+                }
+            }],
+            "rating": ["4.7"],
+            "name": ["Crepes on Cole 4.7 out of 5 stars"]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+
+           <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="item">With item</a> (<span class="p-format">hreview</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="h-review">
+    <p class="p-item h-item">
+        <img class="u-photo" src="images/photo.gif" />
+        <a class="p-name u-url" href="http://example.com/crepeoncole">Crepes on Cole</a>
+    </p>
+    <p><span class="p-rating">5</span> out of 5 stars</p>
+</div>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{
+        "type": ["h-review"],
+        "properties": {
+
+            "item": [{
+                "value": "Crepes on Cole",
+                "type": ["h-item"],
+                "properties": {
+                    "photo": ["http://example.com/images/photo.gif"], 
+                    "name": ["Crepes on Cole"],
+                    "url": ["http://example.com/crepeoncole"]
+                }
+            }],
+            "rating": ["5"]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
 
 
         <!-- a test -->
         <section class="p-x-test-fixture h-x-test-fixture">
-            <h1 class="p-name"><a name="simpleproperties">Broken into properties</a> (<span class="p-format">h-review</span> parsing test)</h1>
+            <h1 class="p-name"><a name="vcard">With vcard item</a> (<span class="p-format">h-review</span> parsing test)</h1>
 
 <!-- microformats example we are going to test -->
 <div class="e-x-microformat">
@@ -91,7 +199,7 @@
         Reviewer: <span class="p-name">Tantek</span> - 
     </span>
     <time class="dt-reviewed" datetime="2005-04-18">April 18, 2005</time>
-    <div class="p-description">
+    <div class="e-description">
         <p class="p-item h-card">
         <span class="p-name p-org">Crepes on Cole</span> is one of the best little 
         creperies in <span class="p-adr h-adr"><span class="p-locality">San Francisco</span></span>.
@@ -103,14 +211,15 @@
         </p>
     </div>
     <p>Visit date: <span>April 2005</span></p>
-    <p>Food eaten: <span>Florentine crepe</span></p>
+    <p>Food eaten: <a class="p-category" href="http://en.wikipedia.org/wiki/crepe">crepe</a></p>
+    <p>Permanent link for review: <a class="u-url" href="http://example.com/crepe">http://example.com/crepe</a></p>
+    <p><a rel="license" href="http://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License">Creative Commons Attribution-ShareAlike License</a></p>
 </div>
-
 </div>
 
 
             <h3>The expected JSON output:</h3>
-<pre class="p-x-output prettyprint"><code class="language-json">
+<pre class="prettyprint"><code class="e-x-output language-json">
 {
     "items": [{
         "type": ["h-review"],
@@ -124,7 +233,7 @@
                     "name": ["Tantek"]
                 }
             }],
-            "description": ["Crepes on Cole is one of the best little creperies in San Francisco. Excellent food and service. Plenty of tables in a variety of sizes for parties large and small. Window seating makes for excellent people watching to/from the N-Judah which stops right outside. I've had many fun social gatherings here, as well as gotten plenty of work done thanks to neighborhood WiFi."],
+            "description": ["\n        &lt;p class=\&quot;p-item h-card\&quot;&gt;\n        &lt;span class=\&quot;p-name p-org\&quot;&gt;Crepes on Cole&lt;/span&gt; is one of the best little \n        creperies in &lt;span class=\&quot;p-adr h-adr\&quot;&gt;&lt;span class=\&quot;p-locality\&quot;&gt;San Francisco&lt;/span&gt;&lt;/span&gt;.\n        Excellent food and service. Plenty of tables in a variety of sizes \n        for parties large and small.  Window seating makes for excellent \n        people watching to/from the N-Judah which stops right outside.  \n        I&#39;ve had many fun social gatherings here, as well as gotten \n        plenty of work done thanks to neighborhood WiFi.\n        &lt;/p&gt;\n    "],
             "item": [{
                 "value": "Crepes on Cole is one of the best little creperies in San Francisco. Excellent food and service. Plenty of tables in a variety of sizes for parties large and small. Window seating makes for excellent people watching to/from the N-Judah which stops right outside. I've had many fun social gatherings here, as well as gotten plenty of work done thanks to neighborhood WiFi.",
                 "type": ["h-card"],
@@ -140,7 +249,9 @@
                         }
                     }]
                 }
-            }]
+            }],
+            "category": ["crepe"],
+            "url": ["http://example.com/crepe"]
         }
     }]
 }
@@ -150,7 +261,11 @@
 
 
     <h2>Change log:</h2>
-    <ul>
+    <ul>        
+        <li class="p-x-history h-entry">
+            <span class="p-name">Updated test for h-item</span>: <time class="dt-published" datetime="2013-01-21">21 January 2013</time> 
+            <span class="p-summary">Updated test for item structures, such as impied p-name, u-url and u-photo property tests.</span> &ndash; by <span class="p-author">Glenn Jones</span>
+        </li> 
         <li class="p-x-history h-entry">
             <span class="p-name">Created</span>: <time class="dt-published" datetime="2012-12-29">29 December 2012</time>  by <span class="p-author">Glenn Jones</span>
         </li>
