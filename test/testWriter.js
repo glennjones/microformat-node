@@ -3,7 +3,7 @@
       path        = require('path'),
       request     = require('request'),
       cheerio     = require('cheerio'),
-      Uf2Parser   = require('../lib/ufparser.js').Uf2Parser;
+      Uf2Parser   = require('../lib/parser.js').Parser;
 
 
   var uf2Parser = new Uf2Parser()
