@@ -1,10 +1,10 @@
 var cheerio     = require('cheerio'),
     request     = require('request'),
-    UfParser   = require('../lib/ufparser.js').Uf2Parser;
+    Parser   = require('../lib/parser.js').Parser;
 
-var ufParser = new UfParser();
+var parser = new Parser();
 
-// given html returns uf sjon from version 2 parser
+// given html returns uf json from version 2 parser
 function parseHTML(html, baseUrl){
 	var $,
         baseTag,
@@ -15,8 +15,7 @@ function parseHTML(html, baseUrl){
 
     if(html.indexOf('<html') === -1){
       html = '<html>' + html + '</html>';
-    }    
-
+    }
 	$ = cheerio.load(html); 
     // find base tag if its exists in the header
     baseTag = $('base');
@@ -30,7 +29,7 @@ function parseHTML(html, baseUrl){
 
     // define containing/root node - take hash from url
     rootNode = ownerDocument = $('html');
-    return ufParser.get($, rootNode, baseUrl, ownerDocument, null);
+    return parser.get($, rootNode, baseUrl, ownerDocument, null);
 }
 
 exports.parseHTML = parseHTML;
