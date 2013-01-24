@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>h-resume parsing tests</title>
+
+    <link rel="stylesheet" href="/css/testsuite.css">
+    <link rel="stylesheet" href="/css/prettify.css">
+
+    <script src="/javascript/prettify.js"></script>
+    <script src="/javascript/testsuite.js"></script>
+   
+</head>
+<body class="h-x-test-suite">
+        
+
+
+        <h1 class="p-name">h-resume parsing tests</h1>
+        <p class="p-description">This page was design to test the parsing of h-resume. These tests are part of the micorformats 2 test suite.</p> 
+
+
+        <ul>
+            <li><a href="#justaname">Just a name</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#work">Work experience</a></li>
+            <li><a href="#education">Educational experience</a></li>
+            <li><a href="#skill">Skills</a></li>
+            <li><a href="#affiliation">Affiliations</a></li>
+            <li><a href="#competency">Competency &ndash; Experimental property</a></li>
+        </ul>
+
+
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="justaname">Just a name</a> (<span class="p-format">h-resume</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<p class="h-resume">Tim Berners-Lee, invented the World Wide Web.</p>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{
+        "type": ["h-resume"],
+        "properties": {
+            "name": ["Tim Berners-Lee, invented the World Wide Web."]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+                <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="contact">Contact</a> (<span class="p-format">h-resume</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="h-resume">
+    <p class="p-name">Tim Berners-Lee</p>
+    <p class="p-summary">Invented the World Wide Web.</p><hr>
+    <div class="p-contact h-card">
+        <p class="p-name">MIT</p>
+        <p>
+            <span class="p-street-address">32 Vassar Street</span>, 
+            <span class="p-extended-address">Room 32-G524</span>, 
+            <span class="p-locality">Cambridge</span>,  
+            <span class="p-region">MA</span> 
+            <span class="p-postal-code">02139</span>, 
+            <span class="p-country-name">USA</span>.
+        </p>
+        <p>Tel:<span class="p-tel">+1 (617) 253 5702</span></p>
+        <p>Email:<a class="u-email" href="mailto:timbl@w3.org">timbl@w3.org</a></p>
+    </div>
+</div>
+</div>
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{
+        "type": ["h-resume"],
+        "properties": {
+            "name": ["Tim Berners-Lee"],
+            "summary": ["Invented the World Wide Web."],
+             "contact": [{
+                "value": "MIT 32 Vassar Street, Room 32-G524, Cambridge, MA 02139, USA. Tel:+1 (617) 253 5702 Email:timbl@w3.org",
+                "type": ["h-card"],
+                "properties": {
+                    "name": ["MIT"],
+                    "street-address": ["32 Vassar Street"], 
+                    "extended-address": ["Room 32-G524"], 
+                    "locality": ["Cambridge"], 
+                    "region": ["MA"], 
+                    "postal-code": ["02139"], 
+                    "country-name": ["USA"],
+                    "tel": ["+1 (617) 253 5702"],
+                    "email": ["mailto:timbl@w3.org"]
+                }
+            }]
+        }
+    },{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["MIT"],
+            "street-address": ["32 Vassar Street"], 
+            "extended-address": ["Room 32-G524"], 
+            "locality": ["Cambridge"], 
+            "region": ["MA"], 
+            "postal-code": ["02139"], 
+            "country-name": ["USA"],
+            "tel": ["+1 (617) 253 5702"],
+            "email": ["timbl@w3.org"]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+                        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="work">Work experience</a> (<span class="p-format">h-resume</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="h-resume">
+    <p class="p-name">Tim Berners-Lee</p>
+    <div class="p-contact h-card">
+        <p class="p-title">Director of the World Wide Web Foundation</p>
+    </div>
+    <p class="p-summary">Invented the World Wide Web.</p><hr>
+    <div class="p-experience h-event h-card">
+        <p class="p-title">Director</p>
+        <p><a class="p-name p-org u-url" href="http://www.webfoundation.org/">World Wide Web Foundation</a></p>
+        <p>
+            <time class="dt-start" datetime="2009-01-18">Jan 2009</time> &ndash; Present
+            <time class="dt-duration" datetime="P2Y11M">(2 years 11 month)</time>
+        </p>
+    </div>
+</div>
+</div>
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{
+        "type": ["h-resume"],
+        "properties": {
+            "name": ["Tim Berners-Lee"],
+            "summary": ["Invented the World Wide Web."],
+            "contact": [{
+                "value": "Director of the World Wide Web Foundation",
+                "type": ["h-card"],
+                "properties": {
+                    "name": ["Director of the World Wide Web Foundation"],
+                    "title": ["Director of the World Wide Web Foundation"]
+                }
+            }],
+            "experience": [{
+                "value": "Director World Wide Web Foundation Jan 2009 - Present (2 years 11 month)",
+                "type": ["h-event", "h-card"],
+                "properties": {
+                    "name": ["World Wide Web Foundation"],
+                    "org": ["World Wide Web Foundation"],
+                    "url": ["http://www.webfoundation.org/"],
+                    "start": ["2009-01-18"],
+                    "duration": ["P2Y11M"]
+                }
+            }]
+        }
+    },{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Director of the World Wide Web Foundation"],
+            "title": ["Director of the World Wide Web Foundation"]
+        }
+    },{
+        "type": ["h-event"],
+        "properties": {
+            "name": ["World Wide Web Foundation"],
+            "org": ["World Wide Web Foundation"],
+            "url": ["http://www.webfoundation.org/"],
+            "start": ["2009-01-18"],
+            "duration": ["P2Y11M"]
+        }
+    },{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["World Wide Web Foundation"],
+            "org": ["World Wide Web Foundation"],
+            "url": ["http://www.webfoundation.org/"],
+            "start": ["2009-01-18"],
+            "duration": ["P2Y11M"]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+                              <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="education">Educational experience</a> (<span class="p-format">h-resume</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="h-resume">
+    <p class="p-name">Tim Berners-Lee</p>
+    <div class="p-contact h-card">
+        <p class="p-title">Director of the World Wide Web Foundation</p>
+    </div>
+    <p class="p-summary">Invented the World Wide Web.</p><hr>
+    <p class="p-education h-event h-card">
+        <span class="p-name p-org">The Queen's College, Oxford University</span>, 
+        <span class="p-description">BA Hons (I) Physics</span> 
+        <time class="dt-start" datetime="1973-09">1973</time> &ndash;
+        <time class="dt-end" datetime="1976-06">1976</time>
+    </p>
+</div>
+</div>
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{
+        "type": ["h-resume"],
+        "properties": {
+            "name": ["Tim Berners-Lee"],
+            "summary": ["Invented the World Wide Web."],
+            "contact": [{
+                "value": "Director of the World Wide Web Foundation",
+                "type": ["h-card"],
+                "properties": {
+                    "name": ["Director of the World Wide Web Foundation"],
+                    "title": ["Director of the World Wide Web Foundation"]
+                }
+            }],
+            "education": [{
+                "value": "The Queen's College, Oxford University, BA Hons (I) Physics 1973 - 1976",
+                "type": ["h-event", "h-card"],
+                "properties": {
+                    "name": ["The Queen's College, Oxford University"],
+                    "org": ["The Queen's College, Oxford University"],
+                    "description": ["BA Hons (I) Physics"],
+                    "start": ["1973-09"],
+                    "end": ["1976-06"]
+                }
+            }]
+        }
+    },{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Director of the World Wide Web Foundation"],
+            "title": ["Director of the World Wide Web Foundation"]
+        }
+    },{
+        "type": ["h-event"],
+        "properties": {
+            "name": ["The Queen's College, Oxford University"],
+            "org": ["The Queen's College, Oxford University"],
+            "description": ["BA Hons (I) Physics"],
+            "start": ["1973-09"],
+            "end": ["1976-06"]
+        }
+    },{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["World Wide Web Foundation"],
+            "org": ["World Wide Web Foundation"],
+            "url": ["http://www.webfoundation.org/"],
+            "start": ["2009-01-18"],
+            "duration": ["P2Y11M"]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+                <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="skill">Skills</a> (<span class="p-format">h-resume</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="h-resume">
+    <p>
+        <span class="p-name">Tim Berners-Lee</span>, 
+        <span class="p-summary">invented the World Wide Web</span>.
+    </p>
+    Skills:     
+    <ul>
+        <li class="p-skill">information systems</li>
+        <li class="p-skill">advocacy</li>
+        <li class="p-skill">leadership</li>
+    <ul>   
+</div>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{
+        "type": ["h-resume"],
+        "properties": {
+            "name": ["Tim Berners-Lee"],
+            "summary": ["invented the World Wide Web"],
+            "skill": ["information systems", "advocacy", "leadership"]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+
+
+                <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="affiliation">Affiliations</a> (<span class="p-format">h-resume</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="h-resume">
+    <p>
+        <span class="p-name">Tim Berners-Lee</span>, 
+        <span class="p-summary">invented the World Wide Web</span>. 
+    </p> 
+    Belongs to following groups:
+    <p>   
+        <a class="p-affiliation h-card" href="http://www.w3.org/" >
+            <img class="p-name u-photo" alt="W3C" src="http://www.w3.org/Icons/WWW/w3c_home_nb.png" />
+        </a>
+    </p>   
+</div>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{
+        "type": ["h-resume"],
+        "properties": {
+            "name": ["Tim Berners-Lee"],
+            "summary": ["invented the World Wide Web"],
+            "affiliation": [{
+                "value": "",
+                "type": ["h-card"],
+                "properties": {
+                    "name": ["W3C"],
+                    "photo": ["http://www.w3.org/Icons/WWW/w3c_home_nb.png"],
+                    "url": ["http://www.w3.org/"]
+                }
+            }]
+        }
+    },{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["W3C"],
+            "photo": ["http://www.w3.org/Icons/WWW/w3c_home_nb.png"],
+            "url": ["http://www.w3.org/"]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+    
+
+
+
+    <h2>Change log:</h2>
+    <ul>
+        <li class="p-x-history h-entry">
+            <span class="p-name">Removed competency tests</span>: <time class="dt-published" datetime="2013-01-11">11 January 2013</time> 
+            <span class="p-summary">Its not part of the core spec</span> &ndash; by <span class="p-author">Glenn Jones</span>
+        </li> 
+        <li class="p-x-history h-entry">
+            <span class="p-name">Created</span>: <time class="dt-published" datetime="2012-12-29">29 December 2012</time>  by <span class="p-author">Glenn Jones</span>
+        </li>
+    </ul>
+
+
+    <h2>Contributors :</h2>
+    <ul>
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://tantek.com/">Tantek Çelik</a> 
+        </li>
+        <li class="p-author h-card">
+            <a class="u-url p-name" rel="author" href="http://www.glennjones.net/">Glenn Jones</a> 
+        </li>
+    </ul>
+  
+        
+    <footer>
+        All content and code is released into the <a href="http://en.wikipedia.org/wiki/public_domain">public domain</a>
+    </footer>
+      
+</body>
+
+</html>

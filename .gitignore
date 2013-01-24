@@ -1,5 +1,22 @@
-lib/test.html
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
 
+pids
+logs
+results
+
+node_modules
 npm-debug.log
 _site
 .DS_Store
+
+/static/testsuite/
+*.svn-base
+
+node_modules

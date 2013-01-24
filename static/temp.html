@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>h-card parsing tests</title>
+
+    <link rel="stylesheet" href="/css/testsuite.css">
+    <link rel="stylesheet" href="/css/prettify.css">
+
+    <script src="/javascript/prettify.js"></script>
+    <script src="/javascript/testsuite.js"></script>
+   
+</head>
+<body >
+
+
+  
+<div class="vevent">
+ <span class="summary">The 4th Microformat party</span> will be on 
+ <span class="dtstart">
+  <time class="value" datetime="2009-06-26">26 July</time>, from
+  <time class="value">19:00</time></span> to 
+ <span class="dtend"><time class="value">22:00</time></span>.
+</div>
+
+
+
+
+<!-- <li class="h-event vevent">
+<span class="dt-start dtstart">
+  <time>2013-06-18</time></span>&#x2026;<abbr class="dt-end dtend" title="2013-06-21">21</abbr>
+  <a href="http://opensourcebridge.org/" class="u-url url">
+    <object class="u-attach attach" data="http://opensourcebridge.org/common/i/v4_header_logo.gif" type="image/png">
+      <abbr class="p-name summary" title="Open Source Bridge">OSBridge</abbr>
+    </object> 
+    <abbr class="p-location location" title="Portland, Oregon">Portland</abbr></a>
+</li> -->
+
+
+<!-- <li class="h-entry hentry h-as-note" id="d006t1">
+  <article>
+    <p class="p-name entry-title e-content entry-content article">
+    Want to learn Lindy Hop for 2013? I recommend <a class="auto-link" href="http://hepjen.com/tuesdays.html">hepjen.com/tuesdays.html</a> and <a class="auto-link" href="http://920special.com/classes/">920special.com/classes/</a> - I've signed up for both.
+    </p>
+  <footer>
+    <span class="info footer">
+      <a href="2013/006/t1/learn-lindy-hop-hepjen-920special" rel="bookmark" class="dt-published published dt-updated updated u-url u-uid">
+        <time class="value">20:14</time> on <time class="value">2013-01-06</time>
+      </a> using 
+      <span class="using">BBEdit</span>
+    </span>
+  </footer>
+  </article>
+</li>
+<span class="glenn">x</span> -->
+
+
+
+<!-- <li class="h-entry hentry h-as-article" id="d001b1"><article><div class="article">
+<a href="2013/001/b1/twelve-blog-post-writing-tips" rel="bookmark" class="u-url u-uid"><h1 class="p-name entry-title">Twelve Blog Post Writing Tips From 2012
+</h1></a><div class="e-content entry-content">
+<p class="p-summary">
+I made a concerted effort to write more and better blog posts last year. Here are a dozen things I learned and/or put into practice that helped me do so. If one of your 2013 resolutions is to blog more, perhaps you'll find a few of these tips useful.
+</p>
+
+<ol>
+<li>
+<b><em>Single</em> topic post.</b> Think of each post as a building block that you might use as a reference in some other post. The more your post focuses on a single point (or a closely related set of points) the more reusable/citable it will be, both by others and your future writings.
+</li>
+<li>
+<b><em>Tweetable</em> post title.</b> Social media this, social media that. <i><abbr title="Publish (on your) Own Site, Syndicate Elsewhere">POSSE</abbr></i> and distribute. Enough said.
+</li>
+<li>
+<b><em>Summary</em> opening paragraph.</b> This is a classic, but absolutely essential as attention spans shorten every year. Provide context but don't bore with background. Expand on your post title and let it be. If your topic is interesting, your readers will read on.
+</li>
+<li>
+<b>Put tangents <em>aside</em>.</b> Use the HTML5 <code>&lt;aside&gt;</code> element to isolate tangent fragments or seeds of related topics and keep you (and your readers) focused on your post's single topic. <aside><div class="aside">Asides are like guardrails, warning readers of nearby cliffs of distraction. Using one or a few asides at most can help to capture/contain related thoughts or explorations that will potentially distract your readers. Acknowledging such thoughts may actually help your readers stay focused on your main point by making it clear that you considered such things and put them aside for now.</div></aside>
+</li>
+<li>
+<b><em><ins datetime="2013-01-03">Quotable</ins> <del datetime="2013-01-03">Tweetable</del></em> sentences</b>, sprinkled throughout. Use strong, self-supporting sentences as the start, end, or even as the entirety of a paragraph. <ins datetime="2013-01-03">Even better: quotable multi-sentence paragraphs.</ins>
+</li>
+<li>
+<b><em>Local</em> text editor. </b> There should be zero latency between your thoughts and your text. Online editors are still <i>janky</i> and/or have distracting excessive navigation &amp; user interface. They're notorious for losing your data "in the cloud", touchy AJAX code (I'm looking at you, comment box in the Google+ Notification drop-down - why not keep drafts of all textareas?), or fragile page refreshing javascript, vulnerable to network glitches. Such uncertainty in an authoring user interface is like background noise: it distracts you from focusing and writing better. Using a local text editor greatly reduces (or eliminates) those distractions, delays, and doubts.
+</li>
+<li>
+<b><em>Lists</em> are nice.</b> Make and share lists. People like lists.</li>
+<li>
+<b><em>Subheadings</em> help cluster</b> related paragraphs and provide a skimmable (and linkable - use fragment ids) outline. Even in lists, keep the first phrase/sentence of a list item short, self-standing, and <em>stylized</em>.
+</li>
+<li>
+<b>"The <em>Skirt</em> Rule".</b> Stop adding content when you've covered the topic and yet your post is still short enough to be interesting.
+</li>
+<li>
+<b><em>Edit</em> furiously.</b> Content is like interface: anything that's not helping your main point is distracting from it.
+</li>
+<li>
+<b>Use a <em>footer</em></b> for updates, terminology, previous writings, additional reading, and citations. Link-heavy hypertext is hard to read text. And distracting. Move definitions, citations, etc. to the footer unless including them inline either provides little risk of distraction or significantly helps reading flow. Use "Previously" text (or a section) to link to your previous posts on the topic (<span class="h-card">Jamie Zawinsky</span> is particularly good at/about this). Use a "References" section for citations (including Wikipedia/Wiktionary expansions of any jargon) and an "Additional Reading" section for links to related articles.
+</li>
+<li>
+<b>Check your <em>references</em>.</b> <a href="http://www.imdb.com/title/tt0089886/quotes?qt=qt0435737">"Always... no, no... never... forget to check your references."</a>
+</li>
+</ol>
+
+<p>What helps you write good blog posts?</p>
+
+<h2>Previously</h2>
+<ul>
+<li class="h-cite">
+<time class="dt-published">2012-06-04</time>: <cite><a class="u-url p-name" href="http://tantek.com/2012/156/b1/focus-enabling-design-distilled">Focus Enabling Design Distilled</a></cite>
+</li>
+</ul>
+
+<h2>References</h2>
+<ul>
+<li>IndieWebCamp: <a href="http://indiewebcamp.com/POSSE">POSSE</a> - Publish (on your) Own Site, Syndicate Elsewhere</li>
+<li>Wiktionary: <a href="http://en.wiktionary.org/wiki/janky">janky</a>
+</li>
+<li>Google: <a href="https://www.google.com/search?q=site:jwz.org+previously">search Jamie Zawinsky's site for "previously"</a> </li>
+<li class="h-cite">
+<time class="dt-published">2012-05-20</time>: <cite><a class="p-name u-url" href="https://plus.google.com/106015180204607019928/posts/eNCLQjNbbT7">"The Skirt Rule"</a></cite> by <a class="p-author h-card" href="https://plus.google.com/106015180204607019928/">Sara Eleta</a> (discovered <a href="https://twitter.com/jmspool/status/272451772629536768">via Jared M. Spool</a>)
+</li>
+<li>
+<ins datetime="2013-01-04">Wikipedia: <a href="http://en.wikipedia.org/wiki/Wikipedia:Lead_section_guidelines">Manual of Style/Lead section</a></ins>
+</li>
+</ul>
+
+<h2>Additional Reading</h2>
+<ul>
+<li class="h-cite">
+<time class="dt-published">2012-02-07</time>: <cite><a class="p-name u-url" href="http://brainpickings.org/index.php/2012/02/07/david-ogilvy-on-writing/">10 Tips on Writing from David Ogilvy</a></cite> by <a class="p-author h-card" href="http://www.brainpickings.org/index.php/author/mpopova/">Maria Popova</a>
+</li>
+<li class="h-cite">
+<time class="dt-published">2012-09-28</time>: <cite><a class="p-name u-url" href="http://brainpickings.org/index.php/2012/09/28/neil-gaiman-8-rules-of-writing/">Neil Gaiman’s 8 Rules of Writing</a></cite>
+by <span class="p-author h-card">Maria Popova</span>
+</li>
+<li class="h-cite">
+<time class="dt-published">2012-12-31</time>: <cite><a class="p-name u-url" href="http://buzzmachine.com/2012/12/31/atomizing-the-article/">Atomizing the article</a></cite> by <a class="p-author h-card" href="http://buzzmachine.com">Jeff Jarvis</a> (see also: <a href="https://plus.google.com/105076678694475690385/posts/gYJKJJXYpLP">Google+ commentary</a>)
+</li>
+</ul>
+
+</div>
+</div>
+<footer><span class="info footer"><a href="2013/001/b1/twelve-blog-post-writing-tips" rel="bookmark" class="dt-published published dt-updated updated u-url u-uid"><time class="value">14:35</time> on <time class="value">2013-01-01</time></a> using <span class="using">BBEdit</span></span></footer></article></li>
+
+
+ -->
+
+<!-- microformats example we are going to test
+
+
+    <a class="p-affiliation h-card" href="http://www.w3.org/" >
+        <img class="p-name u-photo" alt="W3C" src="http://www.w3.org/Icons/WWW/w3c_home_nb.png" />
+    </a>
+
+
+
+  <a class="h-card" href="http://rohit.khare.org/">
+   <img alt="Rohit Khare" src="https://twimg0-a.akamaihd.net/profile_images/53307499/180px-Rohit-sq.jpg">
+</a>
+
+
+
+
+<span class="h-geo">The Bricklayer's Arms
+    <span class="p-latitude">
+        <span class="value-title" title="51.513458"> </span> 
+    </span>
+    <span class="p-longitude">
+        <span class="value-title" title="-0.14812"> </span>
+    </span>
+</span>
+
+
+<div class="h-card">
+  <a class="p-name u-url" href="http://blog.lizardwrangler.com/">Mitchell Baker</a> 
+  (<a class="p-org h-card" href="http://mozilla.org/">Mozilla Foundation</a>)
+</div>
+
+
+ 
+    <div class="h-card">
+  <a class="p-name u-url"
+     href="http://blog.lizardwrangler.com/" 
+    >Mitchell Baker</a> 
+  (<a class="h-org h-card" 
+      href="http://mozilla.org/"
+     >Mozilla Foundation</a>)
+</div>
+
+        
+
+<div class="h-card">
+  <a class="p-name u-url" href="http://blog.lizardwrangler.com/">Mitchell Baker</a> 
+  (<a class="p-org h-card h-org" href="http://mozilla.org/">Mozilla Foundation</a>)
+</div>
+-->       
+
+<!-- microformats example we are going to test 
+
+<div class="h-card">
+  <a class="p-name u-url"
+     href="http://blog.lizardwrangler.com/" 
+    >Mitchell Baker</a> 
+  (<a class="p-org h-card" 
+      href="http://mozilla.org/"
+     >Mozilla Foundation</a>)
+</div>
+-->
+
+<!-- microformats example we are going to test 
+
+<div class="h-card">
+    <p>
+        <a class="p-name u-url" href="http://blog.lizardwrangler.com/" >Mitchell Baker</a> 
+    </p>
+    <p class="p-org h-card">
+        <a class="p-url p-name" href="http://mozilla.org/">Mozilla Foundation</a>
+    </p>
+</div>
+-->
+
+      
+</body>
+
+</html>
