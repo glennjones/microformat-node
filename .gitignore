@@ -18,3 +18,5 @@ _site
 
 /static/testsuite/
 *.svn-base
+
+node_modules
