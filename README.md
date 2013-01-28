@@ -1,9 +1,12 @@
 # microformat-node
 
-microformat-node is a microformat parser for node.js. It is built using a well tested light-weight JavaScript parsing engine, which already powers a number of browser extensions. It currently supports the following formats: hCard, XFN, hReview, hCalendar, hAtom, hResume, geo, adr and tag.
+microformat-node is a microformat parser built node.js. The library can parse both version 1 and 2 microformats of the specification It is built using a well tested and fast parsing engine. It can parse the following microformats:
 
 
-Demo API - http://microformat-node.jit.su/
+h-adr, h-card, h-entry, h-event, h-geo, h-news, h-product, h-recipe, h-resume, h-review-aggregate, h-review, adr, hCard, hEntry, hEvent, geo, hNews hProduct, hRecipe, hResume, hReview-aggregate, hReview, rel=tag, rel=licence, rel=no-follow and XFN
+
+
+Demo API - [http://microformat-node2.jit.su/](http://microformat-node2.jit.su/)
 
 
 ### Install
@@ -19,103 +22,108 @@ or
 
 ### Use
 
-with URL
+#### using a callback
 
-    var microformats = require("microformat-node");
+    var microformats = require("microformat-node"),
+        options = {};
 
-    microformats.parseUrl('http://glennjones.net/about', function(err, data){
+    microformats.parseUrl('http://glennjones.net/about', options, function(err, data){
         // do something with data
     });
 
 
-with URL using a promise
+#### using a promise
 
-    var microformats = require("microformat-node");
+    var microformats = require("microformat-node"),
+        options = {};
 
-    microformats.parseUrl('http://glennjones.net/about').then(function (err, data) {
+    microformats.parseUrl('http://glennjones.net/about', options)
+        .then(
+            function (data) {
+               // do something with data
+            },
+            function (error) {
+               // do something with error
+            }
+        )
+
+### Main parse function
+
+#### parseUrl()
+
+    var microformats = require("microformat-node"),
+        options = {};
+
+    microformats.parseUrl('http://glennjones.net/about', options, function(err, data){
         // do something with data
     });
 
+#### parseHtml()
 
-or with raw html
-
-    var microformats = require('microformat-node');
+    var microformats = require("microformat-node"),
+        options = {};
 
     var html = '<p class="vcard"><a class="fn url" href="http://glennjones.net">Glenn Jones</a></p>';
-    shiv.parseHtml(html, function(err, data){
+    microformats.parseHtml(html, options, function(err, data){
         // do something with data
     });
 
 
-with URL with an options object defining the formats to parse ie 'hCard';
+#### parseDom()
+This function takes a [Cheerio](https://github.com/MatthewMueller/cheerio) DOM and node objects.
 
-    var microformats = require("microformat-node");
+    var microformats = require("microformat-node"),
+        options = {};
 
-    microformats.parseUrl('http://glennjones.net/about', {'format': 'hCard'}, function(err, data){
+    microformats.parseHtml(dom, node, options function(err, data){
         // do something with data
     });
 
 
-### Options  object for 'parseUrl' and 'parseHtml'
+### Parsing options 
 
-There are two properties for the parse methods the first is 'formats' which takes a comma delimit string of the microformats. The default setting for formats' is the full list of formats the parser can parse.
+#### Example use of options
+    var microformats = require("microformat-node"),
+        options = {'formats': 'h-card'};
 
-The 'useCache' causes the parser to cache the html across requests. The default cache saves in memory and limited to an hour and 1000 items.  
+    microformats.parseUrl('http://glennjones.net/about', options, function(err, data){
+        // do something with data
+    });
 
+#### Available options
 
-### Supported formats
-
-Currently microformat-node supports the following formats: hCard, XFN, hReview, hCalendar, hAtom, hResume, geo, adr and tag. It's important to use the right case when specifying the formats query string parameter.
+*  __filters__ - An array of formats to filter the output by ie ['h-card']. - default is empty which displays all formats.
+*  __version1__ - Whether the output should contain version microformats. - default is true
+*  __rel__ - Whether the output should contain rel=*. - default is true 
+*  __children__ - Whether the output should contain children. - default is true
+*  __childrenRel__ - Whether the output should contain child rel=* microformats. - default is false 
+*  __textFormat__ - (default is normalised) plain text output style 'normalised' or 'whitespace'
+*  __cacheTimeLimit__ - The amount of time, in milliseconds, that a web pages is kept in the cache before been discarded. - default is 3600000 ie 1 hour
+*  __cacheItemLimit__ - The maximum number of items that can be kept in the cache before the oldest items are discarded. Use to limit memory. - default is 1000
+*  __useCache__ - Whether a request should use the cache during a request. - default is false
+*  __logLevel__ - There are 4 levels of logging: 4 - log, 3 - info, 2 - warn and 1 - error. The 4 setting gives the most granular logs, which are useful in a debugging scenario. Default: 3 (default is 4) 
+*  __logger__ - An object containing the Logger interface which can overridden.
+*  __cache__ - An object containing the Cache interface which can overridden.
 
 
 ### Response 
 
-This will return JSON. This is an example of two geo microformats found in a page.
+Typical JSON. This is an example of a h-card microformat found in a page.
 
     
     {
-        "microformats": {
-            "geo": [{
-                "latitude": 37.77,
-                "longitude": -122.41
-            }, {
-                "latitude": 37.77,
-                "longitude": -122.41
-            }]
-        },
-        "parser-information": {
-            "name": "Microformat Node",
-            "version": "0.3.0",
-            "page-title": "geo 1 - extracting singular and paired values test",
-            "time": "140ms",
-            "page-http-status": 200,
-            "page-url": "http://ufxtract.com/testsuite/geo/geo1.htm"
-        }
+        "items": [{
+            "type": ["h-card"],
+             "properties": {
+                "url": ["http://blog.lizardwrangler.com/"],
+                "name": ["Mitchell Baker"],
+                "org": ["Mozilla Foundation"],
+                "note": ["Mitchell is responsible for setting the direction Mozilla ..."],
+                "category": ["Strategy", "Leadership"]
+             }
+        }]
     }
   
-
-### Options for whole parser
-
-    var microformats = require("microformat-node");
-    
-    microformats.setParserOptions({
-        logLevel: 3,
-        cacheTimeLimit: 3600000, 
-        cacheItemLimit: 1000,
-        useCache: false,
-        formats: 'hCard,XFN,hReview,hCalendar,hAtom,hResume,geo,adr,tag',
-        cache: { object containing the cache interface },
-        logger: { object containing the logger interface }
-    });
-    
-* logLevel - (int 0-4) set the level at which the parser logs events
-* cacheTimeLimit - (int) the amount of time items are keep in the cache for before they are discarded. The time is set in milliseconds.
-* cacheItemLimit - (int) the number of items to keep in cache before some are discarded
-* useCache - (boolean) weather a parse should use the HTML cache. 
-* formats - (string) a comma delimited list of formats to parse. 
-* cache - (object) an object containing an interface described in the Custom cache section of the this document.
-* logger - (object) an object containing an interface described in the Custom logger section of the this document. 
-
 
 ### Querying demo server
 
@@ -130,65 +138,16 @@ Then visit the server URL
 
 ### Using the server API    
 
-You need to provide the url of the web page and the format(s) you wish to parse as a single value or a comma delimited list:
+You need to provide the url of the web page:
 
-    GET http://localhost:8888/?url=http%3A%2F%2Fufxtract.com%2Ftestsuite%2Fhcard%2Fhcard1.htm&format=hCard
-
-You can also use the hash # fragment element of a url to target only part of a HTML page. The hash is used to target the HTML element with the same id. 
-
+    GET http://localhost:8888/?url=http%3A%2F%2Flocalhost%3A8888%2Ftest%2F
 
 ### Viewing the unit tests
 
-The module inculdes a page which runs the ufxtract microfomats unit test suite. 
+The module inculdes a page which runs the microfomats 2 test suite. 
 
-    http://localhost:8888/unittests/auto/
-
-
-## Custom cache
-
-microformats-node use an in-memory cache to store the HTML of web pages.
-
-The options object contains a property called `cacheTimeLimit` that can be used to set the cache refresh time. By default, this is 3600000ms. The number of items stored in the cache can be limited using the options property `cacheItemLimit`. By default, the cache is limited to 1000 items. The 'useCache' property of options object is set to false by default.
-
-You can replace the cache with your own, for example, to store the cached date in a database or file system. To add you own custom cache, all you need to do is provide an object containing the following interface:
-
-    {
-        function get (url) {
-            // add code to get data
-            returns data
-        }
-
-        function has(url) {
-            // add code to check your data store
-            returns true or false
-        }
-
-        function fetch (url, callback) {
-            // add code to return data
-            fires callback(null, data);
-        }
-
-        function set(url, data) {
-            // add code to store data
-            returns object
-        }
-    }
-
-and then add this interface as the `cache` property of the options object passed into the `parseUrl()` or `parseHtml()` methods.
-
-
-### Custom logger
-
-Elsewhere use a simple logging system that writes to Node's console. You can replace the logger with your own, for example, to store warnings and errors in a database or log file. To add your own custom logger, all you need to do is provide an object contain the following interface:
-
-    {
-        function info (message) { /* code to pass on message */ }
-        function log  (message) { /* code to pass on message */ }
-        function warn (message) { /* code to pass on message */ }
-        function error(message) { /* code to pass on message */ }
-    }
-
-and then add this interface to the `logger` property of the options object passed into the `parseUrl()` or `parseHtml()` methods.
+    http://localhost:8888/test/mocha-v1.html
+    http://localhost:8888/test/mocha-v2.html
 
 
 
@@ -200,3 +159,4 @@ Having trouble with microformat-node? Please raise an issue at: https://github.c
 ### License
 
 The project is open sourced under MIT licenses. See the [license.txt](https://raw.github.com/glennjones/microformat-node/master/license.txt "license.txt") file within the project source.
+

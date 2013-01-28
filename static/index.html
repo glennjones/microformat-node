@@ -3,11 +3,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Microformats2 Node Parser</title>
+    <title>microformat-node (version 2)</title>
     <link rel="stylesheet" href="css/site.css" type="text/css" />
   </head>
   <body>
-    <h1>Microformats2 Node Parser</h1>
+    <h1>microformat-node (version 2)</h1>
     <p class='notes'>Type in the address of a web page that contains a microformat and choose the microformat from the dropdown list.</p>
 
 
@@ -20,8 +20,8 @@
         <input type="text" name="callback"/>
       </p>
 
-      <p><label for="formats">filter results</label>
-      <select name="formats">
+      <p><label for="filters">filter results</label>
+      <select name="filters">
         <option selected="selected" value="">All microformats</option>
 
         <option value="h-adr">h-adr</option>
@@ -40,6 +40,43 @@
 
        </select>
      </p>
+
+      <p>
+        <label for="usecache">Use cache</label>
+        <input name="usecache" type="checkbox" value="true"/>
+      </p>
+
+
+      <p>
+        <label for="version1">Parse v1</label>
+        <input name="version1" type="checkbox" value="true" checked="checked"/>
+      </p>
+
+      <p>
+        <label for="children">Children</label>
+        <input name="children" type="checkbox" value="true" checked="checked"/>
+      </p>
+
+      <p>
+        <label for="rel">All rel=*</label>
+        <input name="rel" type="checkbox" value="true" checked="checked"/>
+      </p> 
+
+      <p>
+        <label for="childrenrel">Children rel=*</label>
+        <input name="childrenrel" type="checkbox" value="true" checked="checked"/>
+      </p>
+
+      <p><label for="textformat">Text format</label>
+      <select name="textformat">
+        <option selected="selected" value="normalised">normalised</option>
+        <option value="whitespace">whitespace</option>
+       </select>
+     </p>
+
+ 
+
+
       <input type="submit" value="Parse"/>
      </form>
 
@@ -86,7 +123,7 @@
 
 
      <footer class="vcard">
-        <p class="copyright"><span>All content and code is licensed under <a href="https://raw.github.com/glennjones/microformat-node/master/license.txt" rel="license">MIT License</a></span> © Copyright <a rel="me" href="http://www.glennjones.net" class="fn url">Glenn Jones</a> 2012. All Rights Reserved.</p>
+        <p class="copyright"><span>All content and code is licensed under <a href="https://raw.github.com/glennjones/microformat-node/master/license.txt" rel="license">MIT License</a></span> © Copyright <a rel="me" href="http://www.glennjones.net" class="fn url">Glenn Jones</a> 2013. All Rights Reserved.</p>
     </footer>
     
   </body>

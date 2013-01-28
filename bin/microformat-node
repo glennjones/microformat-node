@@ -2,7 +2,8 @@
 
 var app         = require('http').createServer(handler),
     fs          = require('fs'),
-    parser      = require('../lib/parser.js')
+    Parser      = require('../lib/parser.js').Parser,
+    utils       = require('../lib/utilities.js').utilities,
     testWriter  = require('../test/testWriter.js');
 
 //parser.setParserOptions({logLevel: 4})    
@@ -41,32 +42,82 @@ function handler(req, res) {
   }else{
 
     var options = {};
-    if(query.formats){
-      options.formats = query.formats;
+ 
+    if(query.baseurl){
+      options.baseUrl = query.baseurl;
     }
 
-    if(query.useincludes){
-      options.useIncludes = query.useincludes;
-    }
-    
-    if(query.url){
-      parser.parseUrl(query.url, options, function(err, ufData){
-        res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
-        if (query.callback) {
-          res.end(query.callback + '(' + JSON.stringify(ufData) + ')');
+    if(query.filters){
+      // break into an array
+      var out   =[],
+          list  = query.filters;
+
+      if(list && list !== '') {
+        list = utils.trim( utils.removeWhiteSpace(list) );
+        if(list.indexOf(' ') > -1) {
+          out = list.split(' ');
         } else {
-          res.end(JSON.stringify(ufData));
+          out.push(list);
+        }
+      }
+      options.filters = out;
+    }
+
+    if(query.usecache){
+      options.useCache = (query.usecache  === 'true')? true : false
+    }
+
+    if(query.version1){
+      options.version1 = (query.version1  === 'true')? true : false
+    }
+
+    if(query.children){
+      options.children = (query.children  === 'true')? true : false
+    }
+
+    if(query.childrenRel){
+      options.childrenRel = (query.childrenrel  === 'true')? true : false
+    }
+
+    if(query.rel){
+      options.rel = (query.rel  === 'true')? true : false
+    }
+ 
+    if(query.textformat){
+      options.textFormat = query.textformat;
+    }
+
+
+    if(query.url){
+
+      var parser = new Parser();
+      parser.parseUrl(query.url, options, function(errors, data){
+        res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
+        if(errors){
+            data = {}
+            data.errors = errors; 
+        }
+        if (query.callback) {
+          res.end(query.callback + '(' + JSON.stringify(data) + ')');
+        } else {
+          res.end(JSON.stringify(data));
         }
       });
     }
 
     if(query.html){
-      parser.parseHtml(query.html, options, query.baseurl, function(err, ufData){
+
+      var parser = new Parser();
+      parser.parseHtml(query.html, options, function(errors, data){
         res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
+        if(errors){
+            data = {}
+            data.errors = errors; 
+        }
         if (query.callback) {
-          res.end(query.callback + '(' + JSON.stringify(ufData) + ')');
+          res.end(query.callback + '(' + JSON.stringify(data) + ')');
         } else {
-          res.end(JSON.stringify(ufData));
+          res.end(JSON.stringify(data));
         }
       });
     }
