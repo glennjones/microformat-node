@@ -1,7 +1,7 @@
 var chai 	= require('chai'),
     assert  = chai.assert,
     lib = require('../lib/isodate.js');
-    dates = require('../lib/dates.js').dates;
+    dates = require('../lib/dates.js');
 
 /*
 To run these tests you need mocha and chia modules install on your computer

@@ -1,8 +1,8 @@
 {
   "author": "Glenn Jones",
   "name": "microformat-node",
-  "description": "A microformat parser for node.js",
-  "version": "0.0.2-0",
+  "description": "A microformat 2 parser for node.js",
+  "version": "0.2.0-0",
   "license": "MIT",
   "keywords": [
     "parser",
@@ -12,8 +12,13 @@
     "h-entry",
     "h-event",
     "h-geo",
+    "h-news",
     "h-org",
-    "h-resume"
+    "h-product",
+    "h-recipe",
+    "h-resume",
+    "h-review-aggregate",
+    "h-review"
   ],
   "repository": {
     "type": "git",
@@ -22,7 +27,6 @@
   "engines": {
     "node": ">= 0.8.x"
   },
-  "subdomain": "microformat2-node",
   "main": "index",
   "bin": {
     "microformat-node": "./bin/microformat-node"
@@ -31,7 +35,7 @@
     "request": "2.10.x",
     "cheerio": "0.10.0",
     "entities": "0.x",
-    "when": "https://github.com/cujojs/when/tarball/master"
+    "when": "1.7.x"
   },
   "devDependencies": {
     "mocha": "latest",

@@ -2,8 +2,8 @@
 
 var app         = require('http').createServer(handler),
     fs          = require('fs'),
-    Parser      = require('../lib/parser.js').Parser,
-    utils       = require('../lib/utilities.js').utilities,
+    parser      = require('../lib/parser.js'),
+    utils       = require('../lib/utilities.js'),
     testWriter  = require('../test/testWriter.js');
 
 //parser.setParserOptions({logLevel: 4})    
@@ -41,7 +41,16 @@ function handler(req, res) {
   // return json uf  
   }else{
 
-    var options = {};
+    var options = {
+      'baseurl': '',
+      'useCache': false,
+      'version1': true,
+      'children': true,
+      'childrenRel':  true,
+      'rel': true,
+      'filters': [],
+      'textFormat': 'normalised'
+    };
  
     if(query.baseurl){
       options.baseUrl = query.baseurl;
@@ -63,26 +72,18 @@ function handler(req, res) {
       options.filters = out;
     }
 
-    if(query.usecache){
-      options.useCache = (query.usecache  === 'true')? true : false
-    }
+    options.useCache = (query.usecache === 'true')? true : false;
+    options.version1 = (query.version1 === 'true')? true : false;
+    options.children = (query.children === 'true')? true : false;
+    options.childrenRel = (query.childrenrel === 'true')? true : false;
+    options.rel = (query.rel === 'true')? true : false;
 
-    if(query.version1){
-      options.version1 = (query.version1  === 'true')? true : false
-    }
+    if(!query.usecache){options.useCache = false};
+    if(!query.version1){options.version1 = false};
+    if(!query.children){options.children = false};
+    if(!query.childrenrel){options.childrenRel = false};
+    if(!query.rel){options.rel = false};
 
-    if(query.children){
-      options.children = (query.children  === 'true')? true : false
-    }
-
-    if(query.childrenRel){
-      options.childrenRel = (query.childrenrel  === 'true')? true : false
-    }
-
-    if(query.rel){
-      options.rel = (query.rel  === 'true')? true : false
-    }
- 
     if(query.textformat){
       options.textFormat = query.textformat;
     }
@@ -90,7 +91,6 @@ function handler(req, res) {
 
     if(query.url){
 
-      var parser = new Parser();
       parser.parseUrl(query.url, options, function(errors, data){
         res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
         if(errors){
@@ -107,7 +107,6 @@ function handler(req, res) {
 
     if(query.html){
 
-      var parser = new Parser();
       parser.parseHtml(query.html, options, function(errors, data){
         res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
         if(errors){
@@ -122,6 +121,10 @@ function handler(req, res) {
       });
     }
 
+  }
+
+  function setOptionTrueFalse(query, name, option){
+    option = (query[name] === 'true')? true : false
   }
 
 
