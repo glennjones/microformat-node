@@ -3,48 +3,128 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Microformats Node Parser</title>
+    <title>microformat-node (version 2)</title>
     <link rel="stylesheet" href="css/site.css" type="text/css" />
   </head>
   <body>
-    <h1>microformats-node node.js Parser</h1>
+    <h1>microformat-node (version 2)</h1>
     <p class='notes'>Type in the address of a web page that contains a microformat and choose the microformat from the dropdown list.</p>
 
 
     <form method="get" action=".">
+
       <p><label for="url">url</label>
-        <input type="text" name="url" value="http://ufxtract.com/testsuite/hcard/hcard1.htm" />
+        <input type="text" name="url" value="http://localhost:8888/test/h-card.html" />
       </p>
 
       <p><label for="callback">callback</label>
         <input type="text" name="callback"/>
       </p>
 
-      <p><label for="formats">formats</label>
-      <select name="formats">
-         <option selected="selected" value="hCard,XFN,hReview,hCalendar,hAtom,hResume,geo,adr,tag,test-fixture,test-suite">All microformats</option>
-         <option value="hCard">hCard</option>
-         <option value="hReview">hReview</option>
-         <option value="hCalendar">hCalendar</option>
-         <option value="hAtom">hAtom</option>
-         <option value="hResume">hResume</option>
-         <option value="XFN">XFN</option>
-         <option value="geo">geo</option>
-         <option value="adr">adr</option>
-         <option value="tag">rel-tag</option>
-         <option value="test-suite">test-suite</option>
-         <option value="test-fixture">test-fixture</option>
+      <p><label for="filters">filter results</label>
+      <select name="filters">
+        <option selected="selected" value="">All microformats</option>
+
+        <option value="h-adr">h-adr</option>
+        <option value="h-card" selected="selected">h-card</option>
+        <option value="h-entry">h-entry</option>
+        <option value="h-event">h-event</option>
+        <option value="h-geo">h-geo</option>
+        <option value="h-news">h-news</option>
+        <option value="h-org">h-org</option>
+        <option value="h-product">h-product</option>
+        <option value="h-recipe">h-recipe</option>
+        <option value="h-resume">h-resume</option>
+        <option value="h-review-aggregate">h-review-aggregate</option>
+        <option value="h-review">h-review</option>
+        <option value="rel">rel</option>
+
        </select>
      </p>
+
+      <p>
+        <label for="usecache">Use cache</label>
+        <input name="usecache" type="checkbox" value="true"/>
+      </p>
+
+
+      <p>
+        <label for="version1">Parse v1</label>
+        <input name="version1" type="checkbox" value="true" checked="checked"/>
+      </p>
+
+      <p>
+        <label for="children">Children</label>
+        <input name="children" type="checkbox" value="true" checked="checked"/>
+      </p>
+
+      <p>
+        <label for="rel">All rel=*</label>
+        <input name="rel" type="checkbox" value="true" checked="checked"/>
+      </p> 
+
+      <p>
+        <label for="childrenrel">Children rel=*</label>
+        <input name="childrenrel" type="checkbox" value="true" checked="checked"/>
+      </p>
+
+      <p><label for="textformat">Text format</label>
+      <select name="textformat">
+        <option selected="selected" value="normalised">normalised</option>
+        <option value="whitespace">whitespace</option>
+       </select>
+     </p>
+
+      <input name="testform" type="hidden" value="true"/>
+
+
       <input type="submit" value="Parse"/>
      </form>
 
-     <p>
-        <a href="/unittests/auto/">Autorun the unit test suite</a> and <a href="/unittests/"> Single unit tests</a>
-     </p>
+
+
+
+    <h2>Microformats Test Suite</h2>
+
+    <h3>Version 2 test <strong><a href="test/mocha-v2.html">Run tests</a></strong></h3>
+    <ul>
+      <li><a href="test/h-adr.html">h-adr</a></li>
+      <li><a href="test/h-card.html">h-card</a></li>
+      <li><a href="test/h-entry.html">h-entry</a></li>
+      <li><a href="test/h-event.html">h-event</a></li>
+      <li><a href="test/h-geo.html">h-geo</a></li>
+      <li><a href="test/h-news.html">h-news</a></li>
+      <li><a href="test/h-org.html">h-org</a></li>
+      <li><a href="test/h-product.html">h-product</a></li>
+      <li><a href="test/h-recipe.html">h-recipe</a></li>
+      <li><a href="test/h-resume.html">h-resume</a></li>
+      <li><a href="test/h-review-aggregate.html">h-review-aggregate</a></li>
+      <li><a href="test/h-review.html">h-review</a></li>
+      <li><a href="test/rel.html">rel=*</a></li> 
+      <li><a href="test/includes.html">include patterns</a></li> 
+    </ul>
+
+
+
+    <h3>Version 1 test (backwards compatibility tests) <strong><a href="test/mocha-v1.html">Run tests</a></strong></h3>
+    <ul>
+      <li><a href="test/mixed-versions.html">mixed-versions</a></li>
+      <li><a href="test/adr.html">adr</a></li>
+      <li><a href="test/geo.html">geo</a></li>
+      <li><a href="test/hcalendar.html">hcalendar</a></li>
+      <li><a href="test/hcard.html">hcard</a></li>
+      <li><a href="test/hentry.html">hentry</a></li>
+      <li><a href="test/hnews.html">hnews</a></li>
+      <li><a href="test/hproduct.html">hproduct</a></li>
+      <li><a href="test/hrecipe.html">hrecipe</a></li>
+      <li><a href="test/hresume.html">hresume</a></li>
+      <li><a href="test/hreview-aggregate.html">hreview-aggregate</a></li>
+      <li><a href="test/hreview.html">hreview</a></li>
+    </ul>
+
 
      <footer class="vcard">
-        <p class="copyright"><span>All content and code is licensed under <a href="https://raw.github.com/glennjones/microformat-node/master/license.txt" rel="license">Mozilla Public License/GNU/LGPL License</a></span> © Copyright <a rel="me" href="http://www.glennjones.net" class="fn url">Glenn Jones</a> 2012. All Rights Reserved.</p>
+        <p class="copyright"><span>All content and code is licensed under <a href="https://raw.github.com/glennjones/microformat-node/master/license.txt" rel="license">MIT License</a></span> © Copyright <a rel="me" href="http://www.glennjones.net" class="fn url">Glenn Jones</a> 2013. All Rights Reserved.</p>
     </footer>
     
   </body>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>hcalendar parsing backwards compatibility tests</title>
+
+    <link rel="stylesheet" href="/css/testsuite.css">
+    <link rel="stylesheet" href="/css/prettify.css">
+
+    <script src="/javascript/prettify.js"></script>
+    <script src="/javascript/testsuite.js"></script>
+   
+</head>
+<body class="h-x-test-suite">
+        
+        <h1 class="p-name">hcalendar parsing tests</h1>
+        <p class="p-description">This page was design to test the parsing of hcalendar and its output to the newer JSON structure of micorformats 2. These tests are part of the micorformats 2 test suite.</p> 
+
+        <p class="p-description"><strong>Theses are backwards compatibility tests for the older version 1 microformats specification. Please do not use this as a reference for authoring microformats.</strong></p>  
+
+
+        <ul>
+            <li><a href="#justaname">Just a name</a></li>
+            <li><a href="#justahyperlink">Just a hyperlink</a></li>
+            <li><a href="#attendees">Event with attendees</a></li>
+            <li><a href="#combining">Event with location</a></li>
+            <li><a href="#concatenate">Concatenate multiple datetime elements</a></li>
+            <li><a href="#time">Time formats</a></li>
+            <li><a href="#ampm">Meridiem time formats (am pm)</a></li>
+
+            
+        </ul>
+
+
+ <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="justaname">Just a name</a> (<span class="p-format">hcalendar</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<a class="vevent" href="http://indiewebcamp.com/2012">IndieWebCamp 2012</a>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{ 
+        "type": ["h-event"],
+        "properties": {
+            "name": ["IndieWebCamp 2012"],
+            "url": ["http://indiewebcamp.com/2012"]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+
+
+                <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="justahyperlink">Just a hyperlink</a> (<span class="p-format">hcalendar</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<a class="vevent" href="http://indiewebcamp.com/2012">IndieWebCamp 2012</a>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{ 
+        "type": ["h-event"],
+        "properties": {
+            "name": ["IndieWebCamp 2012"],
+            "url": ["http://indiewebcamp.com/2012"]
+        }
+    }]
+}
+</code></pre>
+
+
+        </section>
+
+
+     <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="attendees">hcalendar with attendees</a> (<span class="p-format">hcalendar</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="vevent">       
+    <span class="summary">CPJ Online Press Freedom Summit</span> 
+    (<time class="dtstart" datetime="2012-10-10">10 Nov 2012</time>) in 
+    <span class="location">San Francisco</span>. 
+    Attendees:
+    <ul>
+        <li class="attendee vcard">Brian Warner</li>
+        <li class="attendee vcard">Kyle Machulis</li>
+        <li class="attendee vcard">Tantek Çelik</li>
+        <li class="attendee vcard">Sid Sutter</li>
+    </ul>
+</div>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{ 
+        "type": ["h-event"],
+        "properties": {
+            "name": ["CPJ Online Press Freedom Summit"],
+            "start": ["2012-10-10"],
+            "location": ["San Francisco"],
+            "attendee": [{
+                "value": "Brian Warner",
+                "type": ["h-card"],
+                "properties": {
+                    "name": ["Brian Warner"]
+                }
+            },{
+                "value": "Kyle Machulis",
+                "type": ["h-card"],
+                "properties": {
+                    "name": ["Kyle Machulis"]
+                }
+            },{
+                "value": "Tantek Çelik",
+                "type": ["h-card"],
+                "properties": {
+                    "name": ["Tantek Çelik"]
+                }
+            },{
+                "value": "Sid Sutter",
+                "type": ["h-card"],
+                "properties": {
+                    "name": ["Sid Sutter"]
+                }
+            }]
+        }
+    },{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Brian Warner"]
+        }
+    },{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Kyle Machulis"]
+        }
+    },{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Tantek Çelik"]
+        }
+    },{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Sid Sutter"]
+        }
+    }]
+}
+</code></pre>
+
+ 
+        </section> 
+
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="combining">Event with location</a> (<span class="p-format">hcalendar</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="vevent">
+  <a class="summary url" href="http://indiewebcamp.com/2012">
+    IndieWebCamp 2012
+  </a>
+  from <time class="dtstart">2012-06-30</time> 
+  to <time class="dtend">2012-07-01</time> at 
+  <span class="location vcard">
+    <a class="fn org url" href="http://geoloqi.com/">Geoloqi</a>, 
+    <span class="adr">
+        <span class="street-address">920 SW 3rd Ave. Suite 400</span>, 
+        <span class="locality">Portland</span>, 
+        <abbr class="region" title="Oregon">OR</abbr>
+    </span>
+  </span>
+</div>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{ 
+        "type": ["h-event"],
+        "properties": {
+            "name": ["IndieWebCamp 2012"],
+            "url": ["http://indiewebcamp.com/2012"],
+            "start": ["2012-06-30"],
+            "end": ["2012-07-01"],
+            "location": [{
+                "value": "Geoloqi, 920 SW 3rd Ave. Suite 400, Portland, OR",
+                "type": ["h-card"],
+                "properties": {
+                    "name": ["Geoloqi"],
+                    "org": ["Geoloqi"],
+                    "url": ["http://geoloqi.com/"],
+                    "adr": [{
+                        "value": "920 SW 3rd Ave. Suite 400, Portland, OR",
+                        "type": ["h-adr"],
+                        "properties": {
+                            "street-address": ["920 SW 3rd Ave. Suite 400"],
+                            "locality": ["Portland"],
+                            "region": ["Oregon"],
+                            "name": ["920 SW 3rd Ave. Suite 400, Portland, OR"]
+                        }
+                    }]
+                }
+            }]
+        }
+    },{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Geoloqi"],
+            "org": ["Geoloqi"],
+            "url": ["http://geoloqi.com/"],
+            "street-address": ["920 SW 3rd Ave. Suite 400"],
+            "locality": ["Portland"],
+            "region": ["Oregon"]
+        }
+    }]
+}
+</code></pre>
+
+ 
+        </section> 
+
+
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="concatenate">Concatenate multiple datetime elements</a> (<span class="p-format">hcalendar</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="vevent">
+ <span class="summary">The 4th Microformat party</span> will be on 
+ <span class="dtstart">
+  <time class="value" datetime="2009-06-26">26 July</time>, from
+  <time class="value">19:00</time></span> to 
+ <span class="dtend"><time class="value">22:00</time></span>.
+</div>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{ 
+        "type": ["h-event"],
+        "properties": {
+            "name": ["The 4th Microformat party"],
+            "start": ["2009-06-26T19:00:00"],
+            "end": ["2009-06-26T22:00:00"]
+        }
+    }]
+}
+</code></pre>
+
+ 
+        </section> 
+
+
+
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="time">Time formats</a> (<span class="p-format">hcalendar</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="vevent">
+    <span class="summary">The 4th Microformat party</span> will be on 
+    <ul>
+        <li class="dtstart">
+            <time class="value" datetime="2009-06-26">26 July</time>, from
+            <time class="value">19:00:00-08:00</time> 
+        </li>
+        <li class="dtstart">
+            <time class="value" datetime="2009-06-26">26 July</time>, from
+            <time class="value">19:00:00-0800</time> 
+        </li>
+        <li class="dtstart">
+            <time class="value" datetime="2009-06-26">26 July</time>, from
+            <time class="value">19:00:00+0800</time> 
+        </li> 
+        <li class="dtstart">
+            <time class="value" datetime="2009-06-26">26 July</time>, from
+            <time class="value">19:00:00Z</time> 
+        </li>
+        <li class="dtstart">
+            <time class="value" datetime="2009-06-26">26 July</time>, from
+            <time class="value">19:00:00</time> 
+        </li>
+        <li class="dtstart">
+            <time class="value" datetime="2009-06-26">26 July</time>, from
+            <time class="value">19:00-08:00</time> 
+        </li> 
+        <li class="dtstart">
+            <time class="value" datetime="2009-06-26">26 July</time>, from
+            <time class="value">19:00+08:00</time> 
+        </li>
+        <li class="dtstart">
+            <time class="value" datetime="2009-06-26">26 July</time>, from
+            <time class="value">19:00Z</time> 
+        </li>
+        <li class="dtstart">
+            <time class="value" datetime="2009-06-26">26 July</time>, from
+            <time class="value">19:00</time> 
+        </li>  
+        <li>
+            <time class="dtend" datetime="2013-034">3 February 2013</time>
+        </li>              
+    </ul>
+</div>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{ 
+        "type": ["h-event"],
+        "properties": {
+            "name": ["The 4th Microformat party"],
+            "start": [
+                "2009-06-26T19:00:00-0800",
+                "2009-06-26T19:00:00-0800",
+                "2009-06-26T19:00:00+0800",
+                "2009-06-26T19:00:00Z",
+                "2009-06-26T19:00:00",
+                "2009-06-26T19:00:00-0800",
+                "2009-06-26T19:00:00+0800",
+                "2009-06-26T19:00:00Z",
+                "2009-06-26T19:00:00"
+            ],
+            "end": ["2013-034"]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="ampm">Meridiem time formats (am pm)</a> (<span class="p-format">hcalendar</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="vevent">
+    <span class="summary">The 4th Microformat party</span> will be on 
+    <ul>
+        <li class="dtstart">
+            <time class="value" datetime="2009-06-26">26 July</time>, from
+            <span class="value">07:00:00pm</sapm> 
+        </li>
+        <li class="dtstart">
+            <time class="value" datetime="2009-06-26">26 July</time>, from
+            <span class="value">07:00:00am</sapm> 
+        </li>
+        <li class="dtstart">
+            <time class="value" datetime="2009-06-26">26 July</time>, from
+            <span class="value">07:00pm</sapm> 
+        </li>
+        <li class="dtstart">
+            <time class="value" datetime="2009-06-26">26 July</time>, from
+            <span class="value">07pm</sapm> 
+        </li>
+        <li class="dtstart">
+            <time class="value" datetime="2009-06-26">26 July</time>, from
+            <span class="value">7pm</sapm> 
+        </li>
+        <li class="dtstart">
+            <time class="value" datetime="2009-06-26">26 July</time>, from
+            <span class="value">7:00pm</sapm> 
+        </li>
+        <li class="dtstart">
+            <time class="value" datetime="2009-06-26">26 July</time>, from
+            <span class="value">07:00p.m.</sapm> 
+        </li>
+        <li class="dtstart">
+            <time class="value" datetime="2009-06-26">26 July</time>, from
+            <span class="value">07:00PM</sapm> 
+        </li>
+        <li class="dtstart">
+            <time class="value" datetime="2009-06-26">26 July</time>, from
+            <span class="value">7:00am</sapm> 
+        </li>
+    </ul>
+</div>
+</div>
+
+
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{ 
+        "type": ["h-event"],
+        "properties": {
+            "name": ["The 4th Microformat party"],
+            "start": [
+                "2009-06-26T19:00:00",
+                "2009-06-26T07:00:00",
+                "2009-06-26T19:00:00",
+                "2009-06-26T19:00:00",
+                "2009-06-26T19:00:00",
+                "2009-06-26T19:00:00",
+                "2009-06-26T19:00:00",
+                "2009-06-26T19:00:00",
+                "2009-06-26T07:00:00"
+            ]
+        }
+    }]
+}
+</code></pre>
+
+        </section>   
+
+
+
+
+
+
+    <h2>Change log:</h2>
+    <ul>
+        <li class="p-x-history h-entry">
+            <span class="p-name">Copied from version 1 test suite</span>: <time class="dt-published" datetime="2013-01-07">7 January 2013</time> by <span class="p-author">Glenn Jones</span>
+        </li>
+    </ul>
+
+
+    <h2>Contributors:</h2>
+    <ul>
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://tantek.com/">Tantek Çelik</a> 
+        </li>
+        <li class="p-author h-card">
+            <a class="u-url p-name" rel="author" href="http://www.glennjones.net/">Glenn Jones</a> 
+        </li>
+    </ul>
+    <p>The orginal test also had contributions from: </p>
+    <ul>
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://mike.kaply.com/">Mike Kaply</a> 
+        </li>    
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://tobyinkster.co.uk/">Toby Inkster</a> 
+        </li>
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://georgebrock.com/">George Brocklehurst</a> 
+        </li>
+    </ul>
+
+  
+        
+    <footer>
+        All content and code is released into the <a href="http://en.wikipedia.org/wiki/public_domain">public domain</a>
+    </footer>
+      
+</body>
+
+</html>

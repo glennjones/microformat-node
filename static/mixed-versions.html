@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Mixed version parsing tests</title>
+
+    <link rel="stylesheet" href="/css/testsuite.css">
+    <link rel="stylesheet" href="/css/prettify.css">
+
+    <script src="/javascript/prettify.js"></script>
+    <script src="/javascript/testsuite.js"></script>
+   
+</head>
+<body class="h-x-test-suite">
+        
+
+
+        <h1 class="p-name">h-adr parsing tests</h1>
+        <p class="p-description">This page was design to test the parsing of mark-up which mixes version 1 and 2 microformats. These tests are part of the micorformats 2 test suite.</p> 
+
+        <p class="p-description"><strong>Theses are backwards compatibility tests for the older version 1 microformats specification. Please do not use this as a reference for authoring microformats.</strong></p> 
+
+
+        <ul>
+            <li><a href="#tworoots">Roots from two versions</a></li>
+            <li><a href="#mixedpropertries">Mixed propertries form different versions</a></li>
+            <li><a href="#mixedroots">Mixed roots form different versions</a></li>
+        </ul>
+
+             <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="tworoots">Roots from two versions</a> (<span class="p-format">h-card</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<p class="h-card vcard">Frances Berriman</p>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Frances Berriman"]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+                     <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="mixedpropertries">Mixed propertries form different versions</a> (<span class="p-format">h-card</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="h-card">
+    <p>
+        <a class="p-name org u-url" href="http://mozilla.org/">Mozilla Foundation</a>
+    </p>
+    <p class="adr">
+        <span class="street-address">665 3rd St.</span>  
+        <span class="extended-address">Suite 207</span>  
+        <span class="locality">San Francisco</span>,  
+        <span class="region">CA</span>  
+        <span class="postal-code">94107</span>  
+        <span class="country-name">U.S.A.</span>  
+    </p>
+</div>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Mozilla Foundation"],
+            "org": ["Mozilla Foundation"],
+            "url": ["http://mozilla.org/"],
+            "adr": [{
+                "value": "665 3rd St. Suite 207 San Francisco, CA 94107 U.S.A.",
+                "type": ["h-adr"],
+                "properties": {
+                    "street-address": ["665 3rd St."], 
+                    "extended-address": ["Suite 207"], 
+                    "locality": ["San Francisco"], 
+                    "region": ["CA"], 
+                    "postal-code": ["94107"], 
+                    "country-name": ["U.S.A."], 
+                    "name": ["665 3rd St. Suite 207 San Francisco, CA 94107 U.S.A."]
+                }
+            }]
+        }
+    }]
+}
+</code></pre>
+
+        </section>
+
+
+                        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="mixedroots">Mixed roots form different versions</a> (<span class="p-format">h-resume</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="h-resume">
+    <div class="p-contact vcard">
+        <p class="fn">Tim Berners-Lee</p>
+        <p class="title">Director of the World Wide Web Foundation</p>
+    </div>
+    <p class="summary">Invented the World Wide Web.</p><hr>
+    <div class="p-experience vevent h-card">
+        <p class="title">Director</p>
+        <p><a class="fn p-org summary url" href="http://www.webfoundation.org/">World Wide Web Foundation</a></p>
+        <p>
+            <time class="dtstart" datetime="2009-01-18">Jan 2009</time> &ndash; Present
+            <time class="duration" datetime="P2Y11M">(2 years 11 month)</time>
+        </p>
+    </div>
+</div>
+</div>
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{
+        "type": ["h-resume"],
+        "properties": {
+            "contact": [{
+                "value": "Tim Berners-Lee Director of the World Wide Web Foundation",
+                "type": ["h-card"],
+                "properties": {
+                    "name": ["Tim Berners-Lee"],
+                    "title": ["Director of the World Wide Web Foundation"]
+                }
+            }],
+            "summary": ["Invented the World Wide Web."],
+            "experience": [{
+                "value": "Director World Wide Web Foundation Jan 2009 - Present (2 years 11 month)",
+                "type": ["h-event", "h-card"],
+                "properties": {
+                    "org": ["World Wide Web Foundation"],
+                    "name": ["World Wide Web Foundation"],
+                    "url": ["http://www.webfoundation.org/"],
+                    "start": ["2009-01-18"],
+                    "duration": ["P2Y11M"],
+                    "title": ["Director"]
+                }
+            }]
+        }
+    },{
+        "type": ["h-card"],
+        "properties": {
+            "name": ["Tim Berners-Lee"],
+            "title": ["Director of the World Wide Web Foundation"]
+        }
+    },{
+        "type": ["h-event"],
+        "properties": {
+            "org": ["World Wide Web Foundation"],
+            "name": ["World Wide Web Foundation"],
+            "url": ["http://www.webfoundation.org/"],
+            "start": ["2009-01-18"],
+            "duration": ["P2Y11M"]
+        }
+    },{
+        "type": ["h-card"],
+        "properties": {
+            "title": ["Director"],
+            "name": ["World Wide Web Foundation"],
+            "org": ["World Wide Web Foundation"],
+            "url": ["http://www.webfoundation.org/"]
+        }
+    }]
+}
+</code></pre>
+
+        </section>  
+
+
+    <h2>Change log:</h2>
+    <ul>
+        <li class="p-x-history h-entry">
+            <span class="p-name">Created</span>: <time class="dt-published" datetime="2013-01-10">10 January 2013</time>  by <span class="p-author">Glenn Jones</span>
+        </li>
+    </ul>
+
+
+    <h2>Contributors :</h2>
+    <ul>
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://tantek.com/">Tantek Çelik</a> 
+        </li>
+        <li class="p-author h-card">
+            <a class="u-url p-name" rel="author" href="http://www.glennjones.net/">Glenn Jones</a> 
+        </li>
+    </ul>
+  
+        
+    <footer>
+        All content and code is released into the <a href="http://en.wikipedia.org/wiki/public_domain">public domain</a>
+    </footer>
+      
+</body>
+
+</html>

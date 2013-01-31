@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>rel=* parsing tests</title>
+
+    <link rel="stylesheet" href="/css/testsuite.css">
+    <link rel="stylesheet" href="/css/prettify.css">
+
+    <script src="/javascript/prettify.js"></script>
+    <script src="/javascript/testsuite.js"></script>
+   
+</head>
+<body class="h-x-test-suite">
+        
+
+
+        <h1 class="p-name">rel=* and xfn parsing tests</h1>
+        <p class="p-description">This page was design to test the parsing of rel=* and xfn. These tests are part of the micorformats 2 test suite.</p> 
+
+
+        <ul>
+            <li><a href="#license">A rel=license</a></li>
+            <li><a href="#nofollow">A rel=nofollow</a></li>
+            <li><a href="#xfn-elsewhere">A xfn elsewhere list</a></li>
+            <li><a href="#xfn-all">A xfn all properties</a></li>
+            <li><a href="#h-card-xfn">A h-card xfn pattern</a></li>
+        </ul>
+
+        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="license">A rel=license</a> (<span class="p-format">rel=license</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<a rel="license" href="http://creativecommons.org/licenses/by/2.5/">cc by 2.5</a>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{
+        "type": ["rel"],
+        "properties": {
+            "license": ["http://creativecommons.org/licenses/by/2.5/"]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+                <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="nofollow">A rel=nofollow</a> (<span class="p-format">rel=nofollow</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<a rel="nofollow" href="http://microformats.org/wiki/microformats:copyrights">Copyrights</a>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{
+        "type": ["rel"],
+        "properties": {
+            "nofollow": ["http://microformats.org/wiki/microformats:copyrights"]
+        }
+    }]
+}
+</code></pre>
+
+        </section> 
+
+
+
+                <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="xfn-elsewhere">A xfn elsewhere list</a> (<span class="p-format">xfn</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<ul>
+    <li><a rel="me" href="http://twitter.com/glennjones">twitter</a></li>
+    <li><a rel="me" href="http://delicious.com/glennjonesnet/">delicious</a></li>
+    <li><a rel="me" href="https://plus.google.com/u/0/105161464208920272734/about">google+</a></li>
+    <li><a rel="me" href="http://lanyrd.com/people/glennjones/">lanyrd</a></li>
+    <li><a rel="me" href="http://github.com/glennjones">github</a></li>
+    <li><a rel="me" href="http://www.flickr.com/photos/glennjonesnet/">flickr</a></li>
+    <li><a rel="me" href="http://www.linkedin.com/in/glennjones">linkedin</a></li>
+    <li><a rel="me" href="http://www.slideshare.net/glennjones/presentations">slideshare</a></li>
+</ul>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{
+        "type": ["rel"],
+        "properties": {
+            "me": [
+                "http://twitter.com/glennjones",
+                "http://delicious.com/glennjonesnet/",
+                "https://plus.google.com/u/0/105161464208920272734/about",
+                "http://lanyrd.com/people/glennjones/",
+                "http://github.com/glennjones",
+                "http://www.flickr.com/photos/glennjonesnet/",
+                "http://www.linkedin.com/in/glennjones",
+                "http://www.slideshare.net/glennjones/presentations"
+            ]
+        }
+    }]
+}
+</code></pre>
+
+        </section>
+
+
+
+                        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="xfn-all">A xfn all properties</a> (<span class="p-format">xfn</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<ul>
+    <li><a rel="friend" href="http://example.com/propfile/jane">jane</a></li>
+    <li><a rel="acquaintance" href="http://example.com/propfile/jeo">jeo</a></li>
+    <li><a rel="contact" href="http://example.com/propfile/lily">lily</a></li>
+    <li><a rel="met" href="http://example.com/propfile/oliver">oliver</a></li>
+    <li><a rel="co-worker" href="http://example.com/propfile/emily">emily</a></li>
+    <li><a rel="colleague" href="http://example.com/propfile/jack">jack</a></li>
+    <li><a rel="neighbor" href="http://example.com/propfile/isabella">isabella</a></li>
+    <li><a rel="child" href="http://example.com/propfile/harry">harry</a></li>
+    <li><a rel="parent" href="http://example.com/propfile/sophia">sophia</a></li>
+    <li><a rel="sibling" href="http://example.com/propfile/charlie">charlie</a></li>
+    <li><a rel="spouse" href="http://example.com/propfile/olivia">olivia</a></li>
+    <li><a rel="kin" href="http://example.com/propfile/james">james</a></li>
+    <li><a rel="muse" href="http://example.com/propfile/ava">ava</a></li>
+    <li><a rel="crush" href="http://example.com/propfile/joshua">joshua</a></li>
+    <li><a rel="date" href="http://example.com/propfile/chloe">chloe</a></li>
+    <li><a rel="sweetheart" href="http://example.com/propfile/alfie">alfie</a></li>
+    <li><a rel="me" href="http://example.com/propfile/isla">isla</a></li>
+</ul>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{
+        "type": ["rel"],
+        "properties": {
+            "friend": ["http://example.com/propfile/jane"],
+            "acquaintance": ["http://example.com/propfile/jeo"],
+            "contact": ["http://example.com/propfile/lily"],
+            "met": ["http://example.com/propfile/oliver"],
+            "co-worker": ["http://example.com/propfile/emily"],
+            "colleague": ["http://example.com/propfile/jack"],
+            "neighbor": ["http://example.com/propfile/isabella"],
+            "child": ["http://example.com/propfile/harry"],
+            "parent": ["http://example.com/propfile/sophia"],
+            "sibling": ["http://example.com/propfile/charlie"],
+            "spouse": ["http://example.com/propfile/olivia"],
+            "kin": ["http://example.com/propfile/james"],
+            "muse": ["http://example.com/propfile/ava"],
+            "crush": ["http://example.com/propfile/joshua"],
+            "date": ["http://example.com/propfile/chloe"],
+            "sweetheart": ["http://example.com/propfile/alfie"],
+            "me": ["http://example.com/propfile/isla"]
+        }
+    }]
+}
+</code></pre>
+
+        </section>  
+
+
+
+                        <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="h-card-xfn">A h-card xfn pattern</a> (<span class="p-format">xfn</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="h-card">
+    <p><a class="p-name u-url" rel="me" href="http://glennjones.net/">Glenn Jones</a></p>
+    <ul>
+        <li><a rel="me" href="http://twitter.com/glennjones">twitter</a></li>
+        <li><a rel="me" href="http://delicious.com/glennjonesnet/">delicious</a></li>
+        <li><a rel="me" href="https://plus.google.com/u/0/105161464208920272734/about">google+</a></li>
+        <li><a rel="me" href="http://lanyrd.com/people/glennjones/">lanyrd</a></li>
+        <li><a rel="me" href="http://github.com/glennjones">github</a></li>
+        <li><a rel="me" href="http://www.flickr.com/photos/glennjonesnet/">flickr</a></li>
+        <li><a rel="me" href="http://www.linkedin.com/in/glennjones">linkedin</a></li>
+        <li><a rel="me" href="http://www.slideshare.net/glennjones/presentations">slideshare</a></li>
+    </ul>
+</div>
+</div>
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{
+            "type": ["h-card"],
+            "properties": {
+                "name": ["Glenn Jones"],
+                "url": ["http://glennjones.net/"]
+            },
+            "children": [{
+                "type": ["rel"],
+                "properties": {
+                    "me": [
+                        "http://glennjones.net/",
+                        "http://twitter.com/glennjones",
+                        "http://delicious.com/glennjonesnet/",
+                        "https://plus.google.com/u/0/105161464208920272734/about",
+                        "http://lanyrd.com/people/glennjones/",
+                        "http://github.com/glennjones",
+                        "http://www.flickr.com/photos/glennjonesnet/",
+                        "http://www.linkedin.com/in/glennjones",
+                        "http://www.slideshare.net/glennjones/presentations"
+                    ]
+                }
+            }]
+        },{
+            "type": ["rel"],
+            "properties": {
+                "me": [
+                    "http://glennjones.net/",
+                    "http://twitter.com/glennjones",
+                    "http://delicious.com/glennjonesnet/",
+                    "https://plus.google.com/u/0/105161464208920272734/about",
+                    "http://lanyrd.com/people/glennjones/",
+                    "http://github.com/glennjones",
+                    "http://www.flickr.com/photos/glennjonesnet/",
+                    "http://www.linkedin.com/in/glennjones",
+                    "http://www.slideshare.net/glennjones/presentations"
+                ]
+            }
+    }]
+}
+</code></pre>
+
+        </section>
+
+
+      
+
+    <h2>Change log:</h2>
+    <ul>
+        <li class="p-x-history h-entry">
+            <span class="p-name">Created</span>: <time class="dt-published" datetime="2013-01-11">11 January 2013</time>  by <span class="p-author">Glenn Jones</span>
+        </li>
+    </ul>
+
+
+    <h2>Contributors :</h2>
+    <ul>
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://tantek.com/">Tantek Çelik</a> 
+        </li>
+        <li class="p-author h-card">
+            <a class="u-url p-name" rel="author" href="http://www.glennjones.net/">Glenn Jones</a> 
+        </li>
+    </ul>
+  
+        
+    <footer>
+        All content and code is released into the <a href="http://en.wikipedia.org/wiki/public_domain">public domain</a>
+    </footer>
+      
+</body>
+
+</html>

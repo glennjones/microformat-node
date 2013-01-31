@@ -1,31 +1,48 @@
 {
   "author": "Glenn Jones",
   "name": "microformat-node",
-  "description": "A microformat parser for node.js",
-  "version": "0.1.1",
-  "license": "MPL, GPL or LGPL",
+  "description": "A microformat 2 parser for node.js",
+  "version": "0.2.0",
+  "license": "MIT",
   "keywords": [
     "parser",
     "microfomats",
-    "hCard",
-    "hCalendar", 
-    "hReview",
-    "hResume",
-    "hAtom",
-    "XFN"
+    "h-adr",
+    "h-card",
+    "h-entry",
+    "h-event",
+    "h-geo",
+    "h-news",
+    "h-org",
+    "h-product",
+    "h-recipe",
+    "h-resume",
+    "h-review-aggregate",
+    "h-review"
   ],
   "repository": {
     "type": "git",
     "url": "git://github.com/glennjones/microformat-node.git"
   },
+  "engines": {
+    "node": ">= 0.8.x"
+  },
   "main": "index",
+  "bin": {
+    "microformat-node": "./bin/microformat-node"
+  },
   "dependencies": {
     "request": "2.10.x",
-    "cheerio": "0.10.x",
-    "underscore": "1.3.x",
-    "underscore.Deferred": "0.1.x"
+    "cheerio": "0.10.0",
+    "entities": "0.x",
+    "when": "1.7.x"
+  },
+  "devDependencies": {
+    "mocha": "latest",
+    "chai": "1.4.x"
   },
   "scripts": {
+    "test": "make test",
     "start": "bin/microformat-node"
   }
 }

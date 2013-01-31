@@ -16,4 +16,5 @@ npm-debug.log
 _site
 .DS_Store
 
+/static/testsuite/
 *.svn-base
