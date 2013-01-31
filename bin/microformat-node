@@ -41,6 +41,7 @@ function handler(req, res) {
   // return json uf  
   }else{
 
+    // set for direct url entry
     var options = {
       'baseurl': '',
       'useCache': false,
@@ -51,6 +52,15 @@ function handler(req, res) {
       'filters': [],
       'textFormat': 'normalised'
     };
+
+    // set for form entry - radio button not giving a =false
+    if(query.testform){
+      options.useCache = false;
+      options.version1 = false;
+      options.children = false;
+      options.childrenRel = false;
+      options.rel = false;
+    }
  
     if(query.baseurl){
       options.baseUrl = query.baseurl;
@@ -72,17 +82,26 @@ function handler(req, res) {
       options.filters = out;
     }
 
-    options.useCache = (query.usecache === 'true')? true : false;
-    options.version1 = (query.version1 === 'true')? true : false;
-    options.children = (query.children === 'true')? true : false;
-    options.childrenRel = (query.childrenrel === 'true')? true : false;
-    options.rel = (query.rel === 'true')? true : false;
 
-    if(!query.usecache){options.useCache = false};
-    if(!query.version1){options.version1 = false};
-    if(!query.children){options.children = false};
-    if(!query.childrenrel){options.childrenRel = false};
-    if(!query.rel){options.rel = false};
+    if(query.usecache){
+      options.useCache = (query.usecache === 'true')? true : false;
+    }
+
+    if(query.version1){
+      options.version1 = (query.version1 === 'true')? true : false;
+    }
+
+    if(query.children){
+      options.children = (query.children === 'true')? true : false;
+    }
+
+    if(query.childrenrel){
+      options.childrenRel = (query.childrenrel === 'true')? true : false;
+    }
+
+    if(query.rel){
+      options.rel = (query.rel === 'true')? true : false;
+    }
 
     if(query.textformat){
       options.textFormat = query.textformat;
@@ -123,9 +142,6 @@ function handler(req, res) {
 
   }
 
-  function setOptionTrueFalse(query, name, option){
-    option = (query[name] === 'true')? true : false
-  }
 
 
   function writeHTML(path){
