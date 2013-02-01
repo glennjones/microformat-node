@@ -7,6 +7,7 @@ Demo API - [http://microformat2-node.jit.su/](http://microformat2-node.jit.su/)
 ### Supported formats
 h-adr, h-card, h-entry, h-event, h-geo, h-news, h-product, h-recipe, h-resume, h-review-aggregate, h-review, adr, hCard, hEntry, hEvent, geo, hNews hProduct, hRecipe, hResume, hReview-aggregate, hReview, rel=tag, rel=licence, rel=no-follow, rel=author and XFN
 
+[![build status](https://secure.travis-ci.org/glennjones/microformat-node.png)](http://travis-ci.org/glennjones/microformat-node)
 
 
 ### Install
