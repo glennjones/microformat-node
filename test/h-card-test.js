@@ -1,6 +1,6 @@
 /*
 Mocha integration test from: h-card.html
-The test was built on Wed Jan 23 2013 10:54:55 GMT+0000 (GMT)
+The test was built on Mon Feb 18 2013 21:16:17 GMT+0000 (GMT)
 */
 
 var chai = require('chai'),
@@ -67,6 +67,32 @@ describe('A hyperlinked photo (h-card parsing test)', function() {
 
    it("found.items[0].properties['url'][0]", function(){
       assert.equal(found.items[0].properties["url"][0].toString(), "http://rohit.khare.org/");
+   })
+
+})
+
+
+
+
+describe('Single child implied pattern (h-card parsing test)', function() {
+   var htmlFragment = "\n<a class=\"h-card\" href=\"http://people.opera.com/howcome/\" title=\"Håkon Wium Lie, CTO Opera\">\n  <article>\n     <h2 class=\"p-name\">Håkon Wium Lie</h2>\n     <img src=\"http://upload.wikimedia.org/wikipedia/commons/thumb/9/96/H%C3%A5kon-Wium-Lie-2009-03.jpg/215px-H%C3%A5kon-Wium-Lie-2009-03.jpg\">\n  </article>\n</a>\n"
+   var found = helper.parseHTML(htmlFragment,'http://example.com/')
+   var expected = {"items":[{"type":["h-card"],"properties":{"name":["Håkon Wium Lie"],"photo":["http://upload.wikimedia.org/wikipedia/commons/thumb/9/96/H%C3%A5kon-Wium-Lie-2009-03.jpg/215px-H%C3%A5kon-Wium-Lie-2009-03.jpg"],"url":["http://people.opera.com/howcome/"]}}]}
+
+   it("found.items[0].type[0]", function(){
+      assert.equal(found.items[0].type[0].toString(), "h-card");
+   })
+
+   it("found.items[0].properties['name'][0]", function(){
+      assert.equal(found.items[0].properties["name"][0].toString(), "Håkon Wium Lie");
+   })
+
+   it("found.items[0].properties['photo'][0]", function(){
+      assert.equal(found.items[0].properties["photo"][0].toString(), "http://upload.wikimedia.org/wikipedia/commons/thumb/9/96/H%C3%A5kon-Wium-Lie-2009-03.jpg/215px-H%C3%A5kon-Wium-Lie-2009-03.jpg");
+   })
+
+   it("found.items[0].properties['url'][0]", function(){
+      assert.equal(found.items[0].properties["url"][0].toString(), "http://people.opera.com/howcome/");
    })
 
 })

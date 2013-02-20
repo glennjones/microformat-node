@@ -18,3 +18,4 @@ _site
 
 /static/testsuite/
 *.svn-base
+static/test.html

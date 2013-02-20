@@ -49,6 +49,7 @@ function handler(req, res) {
       'children': true,
       'childrenRel':  true,
       'rel': true,
+      'includes': true,
       'filters': [],
       'textFormat': 'normalised'
     };
@@ -101,6 +102,10 @@ function handler(req, res) {
 
     if(query.rel){
       options.rel = (query.rel === 'true')? true : false;
+    }
+
+    if(query.includes){
+      options.includes = (query.includes === 'true')? true : false;
     }
 
     if(query.textformat){

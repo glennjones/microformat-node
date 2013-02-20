@@ -1,6 +1,6 @@
 /*
 Mocha integration test from: hcard.html
-The test was built on Wed Jan 23 2013 10:54:56 GMT+0000 (GMT)
+The test was built on Mon Feb 18 2013 21:16:18 GMT+0000 (GMT)
 */
 
 var assert = chai.assert;
@@ -73,16 +73,12 @@ describe('A hyperlinked photo (hcard parsing test)', function() {
 
 
 describe('Name properties (hcard parsing test)', function() {
-   var htmlFragment = "\n<p class=\"vcard\">\n    <span class=\"fn n\">\n        <span class=\"honorific-prefix\">Dr</span> \n        <span class=\"given-name\">John</span> \n        <span class=\"additional-name\">Peter</span> \n        <span class=\"family-name\">Doe</span> \n        <span class=\"honorific-suffix\">MSc</span>, \n        <span class=\"honorific-suffix\">PHD</span>\n    </span>\n</p>\n"
+   var htmlFragment = "\n<div class=\"vcard\">\n    <div class=\"name\">\n        <span class=\"honorific-prefix\">Dr</span> \n        <span class=\"given-name\">John</span> \n        <abbr class=\"additional-name\" title=\"Peter\">P</abbr>  \n        <span class=\"family-name\">Doe</span> \n        <data class=\"honorific-suffix\" value=\"MSc\"></data>\n        <img class=\"honorific-suffix\" src=\"images/logo.gif\" alt=\"PHD\">\n    </div>\n</div>\n"
    var found = helper.parseHTML(htmlFragment,'http://example.com/')
-   var expected = {"items":[{"type":["h-card"],"properties":{"name":["Dr John Peter Doe MSc, PHD"],"honorific-prefix":["Dr"],"given-name":["John"],"additional-name":["Peter"],"family-name":["Doe"],"honorific-suffix":["MSc","PHD"]}}]}
+   var expected = {"items":[{"type":["h-card"],"properties":{"honorific-prefix":["Dr"],"given-name":["John"],"additional-name":["Peter"],"family-name":["Doe"],"honorific-suffix":["MSc","PHD"],"name":["Dr John P Doe"]}}]}
 
    it("found.items[0].type[0]", function(){
       assert.equal(found.items[0].type[0].toString(), "h-card");
-   })
-
-   it("found.items[0].properties['name'][0]", function(){
-      assert.equal(found.items[0].properties["name"][0].toString(), "Dr John Peter Doe MSc, PHD");
    })
 
    it("found.items[0].properties['honorific-prefix'][0]", function(){
@@ -107,6 +103,10 @@ describe('Name properties (hcard parsing test)', function() {
 
    it("found.items[0].properties['honorific-suffix'][1]", function(){
       assert.equal(found.items[0].properties["honorific-suffix"][1].toString(), "PHD");
+   })
+
+   it("found.items[0].properties['name'][0]", function(){
+      assert.equal(found.items[0].properties["name"][0].toString(), "Dr John P Doe");
    })
 
 })
@@ -137,7 +137,7 @@ describe('Class attribute format (hcard parsing test)', function() {
 
 
 describe('Emails (hcard parsing test)', function() {
-   var htmlFragment = "\n<p class=\"vcard\">\n    <span class=\"fn\">John Doe</span> \n    <ul>\n        <li><a class=\"email\" href=\"mailto:john@example.com\">notthis@example.com</a></li>\n        <li>\n            <span class=\"email\">\n                <span class=\"type\">internet</span> \n                <a class=\"value\" href=\"mailto:john@example.com\">notthis@example.com</a>\n            </span>\n        </li> \n        <li><a class=\"email\" href=\"mailto:john@example.com?subject=parser-test\">notthis@example.com</a></li>\n        <li class=\"email\">john@example.com</li>\n    </ul>\n</p>\n"
+   var htmlFragment = "\n<div class=\"vcard\">\n    <span class=\"fn\">John Doe</span> \n    <ul>\n        <li><a class=\"email\" href=\"mailto:john@example.com\">notthis@example.com</a></li>\n        <li>\n            <span class=\"email\">\n                <span class=\"type\">internet</span> \n                <a class=\"value\" href=\"mailto:john@example.com\">notthis@example.com</a>\n            </span>\n        </li> \n        <li><a class=\"email\" href=\"mailto:john@example.com?subject=parser-test\">notthis@example.com</a></li>\n        <li class=\"email\">john@example.com</li>\n    </ul>\n</div>\n"
    var found = helper.parseHTML(htmlFragment,'http://example.com/')
    var expected = {"items":[{"type":["h-card"],"properties":{"name":["John Doe"],"email":["mailto:john@example.com","mailto:john@example.com","mailto:john@example.com?subject=parser-test","john@example.com"]}}]}
 

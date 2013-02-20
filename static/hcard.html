@@ -124,7 +124,16 @@
 
 <!-- microformats example we are going to test -->
 <div class="e-x-microformat">
-
+<div class="vcard">
+    <div class="name">
+        <span class="honorific-prefix">Dr</span> 
+        <span class="given-name">John</span> 
+        <abbr class="additional-name" title="Peter">P</abbr>  
+        <span class="family-name">Doe</span> 
+        <data class="honorific-suffix" value="MSc"></data>
+        <img class="honorific-suffix" src="images/logo.gif" alt="PHD">
+    </div>
+</div>
 </div>
 
 
@@ -134,12 +143,12 @@
     "items": [{
         "type": ["h-card"],
         "properties": {
-            "name": ["Dr John Peter Doe MSc, PHD"],
             "honorific-prefix": ["Dr"],
             "given-name": ["John"],
             "additional-name": ["Peter"],
             "family-name": ["Doe"],
-            "honorific-suffix": ["MSc","PHD"]
+            "honorific-suffix": ["MSc","PHD"],
+            "name": ["Dr John P Doe"]
         }
     }]
 }
@@ -185,7 +194,7 @@
 
 <!-- microformats example we are going to test -->
 <div class="e-x-microformat">
-<p class="vcard">
+<div class="vcard">
     <span class="fn">John Doe</span> 
     <ul>
         <li><a class="email" href="mailto:john@example.com">notthis@example.com</a></li>
@@ -198,7 +207,7 @@
         <li><a class="email" href="mailto:john@example.com?subject=parser-test">notthis@example.com</a></li>
         <li class="email">john@example.com</li>
     </ul>
-</p>
+</div>
 </div>
 
 

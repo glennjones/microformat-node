@@ -3,10 +3,8 @@
       path        = require('path'),
       request     = require('request'),
       cheerio     = require('cheerio'),
-      Uf2Parser   = require('../lib/parser.js').Parser;
-
-
-  var uf2Parser = new Uf2Parser()
+      Parser      = require('../lib/parser.js').Parser,
+      parser      = new Parser();
 
       urls = ['http://localhost:8888/test/h-adr.html',
               'http://localhost:8888/test/h-card.html',
@@ -105,19 +103,28 @@
 
 
   function parseTestFixtures(html, url){
-    var $ = cheerio.load(html); 
-    var rootNode = ownerDocument = $('html');
-    //dom, rootNode, baseURL, filters, options
-    return uf2Parser.get($, rootNode, url, 'h-x-test-fixture', {useIncludes: false});
+    var dom, rootNode, options;
+    options = {
+      baseUrl: url,
+      filters: ['h-x-test-fixture'],
+      includes: false
+    }
+    dom = cheerio.load(html);
+    rootNode = dom.root();
+
+    return parser.get(dom, rootNode, options).data;
   }
 
 
   function parseFragment(htmlFragment){
-    var $ = cheerio.load(htmlFragment); 
-    var rootNode = ownerDocument = $('html');
+    var dom, rootNode, options;
+    options = {
+      baseUrl: 'http://example.com/'
+    }
+    dom = cheerio.load(html);
+    rootNode = dom.root();
 
-    //dom, rootNode, baseURL, filters, options
-    return uf2Parser.get($, rootNode, 'http://example.com/', null);
+    return parser.get(dom, rootNode, options).data;
   }
 
 
