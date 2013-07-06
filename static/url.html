@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Expanding URLs in e-* properties parsing tests </title>
+
+    <link rel="stylesheet" href="/css/testsuite.css">
+    <link rel="stylesheet" href="/css/prettify.css">
+
+    <script src="/javascript/prettify.js"></script>
+    <script src="/javascript/testsuite.js"></script>
+   
+</head>
+<body class="h-x-test-suite">
+        
+
+
+        <h1 class="p-name">Expanding URLs in e-* properties parsing tests</h1>
+        <p class="p-description">This page was design to test the expanding of relative URLs to absolute URLs in the HTML content of e-* propreties. These tests are part of the micorformats 2 test suite.</p> 
+
+
+        <ul>
+            <li><a href="#urlincontent">Expanding URLs in e-* propertie (h-entry)</a></li>
+        </ul>
+     
+
+
+                <!-- a test -->
+        <section class="p-x-test-fixture h-x-test-fixture">
+            <h1 class="p-name"><a name="urlincontent">Expanding URLs in e-* properties</a> (<span class="p-format">h-entry</span> parsing test)</h1>
+
+<!-- microformats example we are going to test -->
+<div class="e-x-microformat">
+<div class="h-entry">
+    <h1><a  class="p-name">Expanding URLs within HTML content</a></h1>
+    <div class="e-content">
+        <ul>
+            <li><a href="http://www.w3.org/">Should not change: http://www.w3.org/</a></li>
+            <li><a href="http://example.com/">Should not change: http://example.com/</a></li>
+            <li><a href="test.html">File relative: test.html = http://example.com/test.html</a></li>
+            <li><a href="/test/test.html">Directory relative: /test/test.html = http://example.com/test/test.html</a></li>
+            <li><a href="/test.html">Relative to root: /test.html = http://example.com/test.html</a></li>
+        </ul>
+        <img src="http://www.w3.org/2008/site/images/logo-w3c-mobile-lg" /><img src="/images/test.gif" />
+    </div>  
+</div>
+</div>
+
+
+            <h3>The expected JSON output:</h3>
+<pre class="prettyprint"><code class="e-x-output language-json">
+{
+    "items": [{
+        "type": ["h-entry"],
+        "properties": {
+            "name": ["Expanding URLs within HTML content"],
+            "content": ["\n        &lt;ul&gt;\n            &lt;li&gt;&lt;a href=\&quot;http://www.w3.org/\&quot;&gt;Should not change: http://www.w3.org/&lt;/a&gt;&lt;/li&gt;\n            &lt;li&gt;&lt;a href=\&quot;http://example.com/\&quot;&gt;Should not change: http://example.com/&lt;/a&gt;&lt;/li&gt;\n            &lt;li&gt;&lt;a href=\&quot;http://example.com/test.html\&quot;&gt;File relative: test.html = http://example.com/test.html&lt;/a&gt;&lt;/li&gt;\n            &lt;li&gt;&lt;a href=\&quot;http://example.com/test/test.html\&quot;&gt;Directory relative: /test/test.html = http://example.com/test/test.html&lt;/a&gt;&lt;/li&gt;\n            &lt;li&gt;&lt;a href=\&quot;http://example.com/test.html\&quot;&gt;Relative to root: /test.html = http://example.com/test.html&lt;/a&gt;&lt;/li&gt;\n        &lt;/ul&gt;\n        &lt;img src=\&quot;http://www.w3.org/2008/site/images/logo-w3c-mobile-lg\&quot;&gt;&lt;img src=\&quot;http://example.com/images/test.gif\&quot;&gt;\n    "]
+        }
+    }]
+}
+</code></pre>
+
+
+        </section>
+
+    
+
+
+    
+
+    <h2>Change log:</h2>
+    <ul>   
+        <li class="p-x-history h-entry">
+            <span class="p-name">Created</span>: <time class="dt-published" datetime="2013-06-30">30 June 2013</time> 
+            by <span class="p-author">Glenn Jones</span>
+        </li>
+    </ul>
+
+
+    <h2>Contributors :</h2>
+    <ul>
+        <li class="h-card">
+            <a class="u-url p-name" rel="author" href="http://tantek.com/">Tantek Çelik</a> 
+        </li>
+        <li class="p-author h-card">
+            <a class="u-url p-name" rel="author" href="http://www.glennjones.net/">Glenn Jones</a> 
+        </li>
+    </ul>
+  
+        
+    <footer>
+        All content and code is released into the <a href="http://en.wikipedia.org/wiki/public_domain">public domain</a>
+    </footer>
+      
+</body>
+
+</html>

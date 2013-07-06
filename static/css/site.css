@@ -59,12 +59,12 @@ input[type="text"]{
 
 input[type="submit"]{
   margin-top: 1em;
-  margin-left: 9em;
+  margin-left: 12em;
 }
 
 label{
   display: inline-block;
-  width: 6em;
+  width: 8em;
 }
 
 .notes {

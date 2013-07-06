@@ -19,6 +19,7 @@
               'http://localhost:8888/test/h-review-aggregate.html',
               'http://localhost:8888/test/h-review.html',
               'http://localhost:8888/test/rel.html',
+              'http://localhost:8888/test/url.html',
               'http://localhost:8888/test/includes.html',
 
               'http://localhost:8888/test/adr.html',
@@ -49,11 +50,10 @@
             if(html){
                 var parts = url.split('/'),
                   fileName = parts[parts.length-1],
-                  json = parseTestFixtures(html, url),
+                  json = parseTestFixtures(html, ''),
                   date = new Date().toString()
                   out1 = '/*\r\nMocha integration test from: ' + fileName + '\r\nThe test was built on ' + date + '\r\n*/\r\n\r\n';
                   out2 = '/*\r\nMocha integration test from: ' + fileName + '\r\nThe test was built on ' + date + '\r\n*/\r\n\r\n';
-
 
                 out1 += "var chai = require('chai'),\r\n   assert = chai.assert,\r\n   helper = require('../test/helper.js');\r\n\r\n\r\n" 
                 out2 += "var assert = chai.assert;\r\n\r\n\r\n" 

@@ -1,6 +1,6 @@
 /*
 Mocha integration test from: h-news.html
-The test was built on Wed Feb 20 2013 12:57:14 GMT+0000 (GMT)
+The test was built on Sat Jul 06 2013 13:21:10 GMT+0100 (BST)
 */
 
 var chai = require('chai'),

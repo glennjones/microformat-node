@@ -13,15 +13,12 @@
 
     <form method="get" action=".">
 
-      <p><label for="url">url</label>
+      <p><label for="url">URL</label>
         <input type="text" name="url" value="http://localhost:8888/test/h-card.html" />
       </p>
 
-      <p><label for="callback">callback</label>
-        <input type="text" name="callback"/>
-      </p>
 
-      <p><label for="filters">filter results</label>
+      <p><label for="filters">Filter results</label>
       <select name="filters">
         <option selected="selected" value="">All microformats</option>
 
@@ -41,6 +38,20 @@
 
        </select>
      </p>
+
+      <p><label for="selector">Selector</label>
+        <input type="text" name="selector" placeholder="optional - any css selector"/>
+      </p>
+
+      <p><label for="callback">Callback</label>
+        <input type="text" name="callback" placeholder="optional - jsonp callback function name"/>
+      </p>
+
+      <p><label for="baseurl">Base URL</label>
+        <input type="text" name="baseurl"  placeholder="optional -  URL to help complete relative URLs"/>
+      </p>
+
+
 
       <p>
         <label for="usecache">Use cache</label>
@@ -75,6 +86,7 @@
        </select>
      </p>
 
+
       <input name="testform" type="hidden" value="true"/>
 
 
@@ -101,6 +113,7 @@
       <li><a href="test/h-review-aggregate.html">h-review-aggregate</a></li>
       <li><a href="test/h-review.html">h-review</a></li>
       <li><a href="test/rel.html">rel=*</a></li> 
+      <li><a href="test/url.html">url</a></li> 
       <li><a href="test/includes.html">include patterns</a></li> 
     </ul>
 
