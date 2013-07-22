@@ -1,6 +1,6 @@
 /*
 Mocha integration test from: hentry.html
-The test was built on Sat Jul 06 2013 13:21:10 GMT+0100 (BST)
+The test was built on Mon Jul 22 2013 16:10:38 GMT+0100 (BST)
 */
 
 var assert = chai.assert;
