@@ -37,6 +37,10 @@
     "entities": "0.x",
     "when": "1.7.x"
   },
+  "devDependencies": {
+    "grunt": "0.4.x",
+    "grunt-contrib-jshint": "0.6.x"
+  },
   "scripts": {
     "test": "make test",
     "start": "bin/microformat-node"
