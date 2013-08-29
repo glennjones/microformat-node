@@ -1,3 +1,6 @@
+
+'use strict';
+
 var cheerio     = require('cheerio'),
     Parser      = require('../lib/parser.js').Parser;
 
