@@ -22,10 +22,10 @@ function parseHTML(html, baseUrl){
     'textFormat': 'normalised',
   };
 
-  // not sure we need this ?
+/*  // not sure we need this ?
   if(html.indexOf('<html') === -1){
     html = '<html>' + html + '</html>';
-  }    
+  }  */  
 
   // get dom
   dom = cheerio.load(html);

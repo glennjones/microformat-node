@@ -162,48 +162,17 @@
         console.log('writing test: ' + p.name)
 
         if(p['x-output'] && p['x-microformat']){
-          var json = p['x-output'][0];
-          var html = p['x-microformat'][0];
+          var json = p['x-output'][0].html;
+          var html = p['x-microformat'][0].html;
           //console.log(json)
 
           // need to decode html from pre/code block
           var expected = JSON.parse( json.replace(/&lt;/g,"<").replace(/&gt;/g,">") );
-
+    
           var out = "describe('" + p.name  + "', function() {\r\n"
           out += "   var htmlFragment = " + JSON.stringify(html) + "\r\n";
           out += "   var found = helper.parseHTML(htmlFragment,'http://example.com/')\r\n";
           out += "   var expected = " + JSON.stringify(expected) + "\r\n\r\n"
-
-
-  /*        if(expected.items[0]){
-
-            if(expected.items[0].value){
-              out += getAssertsStr(expected.items[0].value, 'found.items[0].value');
-            } 
-
-            if(expected.items[0].type){
-              out += getAssertsArr(expected.items[0].type, 'found.items[0].type');
-            }
-
-            if(expected.items[0].properties){
-              out += getAssertsObj(expected.items[0].properties, 'found.items[0].properties');
-            }
-          }
-
-          if(expected.items[0].children){
-
-            if(expected.items[0].children.value){
-              out += getAssertsStr(expected.items[0].children[0].value, 'found.items[0].children[0].value');
-            }
-
-            if(expected.items[0].children.type){
-              out += getAssertsArr(expected.items[0].children[0].type, 'found.items[0].children[0].type');
-            }
-
-            if(expected.items[0].children.properties){
-              out += getAssertsObj(expected.items[0].children[0].properties, 'found.items[0].children[0].properties');
-            }
-          }*/
 
           out += getAssertsForRootUF(expected.items[0], 'found.items[0]') + "})\r\n\r\n\r\n\r\n\r\n";
         }
@@ -212,6 +181,11 @@
       }
       return out;
   }
+
+
+  function isString(obj) {
+    return typeof (obj) == 'string';
+  };
 
 
 
