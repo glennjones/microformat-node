@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+
+
 var app         = require('http').createServer(handler),
     fs          = require('fs'),
     parser      = require('../lib/parser.js'),
@@ -213,12 +215,12 @@ function handler(req, res) {
   function writeImages(path){
     var parts = path.split('/images/');
     path = '/../static/images/' + parts[1];
-    res.writeHead(200, {'Content-Type': 'image/gif'});
-    fs.readFile(__dirname + path, function (err, page) {
+    fs.readFile(__dirname + path, function (err, img) {
       if(err) {
         console.log(err)
       }else{
-        res.end(page);
+        res.writeHead(200, {'Content-Type': 'image/gif' });
+        res.end(img, 'binary');
       }
     });
     return;

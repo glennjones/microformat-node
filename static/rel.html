@@ -24,7 +24,7 @@
             <li><a href="#nofollow">A rel=nofollow</a></li>
             <li><a href="#xfn-elsewhere">A xfn elsewhere list</a></li>
             <li><a href="#xfn-all">A xfn all properties</a></li>
-            <li><a href="#h-card-xfn">A h-card xfn pattern</a></li>
+            <li><a href="#alternate">A rel=alternate</a></li>
         </ul>
 
         <!-- a test -->
@@ -40,12 +40,10 @@
             <h3>The expected JSON output:</h3>
 <pre class="prettyprint"><code class="e-x-output language-json">
 {
-    "items": [{
-        "type": ["rel"],
-        "properties": {
-            "license": ["http://creativecommons.org/licenses/by/2.5/"]
-        }
-    }]
+    "items": [],
+    "rels": {
+        "license": ["http://creativecommons.org/licenses/by/2.5/"]
+    }
 }
 </code></pre>
 
@@ -65,12 +63,10 @@
             <h3>The expected JSON output:</h3>
 <pre class="prettyprint"><code class="e-x-output language-json">
 {
-    "items": [{
-        "type": ["rel"],
-        "properties": {
-            "nofollow": ["http://microformats.org/wiki/microformats:copyrights"]
-        }
-    }]
+    "items": [],
+    "rels": {
+        "nofollow": ["http://microformats.org/wiki/microformats:copyrights"]
+    }
 }
 </code></pre>
 
@@ -100,21 +96,19 @@
             <h3>The expected JSON output:</h3>
 <pre class="prettyprint"><code class="e-x-output language-json">
 {
-    "items": [{
-        "type": ["rel"],
-        "properties": {
-            "me": [
-                "http://twitter.com/glennjones",
-                "http://delicious.com/glennjonesnet/",
-                "https://plus.google.com/u/0/105161464208920272734/about",
-                "http://lanyrd.com/people/glennjones/",
-                "http://github.com/glennjones",
-                "http://www.flickr.com/photos/glennjonesnet/",
-                "http://www.linkedin.com/in/glennjones",
-                "http://www.slideshare.net/glennjones/presentations"
-            ]
-        }
-    }]
+    "items": [],
+    "rels": {
+        "me": [
+            "http://twitter.com/glennjones",
+            "http://delicious.com/glennjonesnet/",
+            "https://plus.google.com/u/0/105161464208920272734/about",
+            "http://lanyrd.com/people/glennjones/",
+            "http://github.com/glennjones",
+            "http://www.flickr.com/photos/glennjonesnet/",
+            "http://www.linkedin.com/in/glennjones",
+            "http://www.slideshare.net/glennjones/presentations"
+        ]
+    }
 }
 </code></pre>
 
@@ -129,23 +123,23 @@
 <!-- microformats example we are going to test -->
 <div class="e-x-microformat">
 <ul>
-    <li><a rel="friend" href="http://example.com/propfile/jane">jane</a></li>
-    <li><a rel="acquaintance" href="http://example.com/propfile/jeo">jeo</a></li>
-    <li><a rel="contact" href="http://example.com/propfile/lily">lily</a></li>
-    <li><a rel="met" href="http://example.com/propfile/oliver">oliver</a></li>
-    <li><a rel="co-worker" href="http://example.com/propfile/emily">emily</a></li>
-    <li><a rel="colleague" href="http://example.com/propfile/jack">jack</a></li>
-    <li><a rel="neighbor" href="http://example.com/propfile/isabella">isabella</a></li>
-    <li><a rel="child" href="http://example.com/propfile/harry">harry</a></li>
-    <li><a rel="parent" href="http://example.com/propfile/sophia">sophia</a></li>
-    <li><a rel="sibling" href="http://example.com/propfile/charlie">charlie</a></li>
-    <li><a rel="spouse" href="http://example.com/propfile/olivia">olivia</a></li>
-    <li><a rel="kin" href="http://example.com/propfile/james">james</a></li>
-    <li><a rel="muse" href="http://example.com/propfile/ava">ava</a></li>
-    <li><a rel="crush" href="http://example.com/propfile/joshua">joshua</a></li>
-    <li><a rel="date" href="http://example.com/propfile/chloe">chloe</a></li>
-    <li><a rel="sweetheart" href="http://example.com/propfile/alfie">alfie</a></li>
-    <li><a rel="me" href="http://example.com/propfile/isla">isla</a></li>
+    <li><a rel="friend" href="http://example.com/profile/jane">jane</a></li>
+    <li><a rel="acquaintance" href="http://example.com/profile/jeo">jeo</a></li>
+    <li><a rel="contact" href="http://example.com/profile/lily">lily</a></li>
+    <li><a rel="met" href="http://example.com/profile/oliver">oliver</a></li>
+    <li><a rel="co-worker" href="http://example.com/profile/emily">emily</a></li>
+    <li><a rel="colleague" href="http://example.com/profile/jack">jack</a></li>
+    <li><a rel="neighbor" href="http://example.com/profile/isabella">isabella</a></li>
+    <li><a rel="child" href="http://example.com/profile/harry">harry</a></li>
+    <li><a rel="parent" href="http://example.com/profile/sophia">sophia</a></li>
+    <li><a rel="sibling" href="http://example.com/profile/charlie">charlie</a></li>
+    <li><a rel="spouse" href="http://example.com/profile/olivia">olivia</a></li>
+    <li><a rel="kin" href="http://example.com/profile/james">james</a></li>
+    <li><a rel="muse" href="http://example.com/profile/ava">ava</a></li>
+    <li><a rel="crush" href="http://example.com/profile/joshua">joshua</a></li>
+    <li><a rel="date" href="http://example.com/profile/chloe">chloe</a></li>
+    <li><a rel="sweetheart" href="http://example.com/profile/alfie">alfie</a></li>
+    <li><a rel="me" href="http://example.com/profile/isla">isla</a></li>
 </ul>
 </div>
 
@@ -153,107 +147,65 @@
             <h3>The expected JSON output:</h3>
 <pre class="prettyprint"><code class="e-x-output language-json">
 {
-    "items": [{
-        "type": ["rel"],
-        "properties": {
-            "friend": ["http://example.com/propfile/jane"],
-            "acquaintance": ["http://example.com/propfile/jeo"],
-            "contact": ["http://example.com/propfile/lily"],
-            "met": ["http://example.com/propfile/oliver"],
-            "co-worker": ["http://example.com/propfile/emily"],
-            "colleague": ["http://example.com/propfile/jack"],
-            "neighbor": ["http://example.com/propfile/isabella"],
-            "child": ["http://example.com/propfile/harry"],
-            "parent": ["http://example.com/propfile/sophia"],
-            "sibling": ["http://example.com/propfile/charlie"],
-            "spouse": ["http://example.com/propfile/olivia"],
-            "kin": ["http://example.com/propfile/james"],
-            "muse": ["http://example.com/propfile/ava"],
-            "crush": ["http://example.com/propfile/joshua"],
-            "date": ["http://example.com/propfile/chloe"],
-            "sweetheart": ["http://example.com/propfile/alfie"],
-            "me": ["http://example.com/propfile/isla"]
-        }
-    }]
+    "items": [],
+    "rels": {
+        "friend": ["http://example.com/profile/jane"],
+        "acquaintance": ["http://example.com/profile/jeo"],
+        "contact": ["http://example.com/profile/lily"],
+        "met": ["http://example.com/profile/oliver"],
+        "co-worker": ["http://example.com/profile/emily"],
+        "colleague": ["http://example.com/profile/jack"],
+        "neighbor": ["http://example.com/profile/isabella"],
+        "child": ["http://example.com/profile/harry"],
+        "parent": ["http://example.com/profile/sophia"],
+        "sibling": ["http://example.com/profile/charlie"],
+        "spouse": ["http://example.com/profile/olivia"],
+        "kin": ["http://example.com/profile/james"],
+        "muse": ["http://example.com/profile/ava"],
+        "crush": ["http://example.com/profile/joshua"],
+        "date": ["http://example.com/profile/chloe"],
+        "sweetheart": ["http://example.com/profile/alfie"],
+        "me": ["http://example.com/profile/isla"]
+    }
 }
 </code></pre>
 
         </section>  
 
 
-
-                        <!-- a test -->
+<!-- a test -->
         <section class="p-x-test-fixture h-x-test-fixture">
-            <h1 class="p-name"><a name="h-card-xfn">A h-card xfn pattern</a> (<span class="p-format">xfn</span> parsing test)</h1>
+            <h1 class="p-name"><a name="alternate">A rel=alternate</a> (<span class="p-format">rel=alternate</span> parsing test)</h1>
 
 <!-- microformats example we are going to test -->
 <div class="e-x-microformat">
-<div class="h-card">
-    <p><a class="p-name u-url" rel="me" href="http://glennjones.net/">Glenn Jones</a></p>
-    <ul>
-        <li><a rel="me" href="http://twitter.com/glennjones">twitter</a></li>
-        <li><a rel="me" href="http://delicious.com/glennjonesnet/">delicious</a></li>
-        <li><a rel="me" href="https://plus.google.com/u/0/105161464208920272734/about">google+</a></li>
-        <li><a rel="me" href="http://lanyrd.com/people/glennjones/">lanyrd</a></li>
-        <li><a rel="me" href="http://github.com/glennjones">github</a></li>
-        <li><a rel="me" href="http://www.flickr.com/photos/glennjonesnet/">flickr</a></li>
-        <li><a rel="me" href="http://www.linkedin.com/in/glennjones">linkedin</a></li>
-        <li><a rel="me" href="http://www.slideshare.net/glennjones/presentations">slideshare</a></li>
-    </ul>
+<link rel="updates alternate" type="application/atom+xml" href="updates.atom"/>
 </div>
-</div>
+
 
             <h3>The expected JSON output:</h3>
 <pre class="prettyprint"><code class="e-x-output language-json">
 {
-    "items": [{
-            "type": ["h-card"],
-            "properties": {
-                "name": ["Glenn Jones"],
-                "url": ["http://glennjones.net/"]
-            },
-            "children": [{
-                "type": ["rel"],
-                "properties": {
-                    "me": [
-                        "http://glennjones.net/",
-                        "http://twitter.com/glennjones",
-                        "http://delicious.com/glennjonesnet/",
-                        "https://plus.google.com/u/0/105161464208920272734/about",
-                        "http://lanyrd.com/people/glennjones/",
-                        "http://github.com/glennjones",
-                        "http://www.flickr.com/photos/glennjonesnet/",
-                        "http://www.linkedin.com/in/glennjones",
-                        "http://www.slideshare.net/glennjones/presentations"
-                    ]
-                }
-            }]
-        },{
-            "type": ["rel"],
-            "properties": {
-                "me": [
-                    "http://glennjones.net/",
-                    "http://twitter.com/glennjones",
-                    "http://delicious.com/glennjonesnet/",
-                    "https://plus.google.com/u/0/105161464208920272734/about",
-                    "http://lanyrd.com/people/glennjones/",
-                    "http://github.com/glennjones",
-                    "http://www.flickr.com/photos/glennjonesnet/",
-                    "http://www.linkedin.com/in/glennjones",
-                    "http://www.slideshare.net/glennjones/presentations"
-                ]
-            }
+    "items": [],
+    "alternates": [{
+        "url": "http://tantek.com/updates.atom",
+        "type": "application/atom+xml",
+        "rel": "updates"
     }]
 }
 </code></pre>
 
-        </section>
+        </section> 
+
 
 
       
 
     <h2>Change log:</h2>
     <ul>
+        <li class="p-x-history h-entry">
+            <span class="p-name">Updated with new rel=* structure which does not contain type property. Added a new test for alternate=*. Removed a test that no longer applied.</span>: <time class="dt-published" datetime="2013-09-18">18 September 2013</time>  by <span class="p-author">Glenn Jones</span>
+        </li>
         <li class="p-x-history h-entry">
             <span class="p-name">Created</span>: <time class="dt-published" datetime="2013-01-11">11 January 2013</time>  by <span class="p-author">Glenn Jones</span>
         </li>

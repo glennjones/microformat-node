@@ -3,6 +3,7 @@
       path        = require('path'),
       request     = require('request'),
       cheerio     = require('cheerio'),
+      entities    = require('entities'),
       Parser      = require('../lib/parser.js').Parser,
       parser      = new Parser();
 
@@ -33,6 +34,8 @@
               'http://localhost:8888/test/hreview-aggregate.html',
               'http://localhost:8888/test/hreview.html',
               'http://localhost:8888/test/mixed-versions.html']
+
+      /*  urls = ['http://localhost:8888/test/h-news.html']*/
 
            
 
@@ -161,8 +164,10 @@
         if(p['x-output'] && p['x-microformat']){
           var json = p['x-output'][0];
           var html = p['x-microformat'][0];
-          console.log(json)
-          var expected = JSON.parse( json );
+          //console.log(json)
+
+          // need to decode html from pre/code block
+          var expected = JSON.parse( json.replace(/&lt;/g,"<").replace(/&gt;/g,">") );
 
           var out = "describe('" + p.name  + "', function() {\r\n"
           out += "   var htmlFragment = " + JSON.stringify(html) + "\r\n";
@@ -226,21 +231,23 @@
       if(expected.properties){
         out += getAssertsObj(expected.properties, path + '.properties');
       }
-    }
+    
 
-    if(expected.children){
+      if(expected.children){
 
-      if(expected.children.value){
-        out += getAssertsStr(expected.children[0].value, path + '.children[0].value');
+        if(expected.children.value){
+          out += getAssertsStr(expected.children[0].value, path + '.children[0].value');
+        }
+
+        if(expected.children.type){
+          out += getAssertsArr(expected.children[0].type, path + '.children[0].type');
+        }
+
+        if(expected.children.properties){
+          out += getAssertsObj(expected.children[0].properties, path + '.children[0].properties');
+        }
       }
 
-      if(expected.children.type){
-        out += getAssertsArr(expected.children[0].type, path + '.children[0].type');
-      }
-
-      if(expected.children.properties){
-        out += getAssertsObj(expected.children[0].properties, path + '.children[0].properties');
-      }
     }
 
     return out;

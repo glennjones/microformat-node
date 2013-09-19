@@ -1,6 +1,6 @@
 /*
 Mocha integration test from: h-adr.html
-The test was built on Mon Jul 22 2013 16:10:37 GMT+0100 (BST)
+The test was built on Thu Sep 19 2013 11:29:31 GMT+0100 (BST)
 */
 
 var assert = chai.assert;
@@ -67,7 +67,7 @@ describe('Broken into properties (h-adr parsing test)', function() {
 
 
 describe('With geo data (h-adr parsing test)', function() {
-   var htmlFragment = "\n<p class=\"h-adr\">\n    <span class=\"p-name\">Bricklayer's Arms</span>\n    <span class=\"p-label\"> \n        <span class=\"p-street-address\">3 Charlotte Road</span>,  \n        <span class=\"p-locality\">City of London</span>,  \n        <span class=\"p-postal-code\">EC2A 3PE</span>, \n        <span class=\"p-country-name\">UK</span> \n    </span> – \n    Geo:(<span class=\"p-geo\">51.526421;-0.081067</span>) \n</p>\n"
+   var htmlFragment = "\n<p class=\"h-adr\">\n    <span class=\"p-name\">Bricklayer's Arms</span>\n    <span class=\"p-label\"> \n        <span class=\"p-street-address\">3 Charlotte Road</span>,  \n        <span class=\"p-locality\">City of London</span>,  \n        <span class=\"p-postal-code\">EC2A 3PE</span>, \n        <span class=\"p-country-name\">UK</span> \n    </span> &ndash; \n    Geo:(<span class=\"p-geo\">51.526421;-0.081067</span>) \n</p>\n"
    var found = helper.parseHTML(htmlFragment,'http://example.com/')
    var expected = {"items":[{"type":["h-adr"],"properties":{"name":["Bricklayer's Arms"],"label":["3 Charlotte Road, City of London, EC2A 3PE, UK"],"street-address":["3 Charlotte Road"],"locality":["City of London"],"postal-code":["EC2A 3PE"],"country-name":["UK"],"geo":["51.526421;-0.081067"]}}]}
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>rel=* parsing tests</title>
+
+    <link rel="stylesheet" href="/css/testsuite.css">
+    <link rel="stylesheet" href="/css/prettify.css">
+
+    <style>
+    .large-area{
+        width: 60em;
+        height: 10em;
+        margin: 2em;
+        display: block;
+        font-size: 1.1em
+    }
+    </style>
+
+    <script>
+        window.onload = function(){
+            var input = document.getElementById('input')
+            var output = document.getElementById('output')
+            var button = document.getElementById('button')
+
+            button.onclick = function(){
+                output.value = input.value.replace(/</g,"&lt;").replace(/>/g,"&gt;")
+            }
+        }
+    </script>
+   
+</head>
+<body>
+        
+
+
+        <h1>Encode &lt; and &gt;</h1>
+        <p>Used for encoding HTML examples</p>
+
+
+        <textarea id="input" class="large-area"></textarea>
+        <textarea id="output" class="large-area"></textarea>
+        <button id="button">Covert</button>
+      
+</body>
+
+</html>

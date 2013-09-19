@@ -9,6 +9,7 @@
 
     <script src="/javascript/prettify.js"></script>
     <script src="/javascript/testsuite.js"></script>
+
    
 </head>
 <body class="h-x-test-suite">
@@ -54,7 +55,7 @@
         "type": ["h-entry"],
         "properties": {
             "name": ["Expanding URLs within HTML content"],
-            "content": ["\n        &lt;ul&gt;\n            &lt;li&gt;&lt;a href=\&quot;http://www.w3.org/\&quot;&gt;Should not change: http://www.w3.org/&lt;/a&gt;&lt;/li&gt;\n            &lt;li&gt;&lt;a href=\&quot;http://example.com/\&quot;&gt;Should not change: http://example.com/&lt;/a&gt;&lt;/li&gt;\n            &lt;li&gt;&lt;a href=\&quot;http://example.com/test.html\&quot;&gt;File relative: test.html = http://example.com/test.html&lt;/a&gt;&lt;/li&gt;\n            &lt;li&gt;&lt;a href=\&quot;http://example.com/test/test.html\&quot;&gt;Directory relative: /test/test.html = http://example.com/test/test.html&lt;/a&gt;&lt;/li&gt;\n            &lt;li&gt;&lt;a href=\&quot;http://example.com/test.html\&quot;&gt;Relative to root: /test.html = http://example.com/test.html&lt;/a&gt;&lt;/li&gt;\n        &lt;/ul&gt;\n        &lt;img src=\&quot;http://www.w3.org/2008/site/images/logo-w3c-mobile-lg\&quot;&gt;&lt;img src=\&quot;http://example.com/images/test.gif\&quot;&gt;\n    "]
+            "content": ["\n        &lt;ul&gt;\n            &lt;li&gt;&lt;a href=\"http://www.w3.org/\"&gt;Should not change: http://www.w3.org/&lt;/a&gt;&lt;/li&gt;\n            &lt;li&gt;&lt;a href=\"http://example.com/\"&gt;Should not change: http://example.com/&lt;/a&gt;&lt;/li&gt;\n            &lt;li&gt;&lt;a href=\"http://example.com/test.html\"&gt;File relative: test.html = http://example.com/test.html&lt;/a&gt;&lt;/li&gt;\n            &lt;li&gt;&lt;a href=\"http://example.com/test/test.html\"&gt;Directory relative: /test/test.html = http://example.com/test/test.html&lt;/a&gt;&lt;/li&gt;\n            &lt;li&gt;&lt;a href=\"http://example.com/test.html\"&gt;Relative to root: /test.html = http://example.com/test.html&lt;/a&gt;&lt;/li&gt;\n        &lt;/ul&gt;\n        &lt;img src=\"http://www.w3.org/2008/site/images/logo-w3c-mobile-lg\"&gt;&lt;img src=\"http://example.com/images/test.gif\"&gt;\n    "]
         }
     }]
 }
@@ -69,7 +70,10 @@
     
 
     <h2>Change log:</h2>
-    <ul>   
+    <ul>
+        <li class="p-x-history h-entry">
+            <span class="p-name">Updated encoding issue on e-*</span>: <time class="dt-published" datetime="2013-09-19">19 September 2013</time>  by <span class="p-author">Glenn Jones</span>
+        </li>   
         <li class="p-x-history h-entry">
             <span class="p-name">Created</span>: <time class="dt-published" datetime="2013-06-30">30 June 2013</time> 
             by <span class="p-author">Glenn Jones</span>
