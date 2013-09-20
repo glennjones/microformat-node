@@ -2,7 +2,7 @@
 
 microformat-node is a [microformats 2](http://microformats.org/wiki/microformats-2) parser built for node.js. The library can parse both versions 1 and 2 of microformats. It is built using a thoroughly tested and fast parsing engine.
 
-Demo API - [http://microformat2-node.jit.su/](http://microformat2-node.jit.su/)
+Demo API - [http://glennjones.net/tools/microformats/](http://glennjones.net/tools/microformats/)
 
 ### Supported formats
 h-adr, h-card, h-entry, h-event, h-geo, h-news, h-product, h-recipe, h-resume, h-review-aggregate, h-review, adr, hCard, hEntry, hEvent, geo, hNews hProduct, hRecipe, hResume, hReview-aggregate, hReview, rel=tag, rel=licence, rel=no-follow, rel=author and XFN
