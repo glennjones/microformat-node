@@ -232,3 +232,4 @@ function handler(req, res) {
 
 app.listen(8888, 'localhost');
 console.log('App @ http://localhost:8888');
+console.log('microformat-node version:', parser.version)

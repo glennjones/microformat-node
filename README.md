@@ -76,7 +76,7 @@ This function takes both a [Cheerio](https://github.com/MatthewMueller/cheerio) 
     var microformats = require("microformat-node"),
         options = {};
 
-    microformats.parseHtml(dom, node, options function(err, data){
+    microformats.parseDom(dom, node, options function(err, data){
         // do something with data
     });
 
@@ -94,6 +94,7 @@ This function takes both a [Cheerio](https://github.com/MatthewMueller/cheerio) 
 #### Available options
 
 * filters - (array) an array of formats to filter the output by i.e. ['h-card','h-geo']. - default is empty which displays all formats.
+* baseUrl - this is used to revolve any relative URLs in the output
 * version1 - (boolean) whether the output should contain version 1 microformats. - default is true
 * rel - (boolean) whether the output should contain rel=*. - default is true 
 * children - (boolean) whether the output should contain children. - default is true
