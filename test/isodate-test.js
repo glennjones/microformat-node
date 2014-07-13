@@ -176,7 +176,7 @@ describe('ISO datetime helper -', function(){
         });
 
         it("'','garbage'", function(){
-            assert.equal(dates.dateTimeUnion('','garbage').toString(), "");
+            assert.equal(dates.dateTimeUnion("","garbage").toString(), "");
         });
     })
 
