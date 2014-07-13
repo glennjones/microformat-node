@@ -174,6 +174,10 @@ describe('ISO datetime helper -', function(){
         it("'2007-05-01T19:30','21:30'", function(){
             assert.equal(dates.dateTimeUnion('2007-05-01','9:30pm').toString(), "2007-05-01T21:30:00");
         });
+
+        it("'','garbage'", function(){
+            assert.equal(dates.dateTimeUnion('','garbage').toString(), "");
+        });
     })
 
 
