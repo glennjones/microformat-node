@@ -36,9 +36,24 @@ function handler(req, res) {
   }else if (req.url.indexOf('/css/') > -1 && !query.url) {
     writeCSS(req.url);
 
-  }else if (req.url.indexOf('/iamges/') > -1 && !query.url) {
+  }else if (req.url.indexOf('/images/') > -1 && !query.url) {
     writeImages(req.url);
 
+  }else if (req.url.indexOf('/testarticle/')) {
+    var body = '<article class="h-entry"><h1 class="p-name">Microformats are amazing</h1><p>Published by <a class="p-author h-card" href="http://example.com">W. Developer</a> on <time class="dt-published" datetime="2013-06-13 12:00:00">13<sup>th</sup> June 2013</time><p class="p-summary">In which I extoll the virtues of using microformats.</p><div class="e-content"><p>Blah blah blah</p></div></article>';
+
+    parser.parseHtml(body, {'filters': ['h-entry']}, function(errors, data){
+      res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
+      if(errors){
+          data = {}
+          data.errors = errors; 
+      }
+      if (query.callback) {
+        res.end(query.callback + '(' + JSON.stringify(data) + ')');
+      } else {
+        res.end(JSON.stringify(data));
+      }
+    });
 
   // return json uf  
   }else{

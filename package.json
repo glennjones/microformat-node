@@ -2,7 +2,7 @@
   "author": "Glenn Jones",
   "name": "microformat-node",
   "description": "A microformat 2 parser for node.js",
-  "version": "0.2.13",
+  "version": "0.2.14",
   "license": "MIT",
   "keywords": [
     "parser",
