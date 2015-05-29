@@ -98,7 +98,7 @@ This function takes both a [Cheerio](https://github.com/MatthewMueller/cheerio) 
 * version1 - (boolean) whether the output should contain version 1 microformats. - default is true
 * rel - (boolean) whether the output should contain rel=*. - default is true 
 * children - (boolean) whether the output should contain children. - default is true
-* textFormat - (string) plain text output style 'normalised' or 'whitespace' default is 'normalised'
+* textFormat - (string) plain text output style 'normalised' or 'whitespace' or 'whitespacetrimmed' default is 'normalised'
 * logLevel - (int 0-4) set the level at which the parser logs events  - default is 4
 * useCache - (boolean) whether a parse should use the HTML cache.  - default is false 
 * cacheTimeLimit - (int) the amount of time items are kept in the cache before they are discarded. The time is set in milliseconds.  - default is 360000
