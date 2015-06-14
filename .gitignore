@@ -13,6 +13,9 @@ results
 
 node_modules
 npm-debug.log
+temp
+temp-tests
+testx
 _site
 .DS_Store
 

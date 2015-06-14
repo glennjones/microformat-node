@@ -1,4 +1,4 @@
-
+// simple helper class for running tests
 'use strict';
 
 var cheerio     = require('cheerio'),
@@ -6,31 +6,19 @@ var cheerio     = require('cheerio'),
 
 var parser = new Parser();
 
-// given html returns uf sjon from version 2 parser
+// given html returns uf json from parser
 function parseHTML(html, baseUrl){
 	var dom,
       rootNode,
       options;
 
   options = {
-    'baseUrl': baseUrl,
-    'filters': [],
-    'version1': true,
-    'children': true,
-    'childrenRel': true,
-    'rel': true,
-    'textFormat': 'normalised',
+    'baseUrl': baseUrl
   };
-
-/*  // not sure we need this ?
-  if(html.indexOf('<html') === -1){
-    html = '<html>' + html + '</html>';
-  }  */  
 
   // get dom
   dom = cheerio.load(html);
   rootNode = dom.root();
-
 
   return parser.get(dom, rootNode, options).data;
 }

@@ -21,7 +21,7 @@ module.exports = function( grunt ) {
 			}
 		},
 		mochaTest: {
-			files: ['test/*-test.js']
+			files: ['test/*-test.js','mf-test/*-test.js']
 		},
 		watch: {
 			files: 'lib/*.js',
