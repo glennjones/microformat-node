@@ -139,7 +139,7 @@ Then visit the server URL
 
 You need to provide the url of the web page:
 
-    GET http://localhost:8888/?url=http%3A%2F%2Flocalhost%3A8888%2Ftest%2F
+    GET http://localhost:8888/?url=http%3A%2F%2Fglennjones.net
     
 
 ### Mocha test

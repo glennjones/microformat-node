@@ -14,7 +14,7 @@
     <form method="get" action=".">
 
       <p><label for="url">URL</label>
-        <input type="text" name="url" value="http://localhost:8888/test/h-card.html" />
+        <input type="text" name="url" value="http://glennjones.net" />
       </p>
 
 
@@ -38,10 +38,11 @@
 
        </select>
      </p>
-
+     <!--
       <p><label for="selector">Selector</label>
         <input type="text" name="selector" placeholder="optional - any css selector"/>
       </p>
+      -->
 
       <p><label for="callback">Callback</label>
         <input type="text" name="callback" placeholder="optional - jsonp callback function name"/>
@@ -50,7 +51,7 @@
       <p><label for="baseurl">Base URL</label>
         <input type="text" name="baseurl"  placeholder="optional -  URL to help complete relative URLs"/>
       </p>
-
+      <!--
       <p>
         <label for="usecache">Use cache</label>
         <input name="usecache" type="checkbox" value="true"/>
@@ -71,12 +72,14 @@
         <label for="rel">All rel=*</label>
         <input name="rel" type="checkbox" value="true" checked="checked"/>
       </p> 
-
+      -->
 
       <p><label for="textformat">Text format</label>
       <select name="textformat">
-        <option selected="selected" value="normalised">normalised</option>
+        whitespacetrimmed
+        <option selected="selected" value="whitespacetrimmed">whitespacetrimmed</option>
         <option value="whitespace">whitespace</option>
+        <option value="normalised">normalised</option>
        </select>
      </p>
 
@@ -89,7 +92,7 @@
 
 
 
-
+<!--
     <h2>Microformats Test Suite</h2>
 
     <h3>Version 2 test <strong><a href="test/mocha-v2.html">Run tests</a></strong></h3>
@@ -128,10 +131,12 @@
       <li><a href="test/hreview-aggregate.html">hreview-aggregate</a></li>
       <li><a href="test/hreview.html">hreview</a></li>
     </ul>
+    
+    -->
 
 
      <footer class="vcard">
-        <p class="copyright"><span>All content and code is licensed under <a href="https://raw.github.com/glennjones/microformat-node/master/license.txt" rel="license">MIT License</a></span> © Copyright <a rel="me" href="http://www.glennjones.net" class="fn url">Glenn Jones</a> 2013. All Rights Reserved.</p>
+        <p class="copyright"><span>All content and code is licensed under <a href="https://raw.github.com/glennjones/microformat-node/master/license.txt" rel="license">MIT License</a></span> © Copyright <a rel="me" href="http://www.glennjones.net" class="fn url">Glenn Jones</a> 2015. All Rights Reserved.</p>
     </footer>
     
   </body>
