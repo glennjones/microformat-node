@@ -2,11 +2,6 @@ language: node_js
 node_js:
   - "0.12"
   - "0.11"
-install:
-  - npm install
-before_script:
-  - git config user.name "Travis CI" 
-  - grunt &
-  - sleep 5 # give grunt background task some time to execute.
-script:
-  - npm run coveralls
+after_success:
+- ./node_modules/.bin/jscoverage lib lib-cov
+- ./node_modules/.bin/mocha test/**.js -R mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js
