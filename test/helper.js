@@ -1,26 +1,19 @@
 // simple helper class for running tests
 'use strict';
-
-var cheerio     = require('cheerio'),
-    Parser      = require('../lib/parser.js').Parser;
-
-var parser = new Parser();
+var Microformats = require('../index.js');
 
 // given html returns uf json from parser
 function parseHTML(html, baseUrl){
-	var dom,
-      rootNode,
-      options;
+	var options;
 
   options = {
-    'baseUrl': baseUrl
+    'html': html,
+    'baseUrl': baseUrl,
+    'overlappingVersions': false,
+    'impliedPropertiesByVersion': true
   };
 
-  // get dom
-  dom = cheerio.load(html);
-  rootNode = dom.root();
-
-  return parser.get(dom, rootNode, options).data;
+  return Microformats.get(options);
 }
 
 exports.parseHTML = parseHTML;

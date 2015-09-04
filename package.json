@@ -2,7 +2,7 @@
   "author": "Glenn Jones",
   "name": "microformat-node",
   "description": "A microformat 2 parser for node.js",
-  "version": "0.3.1",
+  "version": "1.0.0",
   "license": "MIT",
   "keywords": [
     "parser",
@@ -33,20 +33,28 @@
   },
   "dependencies": {
     "cheerio": "0.19.x",
-    "entities": "1.1.x",
-    "request": "2.55.x",
-    "when": "3.7.x"
+    "bluebird": "2.9.x",
+    "microformat-shiv": "https://api.github.com/repos/glennjones/microformat-shiv/tarball/"
   },
   "devDependencies": {
-    "mocha": "1.12.0",
-    "chai": "1.7.2",
-    "grunt": "0.4.x",
-    "grunt-contrib-jshint": "0.6.x",
+    "hapi": "8.4.x",
+    "blipp": "2.1.x",
+    "joi": "6.6.x",
+    "good": "6.1.x",
+    "good-console": "5.0.x",
+    "request": "2.55.x",
+    "mocha": "2.2.x",
+    "chai": "3.0.x",
     "download-github-repo": "0.1.x",
-    "fs-extra": "0.19.x"
+    "fs-extra": "0.19.x",
+    "grunt": "0.4.x",
+    "grunt-contrib-concat": "0.5.x",
+    "grunt-contrib-copy": "0.8.x",
+    "grunt-contrib-jshint": "0.11.x",
+    "grunt-contrib-watch": "0.6.x"
   },
   "scripts": {
     "test": "make test",
-    "start": "bin/microformat-node"
+    "start": "app"
   }
 }

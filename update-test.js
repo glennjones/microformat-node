@@ -5,7 +5,8 @@ var path			= require('path'),
 
 var repo = 'glennjones/tests',
 	tempDir = path.resolve(__dirname,'temp-tests'),
-	testDir = path.resolve(__dirname,'test');
+	testDir = path.resolve(__dirname,'test'),
+	testJSPath = path.resolve(__dirname,'static/javascript/data.js');
 
 
 download(repo, tempDir, function(err, data){
@@ -13,20 +14,26 @@ download(repo, tempDir, function(err, data){
 		if(err){
 			console.err(err);
 		}else{
-			var fileList = getFileList(path.resolve(tempDir,'tests'));
-			var testStructure  = getGetTestStructure( fileList );
+			var fileList = getFileList(path.resolve(tempDir,'tests')),
+				testStructure  = getGetTestStructure( fileList ),
+				version = getTestSuiteVersion(),
+				dataCollection = [];
 			
-			var version = getTestSuiteVersion();
-			
-			
+			// loop array of test found
 			testStructure.forEach(function(item){
 				getDataFromFiles( item, function(err, data){
 					if(data){
 						
+						// build mocha tests
 						var test = buildTest( data, item, version, repo ),
 							filePath = shortenFilePath( item[0] + '-' + item[1] + '-' + item[2].replace('.json','') + '.js' );
+							
 						writeFile(path.resolve(testDir,filePath), test);
 						console.log(path.resolve(testDir,filePath));
+						
+						// add to data collection
+						data.name = shortenFilePath( item[0] + '-' + item[1] + '-' + item[2].replace('.json',''));
+						dataCollection.push( data );
 						
 						
 					}else{
@@ -34,6 +41,14 @@ download(repo, tempDir, function(err, data){
 					}
 				});
 			});
+			
+			// build json data for testrunner
+			writeFile(testJSPath, 'var testData = ' + JSON.stringify({ 
+				date: new Date(), 
+				repo: repo, 
+				version: version, 
+				data: dataCollection
+			}));
 			
 			fs.removeSync(tempDir);
 			console.log('done');

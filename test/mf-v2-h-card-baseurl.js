@@ -1,7 +1,7 @@
 /*
-Microformats Test Suite - Downloaded from github repo: glennjones/tests version v0.1.17 
+Microformats Test Suite - Downloaded from github repo: glennjones/tests version v0.1.21 
 Mocha integration test from: microformats-v2/h-card/baseurl
-The test was built on Sun Jun 14 2015 10:55:15 GMT+0100 (BST)
+The test was built on Tue Sep 01 2015 10:27:28 GMT+0100 (BST)
 */
 
 var chai = require('chai'),
@@ -10,9 +10,9 @@ var chai = require('chai'),
 
 
 describe('h-card', function() {
-   var htmlFragment = "<base href=\"http://example.org\"/>\n<div class=\"h-card\">\n  <a class=\"p-name u-url\" href=\"http://blog.lizardwrangler.com/\">Mitchell Baker</a> \n  (<a class=\"p-org h-card\" href=\"bios/mitchell-baker/\">Mozilla Foundation</a>)\n  <img class=\"u-photo\" src=\"bios/mitchell-baker/picture.jpeg\"/>\n</div>";
+   var htmlFragment = "<base href=\"http://example.org\"/>\n<div class=\"h-card\">\n  <a class=\"p-name u-url\" href=\"http://blog.lizardwrangler.com/\">Mitchell Baker</a> \n  (<a class=\"p-org h-card\" href=\"bios/mitchell-baker/\">Mozilla Foundation</a>)\n  <img class=\"u-photo\" src=\"images/photo.gif\"/>\n</div>";
    var found = helper.parseHTML(htmlFragment,'http://example.com/');
-   var expected = {"items":[{"type":["h-card"],"properties":{"name":["Mitchell Baker"],"url":["http://blog.lizardwrangler.com/"],"org":[{"value":"Mozilla Foundation","type":["h-card"],"properties":{"name":["Mozilla Foundation"],"url":["http://example.org/bios/mitchell-baker/"]}}],"photo":["http://example.org/bios/mitchell-baker/picture.jpeg"]}}],"rels":{},"rel-urls":{}};
+   var expected = {"items":[{"type":["h-card"],"properties":{"name":["Mitchell Baker"],"url":["http://blog.lizardwrangler.com/"],"org":[{"value":"Mozilla Foundation","type":["h-card"],"properties":{"name":["Mozilla Foundation"],"url":["http://example.org/bios/mitchell-baker/"]}}],"photo":["http://example.org/images/photo.gif"]}}],"rels":{},"rel-urls":{}};
 
    it('baseurl', function(){
        assert.deepEqual(found, expected);

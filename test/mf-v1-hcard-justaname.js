@@ -1,7 +1,7 @@
 /*
-Microformats Test Suite - Downloaded from github repo: glennjones/tests version v0.1.17 
+Microformats Test Suite - Downloaded from github repo: glennjones/tests version v0.1.21 
 Mocha integration test from: microformats-v1/hcard/justaname
-The test was built on Sun Jun 14 2015 10:55:15 GMT+0100 (BST)
+The test was built on Tue Sep 01 2015 10:27:28 GMT+0100 (BST)
 */
 
 var chai = require('chai'),
@@ -12,7 +12,7 @@ var chai = require('chai'),
 describe('hcard', function() {
    var htmlFragment = "<p class=\"vcard\">Frances Berriman</p>";
    var found = helper.parseHTML(htmlFragment,'http://example.com/');
-   var expected = {"items":[{"type":["h-card"],"properties":{"name":["Frances Berriman"]}}],"rels":{},"rel-urls":{}};
+   var expected = {"items":[{"type":["h-card"],"properties":{}}],"rels":{},"rel-urls":{}};
 
    it('justaname', function(){
        assert.deepEqual(found, expected);
