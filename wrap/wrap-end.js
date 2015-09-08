@@ -1,4 +1,27 @@
 	
+   function addV1(parser, options){
+		if(options && options.maps){
+			if(Array.isArray(options.maps)){
+				parser.add(options.maps);
+			}else{
+				parser.add([options.maps]);
+			}
+		}
+    }
+    
+    function getCallback( args ){
+       // second argument is callback 
+       if(args.length === 2 && modules.utils.isFunction(args[1])){
+           return args[1];
+       }
+       // thrid argument is callback 
+       if(args.length === 3 && modules.utils.isFunction(args[2])){
+           return args[2];
+       } 
+        return null;
+    }
+    
+    
     // external interface
 	var External = {
         version: modules.version,
@@ -10,7 +33,7 @@
     	var parser = new modules.Parser();
         addV1(parser, options);
         
-        if(arguments.length == 2 && modules.utils.isFunction(arguments[1])){
+        if(arguments.length === 2 && modules.utils.isFunction(arguments[1])){
             // if callback is passed call with standard node pattern
             var mfData = parser.get( options );
             if(mfData.errors){
@@ -29,9 +52,9 @@
     	var parser = new modules.Parser();
         addV1(parser, options);
         
-        if(arguments.length == 2 && modules.utils.isFunction(arguments[1])){
+        if(arguments.length === 2 && modules.utils.isFunction(arguments[1])){
             // if callback is passed
-            var mfData = parser.count( options )
+            var mfData = parser.count( options );
             if(mfData.errors){
                 arguments[1](mfData.errors, null);
             }else{
@@ -77,27 +100,7 @@
     };
     
     
-    function addV1(parser, options){
-		if(options && options.maps){
-			if(Array.isArray(options.maps)){
-				parser.add(options.maps);
-			}else{
-				parser.add([options.maps]);
-			}
-		}
-    }
-    
-    function getCallback( args ){
-       // second argument is callback 
-       if(args.length == 2 && modules.utils.isFunction(args[1])){
-           return args[1]
-       }
-       // thrid argument is callback 
-       if(args.length == 3 && modules.utils.isFunction(args[2])){
-           return args[2]
-       } 
-        return null
-    }
+
     
     
     return External;

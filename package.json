@@ -52,7 +52,7 @@
     "grunt-contrib-copy": "0.8.x",
     "grunt-contrib-jshint": "0.11.x",
     "grunt-contrib-watch": "0.6.x",
-    "jscoverage":"0.6.x",
+    "jscoverage":"0.5.x",
     "coveralls": "2.11.x",
     "mocha-lcov-reporter": "0.0.x"
   },

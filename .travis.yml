@@ -4,4 +4,8 @@ node_js:
   - "0.11"
 after_success:
 - ./node_modules/.bin/jscoverage lib lib-cov
-- ./node_modules/.bin/mocha test/**.js -R mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js
+- mv lib lib-orig
+- mv lib-cov lib
+- ./node_modules/.bin/mocha test/ -R mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js
+- -rf lib
+- mv lib-orig lib

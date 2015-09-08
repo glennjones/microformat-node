@@ -41,8 +41,8 @@ module.exports = function( grunt ) {
 			        },
 				},
 				files:{
-					'index.js': [
-						'lib/wrap-start.js', 
+					'lib/index.js': [
+						'wrap/wrap-start.js', 
 						'lib/version.js',
 						'node_modules/microformat-shiv/lib/living-standard.js',
 						'node_modules/microformat-shiv/lib/parser.js',
@@ -57,13 +57,13 @@ module.exports = function( grunt ) {
 						'node_modules/microformat-shiv/lib/text.js',
 						'node_modules/microformat-shiv/lib/html.js',
 						'node_modules/microformat-shiv/lib/maps/*.js',
-						'lib/wrap-end.js', 
+						'wrap/wrap-end.js', 
 					]
 				}
 			}
 		},
 		jshint: {
-			files: ['lib/**/*.js','Gruntfile.js','index.js'],
+			files: ['lib/**/*.js','wrap/**/*.js','Gruntfile.js','lib/index.js'],
 			options: {
 				curly: true,
 				eqeqeq: true,
@@ -77,7 +77,7 @@ module.exports = function( grunt ) {
 				node: true,
 				quotmark: 'single',
 				moz: true,
-				predef: [ 'Microformats', 'define', 'modules', 'URI' ]
+				predef: [ 'Microformats', 'define', 'modules', 'URI', 'cheerio' ]
 			},
 			globals: {}
 		},
@@ -88,7 +88,7 @@ module.exports = function( grunt ) {
 		    all: ['test/mocha-tests.html']
 		},
 		watch: {
-			files: ['lib/**/*.js','node_modules/microformat-shiv/lib/**/*.js','Gruntfile.js','package.json'],
+			files: ['lib/domutils.js','wrap/**/*.js','node_modules/microformat-shiv/lib/**/*.js','Gruntfile.js','package.json'],
 			tasks: ['buildfile', 'concat:dist']
 		}
 	});
