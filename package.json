@@ -1,24 +1,24 @@
 {
   "author": "Glenn Jones",
   "name": "microformat-node",
-  "description": "A microformat 2 parser for node.js",
-  "version": "1.0.0",
+  "description": "A microformat parser for node.js",
+  "version": "1.0.1",
   "license": "MIT",
   "keywords": [
     "parser",
     "microfomats",
-    "h-adr",
-    "h-card",
-    "h-entry",
-    "h-event",
-    "h-geo",
-    "h-news",
-    "h-org",
-    "h-product",
-    "h-recipe",
-    "h-resume",
-    "h-review-aggregate",
-    "h-review"
+    "hadr",
+    "hcard",
+    "hentry",
+    "hevent",
+    "hgeo",
+    "hnews",
+    "horg",
+    "hproduct",
+    "hrecipe",
+    "hresume",
+    "hreview-aggregate",
+    "hreview"
   ],
   "repository": {
     "type": "git",
@@ -28,9 +28,6 @@
     "node": ">= 0.10.x"
   },
   "main": "index",
-  "bin": {
-    "microformat-node": "./bin/microformat-node"
-  },
   "dependencies": {
     "cheerio": "0.19.x",
     "bluebird": "2.9.x",
