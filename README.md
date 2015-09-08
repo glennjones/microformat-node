@@ -1,5 +1,6 @@
 [![build status](https://img.shields.io/travis/glennjones/microformat-node.svg?style=flat-square)](http://travis-ci.org/glennjones/microformat-node)
 [![Coverage Status](https://img.shields.io/coveralls/glennjones/microformat-node/master.svg?style=flat-square)](https://coveralls.io/r/glennjones/microformat-node)
+[![Codacy Badge](https://img.shields.io/codacy/https://api.codacy.com/project/badge/20b227b0a05642a2bbc6cecdf07f1387.svg?style=flat-square)](https://www.codacy.com/app/glennjonesnet/microformat-node)
 [![MIT license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.github.com/glennjones/microformat-shic/master/license.txt)
 
 **NOTE: Major breaking changes to the interface between v0.3.x and v1.x.x to bring library inline with [microformat-shiv](https://github.com/glennjones/microformat-shiv) and Mozilla code base. Collecting HTML from URLs now needs to be done by a external module.**  
