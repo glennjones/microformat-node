@@ -1,7 +1,7 @@
 /*
-Microformats Test Suite - Downloaded from github repo: glennjones/tests version v0.1.21 
+Microformats Test Suite - Downloaded from github repo: microformats/tests version v0.1.23 
 Mocha integration test from: microformats-v2/h-event/time
-The test was built on Tue Sep 01 2015 10:27:28 GMT+0100 (BST)
+The test was built on Wed Sep 09 2015 16:39:33 GMT+0100 (BST)
 */
 
 var chai = require('chai'),
@@ -12,7 +12,7 @@ var chai = require('chai'),
 describe('h-event', function() {
    var htmlFragment = "<span class=\"h-event\">\n    <span class=\"p-name\">The 4th Microformat party</span> will be on \n    <ul>\n        <li class=\"dt-start\">\n            <time class=\"value\" datetime=\"2009-06-26\">26 July</time>, from\n            <time class=\"value\">19:00:00-08:00</time> \n        </li>\n        <li class=\"dt-start\">\n            <time class=\"value\" datetime=\"2009-06-26\">26 July</time>, from\n            <time class=\"value\">19:00:00-0800</time> \n        </li>\n        <li class=\"dt-start\">\n            <time class=\"value\" datetime=\"2009-06-26\">26 July</time>, from\n            <time class=\"value\">19:00:00+0800</time> \n        </li> \n        <li class=\"dt-start\">\n            <time class=\"value\" datetime=\"2009-06-26\">26 July</time>, from\n            <time class=\"value\">19:00:00Z</time> \n        </li>\n        <li class=\"dt-start\">\n            <time class=\"value\" datetime=\"2009-06-26\">26 July</time>, from\n            <time class=\"value\">19:00:00</time> \n        </li>\n        <li class=\"dt-start\">\n            <time class=\"value\" datetime=\"2009-06-26\">26 July</time>, from\n            <time class=\"value\">19:00-08:00</time> \n        </li> \n        <li class=\"dt-start\">\n            <time class=\"value\" datetime=\"2009-06-26\">26 July</time>, from\n            <time class=\"value\">19:00+08:00</time> \n        </li>\n        <li class=\"dt-start\">\n            <time class=\"value\" datetime=\"2009-06-26\">26 July</time>, from\n            <time class=\"value\">19:00Z</time> \n        </li>\n        <li class=\"dt-start\">\n            <time class=\"value\" datetime=\"2009-06-26\">26 July</time>, from\n            <time class=\"value\">19:00</time> \n        </li>  \n        <li>\n            <time class=\"dt-end\" datetime=\"2013-034\">3 February 2013</time>\n        </li>\n        <li>\n            <time class=\"dt-end\" datetime=\"2013-06-27 15:34\">26 July 2013</time>\n        </li>              \n    </ul>\n</span>";
    var found = helper.parseHTML(htmlFragment,'http://example.com/');
-   var expected = {"items":[{"type":["h-event"],"properties":{"name":["The 4th Microformat party"],"start":["2009-06-26T19:00:00-08:00","2009-06-26T19:00:00-0800","2009-06-26T19:00:00+0800","2009-06-26T19:00:00Z","2009-06-26T19:00:00","2009-06-26T19:00-08:00","2009-06-26T19:00+08:00","2009-06-26T19:00Z","2009-06-26T19:00"],"end":["2013-034","2013-06-27 15:34"]}}],"rels":{},"rel-urls":{}};
+   var expected = {"items":[{"type":["h-event"],"properties":{"name":["The 4th Microformat party"],"start":["2009-06-26 19:00:00-08:00","2009-06-26 19:00:00-08:00","2009-06-26 19:00:00+08:00","2009-06-26 19:00:00Z","2009-06-26 19:00:00","2009-06-26 19:00-08:00","2009-06-26 19:00+08:00","2009-06-26 19:00Z","2009-06-26 19:00"],"end":["2013-034","2013-06-27 15:34"]}}],"rels":{},"rel-urls":{}};
 
    it('time', function(){
        assert.deepEqual(found, expected);

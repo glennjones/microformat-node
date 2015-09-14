@@ -10,9 +10,7 @@ var cheerio         = require('cheerio');
     
     
 var options = {
-        'baseUrl': 'http://example.com/',
-        'overlappingVersions': false,
-        'impliedPropertiesByVersion': true
+        'baseUrl': 'http://example.com/'
     };
     
 

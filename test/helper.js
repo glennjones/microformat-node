@@ -9,8 +9,7 @@ function parseHTML(html, baseUrl){
   options = {
     'html': html,
     'baseUrl': baseUrl,
-    'overlappingVersions': false,
-    'impliedPropertiesByVersion': true
+    'dateFormat': 'html5'
   };
 
   return Microformats.get(options);

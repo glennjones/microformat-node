@@ -1,7 +1,7 @@
 /*
-Microformats Test Suite - Downloaded from github repo: glennjones/tests version v0.1.21 
+Microformats Test Suite - Downloaded from github repo: microformats/tests version v0.1.23 
 Mocha integration test from: microformats-v2/h-resume/affiliation
-The test was built on Tue Sep 01 2015 10:27:28 GMT+0100 (BST)
+The test was built on Wed Sep 09 2015 16:39:33 GMT+0100 (BST)
 */
 
 var chai = require('chai'),
