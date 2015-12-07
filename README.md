@@ -15,7 +15,7 @@ Installation
 Using bower:
 
 ```sh
-$ npm install microformat-shiv
+$ npm install microformat-node
 ```
 
 Methods
