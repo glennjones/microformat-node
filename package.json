@@ -31,7 +31,7 @@
   "dependencies": {
     "cheerio": "0.19.x",
     "bluebird": "2.9.x",
-    "microformat-shiv": "https://api.github.com/repos/glennjones/microformat-shiv/tarball/"
+    "microformat-shiv": "glennjones/microformat-shiv"
   },
   "devDependencies": {
     "hapi": "8.4.x",
