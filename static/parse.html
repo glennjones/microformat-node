@@ -8,22 +8,22 @@
 
         <link rel="stylesheet" href="css/testrunner.css">
         <link rel="stylesheet" href="css/prettify.css">
-		
 
-	
+
+
 		<script src="javascript/beautify.js"></script>
-        <script src="javascript/prettify.js"></script>	
-		<script src="javascript/DOMParser.js"></script>		
-		<script src="javascript/parse.js"></script>	
+        <script src="javascript/prettify.js"></script>
+		<script src="javascript/DOMParser.js"></script>
+		<script src="javascript/parse.js"></script>
 
 	</head>
-	
+
 	<body>
-        
+
 		<p>microformat-node</p>
         <h1>Parse Microformats</h1>
 		<p>Type or copy and paste the HTML you want to parse into the box below.</p>
-        
+
                 <form id="mf-form" class="tool-interface" method="post" action="/parse/">
 	          		<p>
 	          			<label for="html">HTML</label>
@@ -34,69 +34,70 @@
 </textarea>
 	          		</p>
 
-				
+
 					<p>
 			        	<label for="baseUrl">BaseURL</label>
 			          	<input id="baseUrl" name="baseUrl" placeholder="Optional URL to help resolve relative links" value="http://example.com" type="text">
 			        </p>
-			
-					
+
+
 					<p>
 			        	<label for="filters">Filters</label>
 			          	<input id="filters" name="filters" placeholder="Optional comma separted list of formats to filter by" type="text">
 			        </p>
-					
+
 					<!--
 					<p class="checkbox">
 						<input id="collapsewhitespace" name="collapsewhitespace" id="textformat2" type="checkbox">
 						<label class="checkbox-label" for="textformat2"><strong>Experimental</strong> ‐ Text white-space collapsing</label>
 			        </p>
 					-->
-					
-					
+
+
 					<p class="checkbox">
 						<input id="overlappingVersions" name="overlappingVersions" id="overlappingVersions" type="checkbox">
 						<label class="checkbox-label" for="overlappingVersions"><strong>Experimental</strong> ‐ Block overlapping properties from different microformat versions</label>
 			        </p>
-					
+
 					<p class="checkbox">
 						<input id="impliedPropertiesByVersion" name="impliedPropertiesByVersion" id="impliedPropertiesByVersion" type="checkbox">
 						<label class="checkbox-label" for="impliedPropertiesByVersion"><strong>Experimental</strong> ‐ Set implied properties by microformat version</label>
 			        </p>
-					
+
 					<p class="checkbox">
 						<input id="parseLatLonGeo" name="parseLatLonGeo" id="parseLatLonGeo" type="checkbox">
 						<label class="checkbox-label" for="parseLatLonGeo"><strong>Experimental</strong> ‐ Parse h-geo writen as 30.26;-97.73 into latitude and longitude</label>
-			        </p>		
-						
-					<p> 
+			        </p>
+
+					<p>
 						<select id="textFormat" class="indent" name="textFormat">
 							<option value="whitespacetrimmed" selected="selected">whitespacetrimmed</option>
 							<option value="normalised">normalised</option>
 		           		</select>
-             
+
 						<label class="checkbox-label" for="textFormat"><strong>Experimental</strong> ‐ Text Formatting</label>
 	 				</p>
-						
-                     <p> 
+
+                     <p>
 						<select id="dateFormat" class="indent" name="dateFormat" >
 							<option value="auto" selected="selected">auto</option>
+							<option value="microformat2">microformat2</option>
 							<option value="W3C">w3c</option>
 							<option value="HTML5">html5</option>
 							<option value="RFC3339">rfc3339</option>
 		           		</select>
-             
+
 						<label class="checkbox-label" for="dateFormat"><strong>Experimental</strong> ‐ ISO date profile</label>
 	 				</p>
-					 
+
 
 	          		<input class="button" value="Parse" type="submit">
 	         	</form>
-                 
+
              <h1>Parser JSON</h1>
             <div id="parser-json"><pre class="prettyprint"><code class="language-json"></code></pre></div>
 
- 
-	
+
+
 	</body>
 </html>

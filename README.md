@@ -3,7 +3,7 @@
 [![Codacy Badge](https://img.shields.io/codacy/https://api.codacy.com/project/badge/20b227b0a05642a2bbc6cecdf07f1387.svg?style=flat-square)](https://www.codacy.com/app/glennjonesnet/microformat-node)
 [![MIT license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.github.com/glennjones/microformat-shic/master/license.txt)
 
-**NOTE: Major breaking changes to the interface between v0.3.x and v1.x.x to bring library inline with [microformat-shiv](https://github.com/glennjones/microformat-shiv) and Mozilla code base. Collecting HTML from URLs now needs to be done by a external module.**  
+**NOTE: Major breaking changes to the interface between v0.3.x and v1.x.x to bring library inline with [microformat-shiv](https://github.com/glennjones/microformat-shiv) and Mozilla code base. Collecting HTML from URLs now needs to be done by a external module.**
 
 microformat-node
 ================
@@ -32,16 +32,16 @@ get
 -----
 The `get` method parses microformats data from either a `html` string or a `cheerio` object.
 
-Simple parse of HTML string. 
+Simple parse of HTML string.
 ```javascript
     var Microformats = require('microformat-node'),
         options = {};
-        
+
     options.html = '<a class="h-card" href="http://glennjones.net">Glenn</a>';
     Microformats.get(options, function(err, data){
         // do something with data
     });
-```    
+```
 
 
 Simple parse of a Cheerio parsed page
@@ -49,12 +49,12 @@ Simple parse of a Cheerio parsed page
     var Microformats = require('microformat-node'),
         Cheerio = require('cheerio'),
         options = {};
-        
+
     options.node = Cheerio.load('<a class="h-card" href="http://glennjones.net">Glenn</a>');
     Microformats.get(options, function(err, data){
         // do something with data
     });
-```   
+```
 
 
 
@@ -65,7 +65,7 @@ Options
 * `node` - (Cheerio DOM object) the element to be parse
 * `filter` - (Array) microformats types returned - i.e. `['h-card']` - always adds `rels`
 * `textFormat` - (String) text style `whitespacetrimmed` or `normalised` default is `whitespacetrimmed`
-* `dateFormat` - (String) the ISO date profile `auto`, `w3c` `rfc3339` or `html5` default is `auto`
+* `dateFormat` - (String) the ISO date profile `auto`, `microformat2`, `w3c` `rfc3339` or `html5` default is `auto`
 * `add` - (Array) adds microformat version 1 definitions
 
 __I would recommended always setting `textFormat` option to `normalised`. This is not part of the microformat parsing rules, but in most cases provides more usable output.__
@@ -73,9 +73,8 @@ __I would recommended always setting `textFormat` option to `normalised`. This i
 Experimental Options
 -------
 These options are part of ongoing specification development. They maybe removed or renamed in future.
-* `overlappingVersions` - (Boolean) block overlapping properties from different microformat versions default is `true`
-* `impliedPropertiesByVersion` (Boolean)  Set implied properties by microformat version default is `false`
-* `parseLatLonGeo` (Boolean)  Parse geo date writen as latlon i.e. 30.267991;-97.739568 
+* `lang` (Boolean) Parses and adds the language value to e-* default is false
+* `parseLatLonGeo` (Boolean)  Parse geo date writen as latlon i.e. 30.267991;-97.739568
 default is `false`
 
 
@@ -97,57 +96,57 @@ JSON output. This is an example of a parsed `h-card` microformat.
         "rels": {},
         "rel-urls": {}
     }
-```  
+```
 Count
 -----
-The `count` method returns the number of each microformat type found. It does not do a full parse so it is much quicker 
+The `count` method returns the number of each microformat type found. It does not do a full parse so it is much quicker
 than get and can be used for tasks such as adding notifications to the UI. The method can take a `options` object as a parameter.
 ```javascript
     var Microformats = require('microformat-node'),
         options = {};
-        
+
     options.html = '<a class="h-card" href="http://glennjones.net">Glenn</a>';
     Microformats.count(options, function(err, data){
         // do something with data
-    });   
-```  
-Output 
+    });
+```
+Output
 ```javascript
     {
         'h-event': 1,
         'h-card': 2,
         'rels': 6
     }
-```  
+```
 
 isMicroformat
 -------------
-The `isMicroformat` method returns weather a node has a valid microformats class. It currently does not work consider 
+The `isMicroformat` method returns weather a node has a valid microformats class. It currently does not work consider
 `rel=*` a microformats. The method can take a `options` object as a second parameter.
 ```javascript
     var Microformats = require('microformat-node'),
         options = {};
-        
+
     options.html = '<a class="h-card" href="http://glennjones.net">Glenn</a>';
     Microformats.isMicroformat(options, function(err, isValid){
         // do something with isValid
-    });     
-```  
+    });
+```
 
 
 hasMicroformats
 -------------
-The `hasMicroformats` method returns weather a document or node has any valid microformats class. It currently does 
+The `hasMicroformats` method returns weather a document or node has any valid microformats class. It currently does
 not take rel=* microformats into account. The method can take a `options` object as a second parameter.
 ```javascript
     var Microformats = require('microformat-node'),
         options = {};
-        
+
     options.html = '<div><a class="h-card" href="http://glennjones.net">Glenn</a></div>';
     Microformats.hasMicroformats(options, function(err, isValid){
         // do something with isValid
-    });    
-```  
+    });
+```
 
 using a promise
 -------------
@@ -156,14 +155,14 @@ There are promise based version of the four public methods, each is appended wit
 ```javascript
     var Microformats = require('microformat-node'),
         options = {};
-        
+
     options.html = '<a class="h-card" href="http://glennjones.net">Glenn</a>';
     Microformats.getAsync(options)
         .then(function (data) {
             // do something with data
         })
         .catch(function(err){
-            // do something with err 
+            // do something with err
         })
 ```
 Version and livingStandard
@@ -172,7 +171,7 @@ The library has two properties to help identify now up todate it is:
 
 *  `version` (String) interanl version number
 *  `livingStandard` (String ISO Date) the current https://github.com/microformats/tests used.
- 
+
 
 Microformats definitions object
 -------------------------------
@@ -186,7 +185,7 @@ The library has built-in version 1 microformats definitions, but you can add new
 			'currency': {}
 		}
 	}
-```  
+```
 
 
 License

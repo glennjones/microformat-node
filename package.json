@@ -2,7 +2,7 @@
   "author": "Glenn Jones",
   "name": "microformat-node",
   "description": "A microformat parser for node.js",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "license": "MIT",
   "keywords": [
     "parser",
@@ -29,9 +29,10 @@
   },
   "main": "index",
   "dependencies": {
-    "cheerio": "0.19.x",
     "bluebird": "2.9.x",
-    "microformat-shiv": "https://api.github.com/repos/glennjones/microformat-shiv/tarball/"
+    "cheerio": "0.19.x",
+    "ent": "^2.2.0",
+    "microformat-shiv": "glennjones/microformat-shiv"
   },
   "devDependencies": {
     "hapi": "8.4.x",
@@ -49,7 +50,7 @@
     "grunt-contrib-copy": "0.8.x",
     "grunt-contrib-jshint": "0.11.x",
     "grunt-contrib-watch": "0.6.x",
-    "jscoverage":"0.5.x",
+    "jscoverage": "0.5.x",
     "coveralls": "2.11.x",
     "mocha-lcov-reporter": "0.0.x"
   },

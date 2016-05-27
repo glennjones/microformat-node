@@ -1,7 +1,7 @@
 /*
-Microformats Test Suite - Downloaded from github repo: microformats/tests version v0.1.24 
+Microformats Test Suite - Downloaded from github repo: microformats/tests version v0.1.26 
 Mocha integration test from: microformats-v1/hcalendar/combining
-The test was built on Fri Sep 25 2015 14:17:16 GMT+0100 (BST)
+The test was built on Fri May 27 2016 13:35:35 GMT+0100 (BST)
 */
 
 var chai = require('chai'),

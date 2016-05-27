@@ -26,7 +26,7 @@ module.exports = function( grunt ) {
 					process: function(src, filename) {
 					  console.log(filename);
 					  if(filename.indexOf('maps') > -1){
-						  src = src.replace('modules.maps = (modules.maps)? modules.maps : {};','');  
+						  src = src.replace('modules.maps = (modules.maps)? modules.maps : {};','');
 					  }
 					  if(filename.indexOf('wrap') === -1){
 						  src = src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '');
@@ -42,22 +42,22 @@ module.exports = function( grunt ) {
 				},
 				files:{
 					'lib/index.js': [
-						'wrap/wrap-start.js', 
+						'wrap/wrap-start.js',
 						'lib/version.js',
 						'node_modules/microformat-shiv/lib/living-standard.js',
 						'node_modules/microformat-shiv/lib/parser.js',
-						'node_modules/microformat-shiv/lib/parser-implied.js', 
-						'node_modules/microformat-shiv/lib/parser-includes.js', 
-						'node_modules/microformat-shiv/lib/parser-rels.js', 
-						'node_modules/microformat-shiv/lib/utilities.js', 
+						'node_modules/microformat-shiv/lib/parser-implied.js',
+						'node_modules/microformat-shiv/lib/parser-includes.js',
+						'node_modules/microformat-shiv/lib/parser-rels.js',
+						'node_modules/microformat-shiv/lib/utilities.js',
 						'lib/domutils.js',
-						'node_modules/microformat-shiv/lib/url.js',
+						'lib/url.js',
 						'node_modules/microformat-shiv/lib/isodate.js',
 						'node_modules/microformat-shiv/lib/dates.js',
 						'node_modules/microformat-shiv/lib/text.js',
 						'node_modules/microformat-shiv/lib/html.js',
 						'node_modules/microformat-shiv/lib/maps/*.js',
-						'wrap/wrap-end.js', 
+						'wrap/wrap-end.js',
 					]
 				}
 			}
@@ -112,9 +112,9 @@ module.exports = function( grunt ) {
 	// Default task.
 	grunt.registerTask( 'default', ['buildfile', 'concat:dist']);
 
-	
-	
-	
+
+
+
 
 
 };
