@@ -55,7 +55,7 @@
     "mocha-lcov-reporter": "0.0.x"
   },
   "scripts": {
-    "start": "app",
+    "start": "node app",
     "test": "make test",
     "coveralls": "./node_modules/.bin/mocha test -R mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js"
   }
