@@ -56,6 +56,7 @@
   },
   "scripts": {
     "start": "node app",
+    "build": "node -e \"require('grunt').tasks(['default']);\"",
     "test": "make test",
     "coveralls": "./node_modules/.bin/mocha test -R mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js"
   }
