@@ -32,7 +32,7 @@
     "bluebird": "2.9.x",
     "cheerio": "0.19.x",
     "ent": "^2.2.0",
-    "microformat-shiv": "glennjones/microformat-shiv"
+    "microformat-shiv": "^2.0.0"
   },
   "devDependencies": {
     "hapi": "8.4.x",
