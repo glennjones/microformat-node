@@ -8,7 +8,9 @@
 
 microformat-node
 ================
-A node.js microformats parser. It is the same codebase as  [microformat-shiv](https://github.com/glennjones/microformat-shiv) project, but used the ultra-fast HTML DOM [cheerio]( https://github.com/cheeriojs/cheerio).
+A node.js microformats parser. It is the same codebase as  [microformat-shiv](https://github.com/glennjones/microformat-shiv) project, but
+used the ultra-fast HTML DOM [cheerio]( https://github.com/cheeriojs/cheerio) to parse HTML. The microformat-shiv library is also used Firefox browser
+as an internal component.
 
 Installation
 ------------
