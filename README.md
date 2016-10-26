@@ -65,6 +65,7 @@ Options
 * `html` - (String) the html to be parse
 * `node` - (Cheerio DOM object) the element to be parse
 * `filter` - (Array) microformats types returned - i.e. `['h-card']` - always adds `rels`
+* `baseUrl` - (String) a base URL to resolve any relative URL:s to
 * `textFormat` - (String) text style `whitespacetrimmed` or `normalised` default is `whitespacetrimmed`
 * `dateFormat` - (String) the ISO date profile `auto`, `microformat2`, `w3c` `rfc3339` or `html5` default is `auto`
 * `add` - (Array) adds microformat version 1 definitions
