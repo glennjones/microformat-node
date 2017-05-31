@@ -191,6 +191,15 @@ The library has built-in version 1 microformats definitions, but you can add new
 	}
 ```
 
+Running simple demo page
+-------------------------------
+
+```sh
+$ git clone https://github.com/glennjones/microformat-node.git
+$ npm i
+$ npm start
+```
+Then open http://0.0.0.0:3000
 
 License
 -------

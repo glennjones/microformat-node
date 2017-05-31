@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Node.js Microformats Parser</title>
+    <meta name="csrf-param" content="authenticity_token" />
+
+    <link rel="stylesheet" media="all" href="/css/bootstrap.v4.0.0-6.css" />
+    <script src="/javascript/bootstrap.v4.0.0-6.js"></script>
+  </head>
+
+  <body>
+    <main class="container">
+
+
+      <h1 class="mt-5 mb-3">
+        Microformats Parser (Node.js) {{version}}
+      </h1>
+
+<form action="/parse" accept-charset="UTF-8" method="post">
+  <div class="form-group">
+    <label for="url">Enter a URL</label>
+    <input id="url" placeholder="https://example.com/person.html" class="form-control form-control-lg" type="url" name="url" />
+  </div>
+
+  <div class="actions">
+    <button type="submit" class="btn btn-lg btn-success">Parse</button>
+  </div>
+</form>
+
+
+
+<h2 class="h4 my-5">OR parse just a snippet of HTML</h2>
+
+
+<form class="mb-5" action="/parse" accept-charset="UTF-8" method="post">
+
+  <div class="form-group">
+    <label for="submission_html">HTML</label>
+    <!--<textarea id="submission_html" class="form-control form-control-lg" rows="6" name="submission[html]">-->
+    <textarea id="html" name="html"  class="form-control form-control-lg" rows="6"></textarea>
+</textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="submission_base_url">Base URL</label>
+    <!--<input id="submission_base_url" class="form-control form-control-lg" type="url" name="submission[base_url]" />-->
+    <input id="baseUrl" name="baseUrl" class="form-control form-control-lg" placeholder="Optional URL to help resolve relative links" type="url">
+  </div>
+
+<!--
+
+
+
+    	<p class="checkbox">
+						<input id="overlappingVersions" name="overlappingVersions" id="overlappingVersions" type="checkbox">
+						<label class="checkbox-label" for="overlappingVersions"><strong>Experimental</strong> ‐ Block overlapping properties from different microformat versions</label>
+			        </p>
+
+					<p class="checkbox">
+						<input id="impliedPropertiesByVersion" name="impliedPropertiesByVersion" id="impliedPropertiesByVersion" type="checkbox">
+						<label class="checkbox-label" for="impliedPropertiesByVersion"><strong>Experimental</strong> ‐ Set implied properties by microformat version</label>
+			        </p>
+
+					<p class="checkbox">
+						<input id="parseLatLonGeo" name="parseLatLonGeo" id="parseLatLonGeo" type="checkbox">
+						<label class="checkbox-label" for="parseLatLonGeo"><strong>Experimental</strong> ‐ Parse h-geo writen as 30.26;-97.73 into latitude and longitude</label>
+			        </p>
+
+
+
+					<p>
+						<select id="textFormat" class="indent" name="textFormat">
+							<option value="whitespacetrimmed" selected="selected">whitespacetrimmed</option>
+							<option value="normalised">normalised</option>
+		           		</select>
+
+						<label class="checkbox-label" for="textFormat"><strong>Experimental</strong> ‐ Text Formatting</label>
+	 				</p>
+
+
+
+                     <p>
+						<select id="dateFormat" class="indent" name="dateFormat" >
+							<option value="auto" selected="selected">auto</option>
+							<option value="microformat2">microformat2</option>
+							<option value="W3C">w3c</option>
+							<option value="HTML5">html5</option>
+							<option value="RFC3339">rfc3339</option>
+		           		</select>
+
+						<label class="checkbox-label" for="dateFormat"><strong>Experimental</strong> ‐ Force a ISO date profile</label>
+	 				</p>
+
+            -->
+
+
+
+    <div class="actions">
+    <input value="Parse" type="submit" class="btn btn-lg btn-success">
+      <!-- <input type="submit" name="commit" value="Parse" class="btn btn-lg btn-success" data-disable-with="Parse" /> -->
+    </div>
+
+</form>
+
+
+      <footer class="mb-5">
+        <ul>
+          <li><a href="https://microformats.io">About Microformats</a></li>
+          <li><a href="https://github.com/glennjones/microformat-node">Source code for the Microformats Node.js Parser</a></li>
+          <li>
+            Other Microformats Parser websites:
+            <a href="https://php.microformats.io">PHP</a>,
+            <a href="http://ruby.microformats.io">Ruby</a>,
+            <a href="http://python.microformats.io">Python</a>,
+            <a href="https://go.microformats.io">Go</a>
+          </li>
+        </ul>
+      </footer>
+
+    </main>
+  </body>
+</html>
