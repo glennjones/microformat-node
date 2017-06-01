@@ -196,6 +196,7 @@ Running simple demo page
 
 ```sh
 $ git clone https://github.com/glennjones/microformat-node.git
+$ cd microformat-node
 $ npm i
 $ npm start
 ```
