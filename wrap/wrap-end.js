@@ -108,10 +108,6 @@
 } (Modules || {}));
 
 
-// Add promise versions of functions
-Modules = Promise.promisifyAll(Modules);
-
-
 // export for node
 module.exports = { 
     version: Modules.version,
@@ -121,8 +117,8 @@ module.exports = {
     isMicroformat: Modules.isMicroformat,
     hasMicroformats: Modules.hasMicroformats,
     // Promise versions
-    getAsync: Modules.getAsync,
-    countAsync: Modules.countAsync,
-    isMicroformatAsync: Modules.isMicroformatAsync,
-    hasMicroformatsAsync: Modules.hasMicroformatsAsync
+    getAsync: util.promisify(Modules.get),
+    countAsync: util.promisify(Modules.count),
+    isMicroformatAsync: util.promisify(Modules.isMicroformat),
+    hasMicroformatsAsync: util.promisify(Modules.hasMicroformats)
 }
