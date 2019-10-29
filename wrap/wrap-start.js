@@ -2,6 +2,6 @@
 var urlParser = require('url'),
 	ent = require('ent'),
 	cheerio = require('cheerio'),
-	Promise = require('bluebird');
+	util = require('util');
 
 var Modules = (function (modules) {

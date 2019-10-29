@@ -26,7 +26,6 @@
   },
   "main": "index",
   "dependencies": {
-    "bluebird": "3.5.x",
     "cheerio": "0.22.x",
     "ent": "^2.2.0",
     "microformat-shiv": "^2.0.0"
