@@ -22,3 +22,6 @@ _site
 /static/testsuite/
 *.svn-base
 static/test.html
+
+launch.json
+.env
