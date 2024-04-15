@@ -26,19 +26,19 @@
   },
   "main": "index",
   "dependencies": {
-    "@hapi/joi": "^17.1.1",
-    "blipp": "^4.0.2",
     "bluebird": "3.5.x",
-    "cheerio": "0.22.x",
+    "cheerio": "1.0.0-rc.12",
     "ent": "^2.2.0",
     "microformat-shiv": "^2.0.0"
   },
-  "devDependencies": {
+  "devDependencies": {    
+    "@hapi/joi": "^17.1.1",
     "@hapi/boom": "^10.0.1",
     "@hapi/hapi": "^21.3.2",
     "@hapi/hoek": "^11.0.2",
     "@hapi/inert": "^7.1.0",
-    "@hapi/vision": "7.0.1",
+    "@hapi/vision": "7.0.1",    
+    "blipp": "^4.0.2",
     "chai": "3.0.x",
     "coveralls": "2.11.x",
     "dotenv": "^16.0.0",

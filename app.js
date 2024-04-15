@@ -151,7 +151,7 @@ async function startServer() {
             const mfObj = Microformats.get(options);
             return h.response(JSON.stringify(mfObj)).type("application/json");
           } catch (err) {
-            return h.response({ err: err }).type("application/json").code(500);
+            return h.response({ err: err.message }).type("application/json").code(500);
           }
         },
         validate: {
@@ -169,7 +169,7 @@ async function startServer() {
               const mfObj = Microformats.count(options);
               return h.response(JSON.stringify(mfObj)).type("application/json");
             } catch (err) {
-              return h.response({ err: err }).type("application/json").code(500);
+              return h.response({ err: err.message }).type("application/json").code(500);
             }
           },
         validate: {
