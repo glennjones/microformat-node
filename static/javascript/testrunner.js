@@ -79,7 +79,7 @@ function passTest( test, callback ){
     var dom = new DOMParser(),
         doc = dom.parseFromString( test.html, 'text/html' );
 
-    getResults( test.html, '/parse/', function(err, mfJSON ){
+    getResults( test.html, '/parse', function(err, mfJSON ){
         if(mfJSON){
              // diff json
             var diff = DeepDiff(JSON.parse(test.json),  mfJSON);
@@ -188,7 +188,7 @@ function getResults( html, url, callback ){
     formData.append('dateFormat', 'html5');
 
     var request = new XMLHttpRequest();
-    request.open("POST", url);
+    request.open("POST", url, true);
     request.send(formData);
 
     request.onload = function(e) {
@@ -199,3 +199,30 @@ function getResults( html, url, callback ){
         }
     };
 }
+
+/*
+// post form and returns JSON
+async function getResults(html, url) {
+    const formData = new FormData();
+    formData.append('html', html);
+    formData.append('baseUrl', 'http://example.com');
+    formData.append('dateFormat', 'html5');
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+            const json = await response.json();
+            return json;
+        }
+    } catch (error) {
+        console.error('There was a problem with the fetch operation: ' + error.message);
+    }
+}
+
+*/

@@ -145,6 +145,9 @@ async function startServer() {
       method: "POST",
       path: "/parse",
       options: {
+        payload: {
+          multipart: true
+        },
         handler: async (request, h) => {
           try {
             const options = await buildOptions(request);
@@ -163,6 +166,9 @@ async function startServer() {
       method: "POST",
       path: "/count",
       options: {
+        payload: {
+          multipart: true
+        },
         handler: async (request, h) => {
             try {
               const options = await buildOptions(request);
