@@ -109,7 +109,11 @@
 
 
 // Add promise versions of functions
-Modules = Promise.promisifyAll(Modules);
+for (let func in Modules) {
+    if (Modules.hasOwnProperty(func) && typeof Modules[func] === 'function') {
+      Modules[`${func}Async`] = util.promisify(Modules[func]);
+    }
+}
 
 
 // export for node
