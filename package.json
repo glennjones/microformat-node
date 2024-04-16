@@ -58,8 +58,7 @@
     "mocha": "10.4.x",
     "mocha-lcov-reporter": "1.3.x",
     "pino": "^8.14.1",
-    "pino-pretty": "^10.2.0",
-    "request": "2.88.x"
+    "pino-pretty": "^10.2.0"
   },
   "scripts": {
     "start": "node app",
