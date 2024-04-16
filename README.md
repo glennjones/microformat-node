@@ -1,54 +1,53 @@
-[![build status](https://img.shields.io/travis/glennjones/microformat-node.svg?style=flat-square)](http://travis-ci.org/glennjones/microformat-node)
-[![Coverage Status](https://img.shields.io/coveralls/glennjones/microformat-node/master.svg?style=flat-square)](https://coveralls.io/r/glennjones/microformat-node)
-[![Codacy Badge](https://img.shields.io/codacy/grade/20b227b0a05642a2bbc6cecdf07f1387.svg?style=flat-square)](https://www.codacy.com/app/glennjonesnet/microformat-node)
+---
+runme:
+  id: 01HVK64MPTNS966NET83RZPH17
+  version: v3
+---
+
+
 [![MIT license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.github.com/glennjones/microformat-shic/master/license.txt)
 
+# microformat-node
 
-
-
-microformat-node
-================
 A node.js microformats parser. It is the same codebase as  [microformat-shiv](https://github.com/glennjones/microformat-shiv) project, but
-used the ultra-fast HTML DOM [cheerio]( https://github.com/cheeriojs/cheerio) to parse HTML. The microformat-shiv library is also used in Firefox browser
-as an internal component.
+used the fast HTML DOM [cheerio](https://github.com/cheeriojs/cheerio) to parse HTML. 
 
-Installation
-------------
+## Installation
 
-Using bower:
-
-```sh
-$ npm install microformat-node
+```sh {"id":"01HVK64MPTNS966NET7E1G52Y1"}
+$ npm i microformat-node
 ```
 
-Methods
------
+## Methods
+
 * Parsing
-    * [`get`](#get)
+   * [`get`](#get)
+
 * Discovery
-    * [`count`](#count)
-    * [`isMicroformat`](#isMicroformat)
-    * [`hasMicroformats`](#hasMicroformats)
+   * [`count`](#count)
+   * [`isMicroformat`](#isMicroformat)
+   * [`hasMicroformats`](#hasMicroformats)
 
+## get
 
-get
------
 The `get` method parses microformats data from either a `html` string or a `cheerio` object.
 
 Simple parse of HTML string.
-```javascript
+
+```javascript {"id":"01HVK64MPTNS966NET7GGBM7F9"}
     var Microformats = require('microformat-node'),
         options = {};
 
     options.html = '<a class="h-card" href="http://glennjones.net">Glenn</a>';
+
     Microformats.get(options, function(err, data){
         // do something with data
     });
 ```
 
-
 Simple parse of a Cheerio parsed page
-```javascript
+
+```javascript {"id":"01HVK64MPTNS966NET7MF5S2S4"}
     var Microformats = require('microformat-node'),
         Cheerio = require('cheerio'),
         options = {};
@@ -59,11 +58,8 @@ Simple parse of a Cheerio parsed page
     });
 ```
 
+## Options
 
-
-
-Options
--------
 * `html` - (String) the html to be parse
 * `node` - (Cheerio DOM object) the element to be parse
 * `filter` - (Array) microformats types returned - i.e. `['h-card']` - always adds `rels`
@@ -74,18 +70,19 @@ Options
 
 __I would recommended always setting `textFormat` option to `normalised`. This is not part of the microformat parsing rules, but in most cases provides more usable output.__
 
-Experimental Options
--------
+## Experimental Options
+
 These options are part of ongoing specification development. They maybe removed or renamed in future.
+
 * `lang` (Boolean) Parses and adds the language value to e-* default is false
 * `parseLatLonGeo` (Boolean)  Parse geo date writen as latlon i.e. 30.267991;-97.739568
-default is `false`
+   default is `false`
 
+## Output
 
-Output
--------
 JSON output. This is an example of a parsed `h-card` microformat.
-```javascript
+
+```javascript {"id":"01HVK64MPTNS966NET7PAZNDKR"}
     {
         "items": [{
             "type": ["h-card"],
@@ -101,11 +98,13 @@ JSON output. This is an example of a parsed `h-card` microformat.
         "rel-urls": {}
     }
 ```
-Count
------
+
+## Count
+
 The `count` method returns the number of each microformat type found. It does not do a full parse so it is much quicker
 than get and can be used for tasks such as adding notifications to the UI. The method can take a `options` object as a parameter.
-```javascript
+
+```javascript {"id":"01HVK64MPTNS966NET7T2PRFEQ"}
     var Microformats = require('microformat-node'),
         options = {};
 
@@ -114,8 +113,10 @@ than get and can be used for tasks such as adding notifications to the UI. The m
         // do something with data
     });
 ```
+
 Output
-```javascript
+
+```javascript {"id":"01HVK64MPTNS966NET7W8JR2JJ"}
     {
         'h-event': 1,
         'h-card': 2,
@@ -123,11 +124,12 @@ Output
     }
 ```
 
-isMicroformat
--------------
+## isMicroformat
+
 The `isMicroformat` method returns weather a node has a valid microformats class. It currently does not work consider
 `rel=*` a microformats. The method can take a `options` object as a second parameter.
-```javascript
+
+```javascript {"id":"01HVK64MPTNS966NET7WHS24N0"}
     var Microformats = require('microformat-node'),
         options = {};
 
@@ -137,12 +139,12 @@ The `isMicroformat` method returns weather a node has a valid microformats class
     });
 ```
 
+## hasMicroformats
 
-hasMicroformats
--------------
 The `hasMicroformats` method returns weather a document or node has any valid microformats class. It currently does
 not take rel=* microformats into account. The method can take a `options` object as a second parameter.
-```javascript
+
+```javascript {"id":"01HVK64MPTNS966NET7WPZNT36"}
     var Microformats = require('microformat-node'),
         options = {};
 
@@ -152,16 +154,16 @@ not take rel=* microformats into account. The method can take a `options` object
     });
 ```
 
-using a promise
--------------
+## using a Async calls
+
 There are promise based version of the four public methods, each is appended with the text `Async`. So the names for promise methods are `getAsync`, `countAsync`, `isMicroformatAsync` and `hasMicroformatsAsync`.
 
-```javascript
+```javascript {"id":"01HVK64MPTNS966NET7WXB2WK2"}
     var Microformats = require('microformat-node'),
         options = {};
 
     options.html = '<a class="h-card" href="http://glennjones.net">Glenn</a>';
-    Microformats.getAsync(options)
+    let data = await Microformats.getAsync(options)
         .then(function (data) {
             // do something with data
         })
@@ -169,18 +171,19 @@ There are promise based version of the four public methods, each is appended wit
             // do something with err
         })
 ```
-Version and livingStandard
---------------------------
+
+## Version and livingStandard
+
 The library has two properties to help identify now up todate it is:
 
-*  `version` (String) interanl version number
-*  `livingStandard` (String ISO Date) the current https://github.com/microformats/tests used.
+* `version` (String) interanl version number
+* `livingStandard` (String ISO Date) the current https://github.com/microformats/tests used.
 
+## Microformats definitions object
 
-Microformats definitions object
--------------------------------
 The library has built-in version 1 microformats definitions, but you can add new definitions using `options.add` if you wish. Below is an example of a definitions object. Examples of existing definitions found in the directory `lib/maps`. You not need to add new definitions object if your using the microformats version 2.
-```javascript
+
+```javascript {"id":"01HVK64MPTNS966NET7Z6S1XPC"}
     {
 		root: 'hpayment',
 		name: 'h-payment',
@@ -191,21 +194,17 @@ The library has built-in version 1 microformats definitions, but you can add new
 	}
 ```
 
-Running simple demo page
--------------------------------
+## Running simple demo page
 
-```sh
+```sh {"id":"01HVK64MPTNS966NET82E51R87"}
 $ git clone https://github.com/glennjones/microformat-node.git
 $ cd microformat-node
 $ npm i
 $ npm start
 ```
+
 Then open http://0.0.0.0:3000
 
-License
--------
+## License
 
-[MIT][] © Copyright [Glenn Jones][]
-
-[MIT]: ./License.md
-[Glenn Jones]: https://github.com/glennjones
+[MIT](./License.md) © Copyright [Glenn Jones](https://github.com/glennjones)
