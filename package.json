@@ -39,7 +39,7 @@
     "@hapi/inert": "^7.1.0",
     "@hapi/vision": "7.0.1",    
     "blipp": "^4.0.2",
-    "chai": "5.1.0",
+    "chai": "4.4.1",
     "coveralls": "3.1.1",
     "dotenv": "^16.4.5",
     "download-github-repo": "0.1.4",
@@ -64,7 +64,7 @@
   "scripts": {
     "start": "node app",
     "build": "node -e \"require('grunt').tasks(['default']);\"",
-    "test": "make test",
+    "test": "mocha './test/*-test.js'",
     "coveralls": "./node_modules/.bin/mocha test -R mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js"
   }
 }

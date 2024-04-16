@@ -25,21 +25,21 @@ describe('Microformat.isMicroformat', function() {
   
    it('true - v2', function(){  
         var html = '<a class="h-card" href="http://glennjones.net"><span class="p-name">Glenn</span></a>',
-            node = cheerio.load(html);
+            node = cheerio.load(html, null, false);
         assert.isTrue( Microformats.isMicroformat( node, options ) );
    });
    
    
    it('true - v1', function(){   
         var html = '<a class="vcard" href="http://glennjones.net"><span class="fn">Glenn</span></a>',
-            node = cheerio.load(html);  
+            node = cheerio.load(html, null, false);  
         assert.isTrue( Microformats.isMicroformat( node, options ) );
    });
    
    
    it('true - v2 filter', function(){
         var html = '<a class="h-card" href="http://glennjones.net"><span class="p-name">Glenn</span></a>',
-            node = cheerio.load(html);
+            node = cheerio.load(html, null, false);
         options.filters = ['h-card']; 
         assert.isTrue( Microformats.isMicroformat( node, options ) );
    });
@@ -47,7 +47,7 @@ describe('Microformat.isMicroformat', function() {
    
    it('true - v1 filter', function(){
         var html = '<a class="vcard" href="http://glennjones.net"><span class="fn">Glenn</span></a>',
-            node = cheerio.load(html);
+            node = cheerio.load(html, null, false);
         options.filters = ['h-card'];   
         assert.isTrue( Microformats.isMicroformat( node, options ) );
    });
@@ -55,7 +55,7 @@ describe('Microformat.isMicroformat', function() {
    
    it('false - v2 filter', function(){
         var html = '<a class="h-card" href="http://glennjones.net"><span class="p-name">Glenn</span></a>',
-            node = cheerio.load(html);
+            node = cheerio.load(html, null, false);
         options.filters = ['h-entry'];      
         assert.isFalse( Microformats.isMicroformat( node, options ) );
    });
@@ -63,14 +63,14 @@ describe('Microformat.isMicroformat', function() {
      
    it('false - property', function(){
         var html = '<span class="p-name">Glenn</span>',
-            node = cheerio.load(html);  
+            node = cheerio.load(html, null, false);  
         assert.isFalse( Microformats.isMicroformat( node, options ) );
    });
    
    
    it('false - no class', function(){
         var html = '<span>Glenn</span>',
-            node = cheerio.load(html);   
+            node = cheerio.load(html, null, false);   
         assert.isFalse( Microformats.isMicroformat( node, options ) );
         
    });
@@ -83,7 +83,7 @@ describe('Microformat.isMicroformat', function() {
    
    it('true - using callback', function(done){
         var html = '<a class="h-card" href="http://glennjones.net"><span class="p-name">Glenn</span></a>',
-            node = cheerio.load(html);   
+            node = cheerio.load(html, null, false);   
         Microformats.isMicroformat( node, options, function(err, result){
             assert.equal( err, null );
             assert.isTrue( result );
@@ -94,7 +94,7 @@ describe('Microformat.isMicroformat', function() {
    
    it('true - using callback no options', function(done){
         var html = '<a class="h-card" href="http://glennjones.net"><span class="p-name">Glenn</span></a>',
-            node = cheerio.load(html);   
+            node = cheerio.load(html, null, false);   
         Microformats.isMicroformat( node, function(err, result){
             assert.equal( err, null );
             assert.isTrue( result );
@@ -116,7 +116,7 @@ describe('Microformat.isMicroformatAsync', function() {
    
    it('true - using promise', function(done){
         var html = '<a class="h-card" href="http://glennjones.net"><span class="p-name">Glenn</span></a>',
-            node = cheerio.load(html);   
+            node = cheerio.load(html, null, false);   
         
         Microformats.isMicroformatAsync(node, options)
             .then(function(result){
@@ -126,5 +126,5 @@ describe('Microformat.isMicroformatAsync', function() {
    });
    
    
- });
+});
  

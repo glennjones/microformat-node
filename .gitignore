@@ -23,5 +23,8 @@ _site
 *.svn-base
 static/test.html
 
+.vscode
 launch.json
+settings.json
 .env
+temp.js
