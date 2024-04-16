@@ -1,9 +1,3 @@
----
-runme:
-  id: 01HVK64MPTNS966NET83RZPH17
-  version: v3
----
-
 
 [![MIT license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.github.com/glennjones/microformat-shic/master/license.txt)
 
